@@ -174,9 +174,6 @@ function openPopup(element, popupTimeDelay = 0) { // delay time = 0s by default
         // check if popup should be centered based on height
         checkInnerWrapperHeight(element);
 
-        // check if popup is scrollable
-        checkPopupIsScrollable(element);
-
         // disable scrolling if popup opens
         document.body.style.overflow = "hidden";
     }, popupTimeDelay * 1000); // conver delay from milliseconds to seconds
@@ -230,23 +227,6 @@ function checkInnerWrapperHeight(element){
         if (innerWrapper.classList.contains("centered")) {
             innerWrapper.classList.remove("centered");
         }
-    }
-}
-
-function checkPopupIsScrollable(element){
-    // get the popup content's container (ExGby);
-    const popupContentContainer = element.querySelector('.ExGby');
-    const contentHeight = popupContentContainer.scrollHeight; // popup contents height
-    const actualHeight = popupContentContainer.offsetHeight;  // popup content's container height
-    console.log(contentHeight, actualHeight);
-
-    if (contentHeight > actualHeight) {
-        // if content is greater than container's height
-        alert('popup is scrollable')
-        console.log("Content is greater than height.");
-    } else {
-        // else
-        console.log("Content is not greater than height.");
     }
 }
 
