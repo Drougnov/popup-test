@@ -467,7 +467,7 @@
 
 .slidein-popup .TImJU {
     flex: 1;
-    height: calc(100vh - 100px);
+    height: calc(100vh - 76.8px); /*minus header height*/
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -723,7 +723,7 @@ input:not([type="radio"]):not([type="checkbox"]):not([type="file"]):not(
     /* slidein body */
     .slidein-popup .TImJU {
         flex: unset;
-        height: calc(100vh - 137px);
+        height: calc(100vh - 76.8px - var(--popup-space-from-top, 60px)); /*minus header height and space from top*/
     }
 
     /* ------------------------------------------ force slidein popup ------------------------------------------ */
@@ -764,6 +764,11 @@ input:not([type="radio"]):not([type="checkbox"]):not([type="file"]):not(
         height: 100vh;
         border-radius: 0;
         box-shadow: 3px 0 3px 0 rgba(0, 0, 0, 0.1);
+    }
+
+    /* force slidein popup body */
+    .slidein-popup.force-slide-in .TImJU {
+        height: calc(100vh - 76.8px); /*minus header height*/
     }
 
     /* ------------------------------------------ narrow mobile popup ------------------------------------------ */
