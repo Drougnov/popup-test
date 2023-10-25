@@ -166,16 +166,16 @@ function openPopup(element, popupTimeDelay = 0) { // delay time = 0s by default
         element.classList.add("gsCWf");
         element.classList.add("opened");
 
-        // if the popup is slidein/force-slidein, don't change style
+        // disable scrolling if popup opens
+        document.body.style.overflow = "hidden";
+
+        // if the popup is slidein/force-slidein, return
         if (element.classList.contains("slidein-popup")) {
             return;
         }
 
         // check if popup should be centered based on height
         checkInnerWrapperHeight(element);
-
-        // disable scrolling if popup opens
-        document.body.style.overflow = "hidden";
     }, popupTimeDelay * 1000); // conver delay from milliseconds to seconds
 }
 
@@ -190,11 +190,6 @@ function closePopup(element, popupTimeDelay = 0) { // delay time = 0s by default
             detail: { target: element.id },
         });
         document.dispatchEvent(popupClosedEvent);
-
-        // if the popup is slidein/force-slidein, don't change style
-        if (element.classList.contains("slidein-popup")) {
-            return;
-        }
 
         // enable scrolling if popup closed
         document.body.style.overflow = "auto";
