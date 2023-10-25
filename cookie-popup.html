@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link
+        rel="stylesheet"
+        href="https://fs.codelinden.com/wp-content/themes/hello-child/style.css"
+    />
+    <link rel="stylesheet" href="popup-styles.css">
+</head>
+<body>
+    <button class="cookie-popup-btn" onclick="initiate_popup({'target': '#cookie-popup',
+                'overlay_color': 'rgba(0,0,0,0.65)',
+                'popup_type': 'cookie-popup',
+                'cookie_name': 'ageConfirmed',
+                'cookie_expiration': 'Fri, 31 Dec 9999 23:59:59 GMT',
+                'prevent_close': true});">Show/Hide
+            Cookie Popup</button>
+
+            <div class="DuKSh EJVsl OtrSK cNGwx cookie-popup prevent-close" id="cookie-popup">
+                <!-- inner wrapper -->
+                <div class="GodhZ gsCWf EJVsl OtrSK CzomY">
+                    <!-- container -->
+                    <div class="ExGby HruDj">
+                        <!-- header -->
+                        <div class="tSrNa gsCWf EJVsl zsSLy">
+                            <h1 class="USKIn">Age Confirmation</h1>
+    
+                            <!-- header right section -->
+                            <div class="wcrwV gsCWf EJVsl">
+                                <!-- close button -->
+                                <div class="AYaOY TNIio UYvZu gsCWf EJVsl OtrSK DeYlt">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <g>
+                                            <path d="M16 16L12 12M12 12L8 8M12 12L16 8M12 12L8 16" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                                        </g>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+    
+                        <!-- contents -->
+                        <div class="TImJU">
+                            <div class="cookie-container">
+                                <p>Are you 18 years or older?</p>
+                                <div class="cookie-button-container">
+                                    <button class="AYaOY" id="confirmCookieButton">Confirm</button>
+                                    <button id="exitCookieButton">Exit Site</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <script src="popup-scripts.js"></script>
+</body>
+</html>
