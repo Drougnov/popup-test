@@ -9,6 +9,7 @@ function initiate_popup(args) {
     const popupSpaceFromTop = args.popup_top_space || 60; // fallback value = "60px"
     // update popup-time-delay variable based on argument value
     popupTimeDelay = args.popup_time_delay || 0; // fallback value = "0s"
+    const popupScrollTrigger = args.popup_scroll_trigger || false;
 
     // If target is not provided, return
     if (!target) {
@@ -66,6 +67,35 @@ function initiate_popup(args) {
     if (args.prevent_close === true) {
         // Add a class to prevent closing the popup
         targetElement.classList.add("prevent-close");
+    }
+
+    if(popupScrollTrigger === true){
+        // if scroll trigger value is true, get scrollable container's id/class
+        var scrollContainerSelector = args.popup_scrollable_container || false;
+
+        if(scrollContainerSelector){
+            // Find the scrollable container element using the provided selector
+            var popupScrollableContainer = targetElement.querySelector(`${scrollContainerSelector}`);
+            // Check if the scrollable container exists
+            if(popupScrollableContainer){
+                // set last scroll position to 0
+                let lastScrollTop = 0;
+
+                popupScrollableContainer.addEventListener('scroll', ()=>{
+                    // Get the current scroll position of the scrollable container
+                    const scrollTop = popupScrollableContainer.scrollTop;
+
+                    if (scrollTop > lastScrollTop) {
+                        // Check if the current position is greater than the last position, indicating scrolling down
+                        alert('Scrolling down');
+                        console.log('scrolling down')
+                    }
+
+                    // Update the last scroll position for the next scroll event
+                    lastScrollTop = scrollTop;
+                })
+            }
+        }
     }
 
     // pass popupSpaceFromTop's value as css variable
