@@ -1,5 +1,6 @@
 // set global popup-time-delay variable
 var popupTimeDelay;
+// scroll-trigger-popup flag
 var popupShown = false;
 
 function initiate_popup(args) {
@@ -25,6 +26,8 @@ function initiate_popup(args) {
     if (overlayColor) {
         targetElement.style.backgroundColor = overlayColor;
     }
+
+    // ----------------==========================handle popup type==========================----------------
 
     // Add classes based on the popup type
     if (popupType !== "default") {
@@ -64,15 +67,22 @@ function initiate_popup(args) {
         }
     }
 
+    // ----------------==========================handle prevent close==========================----------------
+
     // if prevent close is true
     if (args.prevent_close === true) {
         // Add a class to prevent closing the popup
         targetElement.classList.add("prevent-close");
     }
 
+    // ----------------==========================handle animation==========================----------------
+
     if(popupAnimationType){
+        // Add the value as a class
         targetElement.classList.add(popupAnimationType);
     }
+
+    // ----------------==========================handle trigger on scroll==========================----------------
 
     // Parse and convert the popupSpaceFromTop value based on its unit (px or %)
     function parseScrollPosition(value, bodyHeight) {
@@ -80,7 +90,7 @@ function initiate_popup(args) {
             // if has %
             // convert string to number
             const percentage = parseFloat(value);
-            // conver percentage to pixels
+            // convert percentage to pixels
             return (percentage / 100) * bodyHeight;
         } else if (typeof value === 'string' && value.endsWith('px')) {
             // if has px
@@ -117,7 +127,9 @@ function initiate_popup(args) {
         window.addEventListener('scroll', checkScrollPosition);
     }
 
-    
+    // ----------------==========================handle popup open==========================----------------
+
+    // if trigger on scroll is set to false
     if(!popupScrollTrigger){
         // open the popup
         openPopup(targetElement, popupTimeDelay);
@@ -128,6 +140,8 @@ function initiate_popup(args) {
         detail: { target: target },
     });
     document.dispatchEvent(popupOpenedEvent);
+
+    // ----------------==========================handle popup close==========================----------------
 
     // set dragging state as false by default
     let isDragging = false;
@@ -185,14 +199,9 @@ function openPopup(element, popupTimeDelay = 0) { // delay time = 0s by default
         element.classList.add("gsCWf");
         element.classList.add("opened");
 
-        // if the popup is slidein/force-slidein, return
-        if (element.classList.contains("slidein-popup")) {
-            return;
-        }
-
         // disable scrolling if popup opens
         document.body.style.overflow = "hidden";
-    }, popupTimeDelay * 1000); // conver delay from milliseconds to seconds
+    }, popupTimeDelay * 1000); // convert delay from seconds to milliseconds
 }
 
 function closePopup(element) {
