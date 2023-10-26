@@ -52,7 +52,7 @@ function initiate_popup(args) {
                 // Check if the cookie is set
                 if (document.cookie.indexOf(`${cookieName}=true`) > -1) {
                     // If the cookie is set, close the popup
-                    closePopup(targetElement, popupTimeDelay);
+                    closePopup(targetElement);
                 }
             });
 
@@ -138,7 +138,7 @@ function initiate_popup(args) {
                 e.target.classList.contains("AYaOY")
             ) {
                 // Check if the clicked element has the class "DuKSh" or "AYaOY"
-                closePopup(targetElement, popupTimeDelay);
+                closePopup(targetElement);
                 targetElement.classList.remove("opened");
             } else if (e.target.closest(".DuKSh") || e.target.closest(".AYaOY")) {
                 // Check if a parent of the clicked element has the class "DuKSh" or "AYaOY"
@@ -155,7 +155,7 @@ function initiate_popup(args) {
             if (targetElement.classList.contains("prevent-close")) {
                 return;
             }
-            closePopup(element.closest(".DuKSh"), popupTimeDelay);
+            closePopup(element.closest(".DuKSh"));
         });
     });
 }
@@ -179,8 +179,7 @@ function openPopup(element, popupTimeDelay = 0) { // delay time = 0s by default
     }, popupTimeDelay * 1000); // conver delay from milliseconds to seconds
 }
 
-function closePopup(element, popupTimeDelay = 0) { // delay time = 0s by default
-    setTimeout(() => {
+function closePopup(element) { // delay time = 0s by default
         // Fade out the popup by removing 'gsCWf(display flex)' and 'opened' class
         element.classList.remove("gsCWf");
         element.classList.remove("opened");
@@ -193,7 +192,6 @@ function closePopup(element, popupTimeDelay = 0) { // delay time = 0s by default
 
         // enable scrolling if popup closed
         document.body.style.overflow = "auto";
-    }, popupTimeDelay * 1000); // conver delay from milliseconds to seconds
 }
 
 // close popups manually when 'prevent_close' argument value is true
@@ -203,7 +201,7 @@ function closePopupManually() {
 
     // if exist, close it
     if (openedPopup) {
-        closePopup(openedPopup, popupTimeDelay);
+        closePopup(openedPopup);
     }
 }
 
