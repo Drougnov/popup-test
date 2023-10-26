@@ -105,11 +105,11 @@
         -o-transform: translate(-50%, 0) scale(0.7);
     }
     30% {
-        transform: translate(-50%, 0) scale(1.1);
-        -webkit-transform: translate(-50%, 0) scale(1.1);
-        -moz-transform: translate(-50%, 0) scale(1.1);
-        -ms-transform: translate(-50%, 0) scale(1.1);
-        -o-transform: translate(-50%, 0) scale(1.1);
+        transform: translate(-50%, 0) scale(1);
+        -webkit-transform: translate(-50%, 0) scale(1);
+        -moz-transform: translate(-50%, 0) scale(1);
+        -ms-transform: translate(-50%, 0) scale(1);
+        -o-transform: translate(-50%, 0) scale(1);
 }
     60% {
         transform: translate(-50%, 0) scale(0.9);
