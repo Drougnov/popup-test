@@ -10,6 +10,7 @@ function initiate_popup(args) {
     // update popup-time-delay variable based on argument value
     popupTimeDelay = args.popup_time_delay || 0; // fallback value = "0s"
     const popupScrollTrigger = args.popup_scroll_trigger || false;
+    const popupAnimationType = args.popup_animation_type || false;
 
     // If target is not provided, return
     if (!target) {
@@ -67,6 +68,10 @@ function initiate_popup(args) {
     if (args.prevent_close === true) {
         // Add a class to prevent closing the popup
         targetElement.classList.add("prevent-close");
+    }
+
+    if(popupAnimationType){
+        targetElement.classList.add(popupAnimationType);
     }
 
     // Parse and convert the popupSpaceFromTop value based on its unit (px or %)
@@ -203,6 +208,11 @@ function closePopup(element) {
 
         // enable scrolling if popup closed
         document.body.style.overflow = "auto";
+
+        // if popup has bounce in animation, reset it
+        if(element.classList.contains('animate-bounce-in')){
+            element.classList.remove('animate-bounce-in');
+        }
 }
 
 // close popups manually when 'prevent_close' argument value is true
