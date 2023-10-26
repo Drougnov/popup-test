@@ -49,7 +49,7 @@
         />
         <style>
             :root {
-                --article-gap: 80px;
+                --article-gap: 50px;
                 --text-gap: 8px;
             }
             .wrapper {
@@ -244,7 +244,7 @@
                 </select>
             </div>
 
-            <section class="arguments-table">
+            <section id="arguments-table" class="arguments-table">
                 <h1>Popup Initialization Arguments</h1>
                 <table>
                     <tr>
@@ -255,49 +255,50 @@
                         <th>Required</th>
                     </tr>
                     <tr>
-                        <td>'target'</td>
+                        
+                        <td>"target"</td>
                         <td>The ID of the popup.</td>
                         <td>Any</td>
                         <td>false</td>
                         <td>Yes</td>
                     </tr>
                     <tr>
-                        <td>'overlay_color'</td>
+                        <td>"overlay_color"</td>
                         <td>The background color of the popup overlay.</td>
                         <td>Any</td>
-                        <td>'rgba(0,0,0,0.65)'</td>
+                        <td>"rgba(0,0,0,0.65)"</td>
                         <td>Optional</td>
                     </tr>
                     <tr>
-                        <td>'popup_type'</td>
+                        <td>"popup_type"</td>
                         <td>Specifies the type or variation of the popup.</td>
                         <td>
                             <ul>
-                                <li>'slidein-popup'</li>
-                                <li>'force-slidein-popup'</li>
-                                <li>'narrow-mobile-popup'</li>
-                                <li>'cookie-popup'</li>
+                                <li>"slidein-popup"</li>
+                                <li>"force-slidein-popup"</li>
+                                <li>"narrow-mobile-popup"</li>
+                                <li>"cookie-popup"</li>
                             </ul>
                         </td>
-                        <td>'default'</td>
+                        <td>"default"</td>
                         <td>Optional</td>
                     </tr>
                     <tr>
-                        <td>'cookie_name'</td>
+                        <td>"cookie_name"</td>
                         <td>The name of the cookie used in cookie popups. Only applicable when `popup_type` is 'cookie-popup'.</td>
                         <td>Any</td>
-                        <td>'example_cookie'</td>
+                        <td>"example_cookie"</td>
                         <td>Yes (For cookie)</td>
                     </tr>
                     <tr>
-                        <td>'cookie_expiration'</td>
+                        <td>"cookie_expiration"</td>
                         <td>The expiration duration for the cookie used in cookie popups. Only applicable when `popup_type` is 'cookie-popup'.</td>
                         <td>Any</td>
-                        <td>'Fri, 31 Dec 9999 23:59:59 GMT'</td>
+                        <td>"Fri, 31 Dec 9999 23:59:59 GMT"</td>
                         <td>Yes (For cookie)</td>
                     </tr>
                     <tr>
-                        <td>'prevent_close'</td>
+                        <td>"prevent_close"</td>
                         <td>Prevent popup from closing.</td>
                         <td>
                             <ul>
@@ -309,14 +310,14 @@
                         <td>Optional</td>
                     </tr>
                     <tr>
-                        <td>'popup_time_delay'</td>
+                        <td>"popup_time_delay"</td>
                         <td>Delay time to open the popup (Value should be in number)</td>
                         <td>Any</td>
                         <td>0</td>
                         <td>Optional</td>
                     </tr>
                     <tr>
-                        <td>'popup_scroll_trigger'</td>
+                        <td>"popup_scroll_trigger"</td>
                         <td>Opens popup on scrolling down the page</td>
                         <td>
                             <ul>
@@ -328,20 +329,20 @@
                         <td>Optional</td>
                     </tr>
                     <tr>
-                        <td>'popup_top_space'</td>
+                        <td>"popup_top_space"</td>
                         <td>Pixels or percentage from top to trigger popup. Value should be a string and the unit should be '%' or 'px'. Ex: '100px', '10%'</td>
                         <td>Any</td>
-                        <td>'500px'</td>
+                        <td>"500px"</td>
                         <td>Yes (if popup scroll trigger is true)</td>
                     </tr>
                     <tr>
-                        <td>'popup_animation_type'</td>
+                        <td>"popup_animation_type"</td>
                         <td>Adds popup opening animation type.</td>
                         <td>
                             <ul>
-                                <li>'animate-fade-in'</li>
-                                <li>'animate-slide-down'</li>
-                                <li>'animate-bounce-in'</li>
+                                <li>"animate-fade-in"</li>
+                                <li>"animate-slide-down"</li>
+                                <li>"animate-bounce-in"</li>
                             </ul>
                         </td>
                         <td>false</td>
@@ -355,7 +356,7 @@
                 </div>
             </section>
 
-            <article class="form-popup-container">
+            <article id="form-popup-container" class="form-popup-container">
                 <p>Here is a live preview of form popup:</p>
                 <button
                     onclick="initiate_popup({'target': '#form-popup', 'overlay_color': 'rgba(0,0,0,0.65)'});"
@@ -574,7 +575,7 @@
                 </div>
             </article>
 
-            <article class="alert-popup-container">
+            <article id="alert-popup-container" class="alert-popup-container">
                 <p>Here is a live preview of alert popup:</p>
                 <button
                     onclick="initiate_popup({'target': '#alert-popup', 'overlay_color': 'rgba(0,0,0,0.65)'});"
@@ -637,7 +638,7 @@
                 </div>
             </article>
 
-            <article class="scroll-popup-container">
+            <article id="scroll-popup-container" class="scroll-popup-container">
                 <p>Here is a live preview of scroll popup:</p>
                 <button
                     onclick="initiate_popup({'target': '#scroll-popup', 'overlay_color': 'rgba(0,0,0,0.65)'});"
@@ -1101,7 +1102,7 @@
                 </div>
             </article>
 
-            <article class="plan-popup-container">
+            <article id="plan-popup-container" class="plan-popup-container">
                 <p>Here is a live preview of plan popup:</p>
                 <button
                     onclick="initiate_popup({'target': '#plan-popup', 'overlay_color': 'rgba(0,0,0,0.65)'});initiateSplideElements()"
@@ -3309,7 +3310,7 @@
                 </div>
             </article>
 
-            <article class="slidein-popup-container">
+            <article id="slidein-popup-container" class="slidein-popup-container">
                 <p>Here is a live preview of slidein popup:</p>
                 <button
                     onclick="initiate_popup({'target': '#slidein-popup', 'overlay_color': 'rgba(0,0,0,0.65)'});"
@@ -3424,7 +3425,7 @@
                 </div>
             </article>
 
-            <article class="force-slidein-popup-container">
+            <article id="force-slidein-popup-container" class="force-slidein-popup-container">
                 <p>Here is a live preview of force slidein popup:</p>
                 <button
                     onclick="initiate_popup({'target': '#force-slidein-popup', 'overlay_color': 'rgba(0,0,0,0.65)'});"
@@ -3539,7 +3540,7 @@
                 </div>
             </article>
 
-            <article class="prevent-popup-close-container">
+            <article id="prevent-popup-close-container" class="prevent-popup-close-container">
                 <p>Here is a live preview of prevent close popup:</p>
                 <button
                     onclick="initiate_popup({'target': '#prevent-close-popup', 'overlay_color': 'rgba(0,0,0,0.65)'});"
@@ -3582,7 +3583,7 @@
                 </div>
             </article>
 
-            <article class="narrow-mobile-popup-container">
+            <article id="narrow-mobile-popup-container" class="narrow-mobile-popup-container">
                 <p>Here is a live preview of narrow mobile popup:</p>
                 <button
                     onclick="initiate_popup({'target': '#narrow-mobile-popup', 'overlay_color': 'rgba(0,0,0,0.65)'});"
@@ -3636,7 +3637,7 @@
                 </div>
             </article>
 
-            <article class="cookie-popup-container">
+            <article id="cookie-popup-container" class="cookie-popup-container">
                 <p>Here is a live preview of cookie popup:</p>
                 <button class="cookie-popup-btn" onclick="initiate_popup({'target': '#cookie-popup',
                 'overlay_color': 'rgba(0,0,0,0.65)',
