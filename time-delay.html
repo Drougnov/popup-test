@@ -8,28 +8,10 @@
         rel="stylesheet"
         href="https://fs.codelinden.com/wp-content/themes/hello-child/style.css"
     />
-    <link rel="stylesheet" href="popup-styles.css">
+    <link rel="stylesheet" href="https://fs.codelinden.com/wp-content/plugins/fansocial/assets/css/popup-styles.css?ver=1.0">
 </head>
 <body>
     <h1 style="margin-bottom: 20px;">Add Delay time on popup open</h1>
-    <p>To add delay on popup open, add any desired number (in seconds) as 'popup_time_delay' argument's value.</p>
-    <p>Here is a preview of used arguments on the popup button. The popup_time_delay has been set to 2(seconds). So, the popup will wait for 2 seconds to open:</p>
-    <pre style="width: 300px; margin-left: -30px; padding-right: 20px; word-break: break-all;">
-        <code class="language-html">
-            &lt;button onclick=&quot;initiate_popup({
-                &#39;target&#39;: &#39;#form-popup&#39;,
-                &#39;popup_time_delay&#39;: 2
-            });
-            &quot;&gt;
-                Show/Hide time delay
-            &lt;/button&gt;
-        </code>
-    </pre>
-    <button
-        onclick="initiate_popup({'target': '#form-popup','popup_time_delay': 2});"
-    >
-        Show/Hide time delay
-    </button>
     <!-- outer wrapper -->
     <div class="DuKSh EJVsl OtrSK cNGwx" id="form-popup">
         <!-- inner wrapper -->
@@ -205,6 +187,11 @@
             </div>
         </div>
     </div>
+    <script>
+        window.addEventListener('load', ()=>{
+            initiate_popup({'target': '#form-popup','popup_time_delay': 2});
+        })
+    </script>
     <script src="popup-scripts.js"></script>
 </body>
 </html>

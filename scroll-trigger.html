@@ -8,34 +8,11 @@
         rel="stylesheet"
         href="https://fs.codelinden.com/wp-content/themes/hello-child/style.css"
     />
-    <link rel="stylesheet" href="popup-styles.css">
+    <link rel="stylesheet" href="https://fs.codelinden.com/wp-content/plugins/fansocial/assets/css/popup-styles.css?ver=1.0">
 </head>
-<body>
+<body style="height: 3000px;">
     <h1 style="margin-bottom: 20px;">Trigger alert on scroll down</h1>
-    <p>Set <b>popup_scroll_trigger</b> argument's value as true and pass the scrollable container's id/class as <b>popup_scrollable_container</b>'s value.</p>
-    <p>Here is a preview of used arguments on the popup button. The popup_scroll_trigger value is set to true and element with the class 'elements-container' is passed as 'popup_scrollable_container'. Now on scrolling down on the 'elements-container' div, it will show alert but not on scrolling to top:</p>
-    <pre style="width: 300px; margin-left: -30px; padding-right: 20px; word-break: break-all;">
-        <code class="language-html">
-            &lt;button onclick=&quot;initiate_popup({
-                &#39;target&#39;: &#39;#scroll-popup&#39;,
-                &#39;overlay_color&#39;: &#39;rgba(0,0,0,0.65)&#39;,
-                &#39;popup_scroll_trigger&#39;: true,
-                &#39;popup_scrollable_container&#39;: 
-                &#39;.elements-container&#39;,
-            });
-            &quot;&gt;
-                Show/Hide trigger alert
-            &lt;/button&gt;
-        </code>
-    </pre>
-    <button
-        onclick="initiate_popup({'target': '#scroll-popup',
-        'overlay_color': 'rgba(0,0,0,0.65)',
-        'popup_scroll_trigger': true,
-        'popup_scrollable_container': '.elements-container'});"
-    >
-        Show/Hide trigger alert
-    </button>
+
     <div
         class="DuKSh EJVsl OtrSK cNGwx scroll-popup"
         id="scroll-popup"
@@ -870,6 +847,15 @@
             </div>
         </div>
     </div>
+
+    <script>
+        window.addEventListener('scroll', ()=>{
+        initiate_popup({'target': '#scroll-popup',
+        'overlay_color': 'rgba(0,0,0,0.65)',
+        'popup_scroll_trigger': true,
+        'popup_top_space': '500px'});
+        })
+    </script>
     <script src="popup-scripts.js"></script>
 </body>
 </html>

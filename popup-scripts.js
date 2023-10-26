@@ -1,12 +1,12 @@
 // set global popup-time-delay variable
 var popupTimeDelay;
+var popupShown = false;
 
 function initiate_popup(args) {
     // Extract the arguments
     const target = args.target || false;
     const overlayColor = args.overlay_color || false;
     const popupType = args.popup_type || "default"; // fallback value = "default"
-    const popupSpaceFromTop = args.popup_top_space || 60; // fallback value = "60px"
     // update popup-time-delay variable based on argument value
     popupTimeDelay = args.popup_time_delay || 0; // fallback value = "0s"
     const popupScrollTrigger = args.popup_scroll_trigger || false;
@@ -69,39 +69,50 @@ function initiate_popup(args) {
         targetElement.classList.add("prevent-close");
     }
 
-    if(popupScrollTrigger === true){
-        // if scroll trigger value is true, get scrollable container's id/class
-        var scrollContainerSelector = args.popup_scrollable_container || false;
-
-        if(scrollContainerSelector){
-            // Find the scrollable container element using the provided selector
-            var popupScrollableContainer = targetElement.querySelector(`${scrollContainerSelector}`);
-            // Check if the scrollable container exists
-            if(popupScrollableContainer){
-                // set last scroll position to 0
-                let lastScrollTop = 0;
-
-                popupScrollableContainer.addEventListener('scroll', ()=>{
-                    // Get the current scroll position of the scrollable container
-                    const scrollTop = popupScrollableContainer.scrollTop;
-
-                    if (scrollTop > lastScrollTop) {
-                        // Check if the current position is greater than the last position, indicating scrolling down
-                        alert('Scrolling down');
-                        console.log('scrolling down')
-                    }
-
-                    // Update the last scroll position for the next scroll event
-                    lastScrollTop = scrollTop;
-                })
-            }
+    // Parse and convert the popupSpaceFromTop value based on its unit (px or %)
+    function parseScrollPosition(value, bodyHeight) {
+        if (typeof value === 'string' && value.endsWith('%')) {
+            // if has %
+            // convert string to number
+            const percentage = parseFloat(value);
+            // conver percentage to pixels
+            return (percentage / 100) * bodyHeight;
+        } else if (typeof value === 'string' && value.endsWith('px')) {
+            // if has px
+            // convert string to number
+            return parseFloat(value);
+        } else {
+            // Set fallback value as 0
+            return 0;
         }
     }
 
-    // pass popupSpaceFromTop's value as css variable
-    targetElement.style.setProperty('--popup-space-from-top', popupSpaceFromTop + 'px');
+    // Get the body height
+    const bodyHeight = document.body.clientHeight || document.documentElement.clientHeight || window.innerHeight;
 
-    // Fade in the popup
+    // Parse and convert the argument value if provided else set it to 0
+    const popupSpaceFromTop = 'popup_top_space' in args ? parseScrollPosition(args.popup_top_space, bodyHeight) : 0;
+
+    // if popup trigger on scroll down is true
+    if(popupScrollTrigger === true){
+        // Function to check the scroll position and open the popup
+        function checkScrollPosition() {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            console.log(scrollTop)
+            
+            if (!popupShown && scrollTop >= popupSpaceFromTop) {
+                // Set a flag to prevent the popup from opening multiple times
+                popupShown = true;
+                console.log('scroll popup opened')
+
+                // Call the openPopup function with your targetElement and delay
+                openPopup(targetElement, popupTimeDelay);
+            }
+        }
+        window.addEventListener('scroll', checkScrollPosition);
+    }
+
+    // open the popup
     openPopup(targetElement, popupTimeDelay);
 
     // Create and dispatch a custom event when the popup opens
@@ -162,25 +173,22 @@ function initiate_popup(args) {
 
 function openPopup(element, popupTimeDelay = 0) { // delay time = 0s by default
     setTimeout(() => {
-        // Fade in the popup by adding 'gsCWf(display flex)' and 'opened' class
+        // Open the popup by adding 'gsCWf(display flex)' and 'opened' class
         element.classList.add("gsCWf");
         element.classList.add("opened");
-
-        // disable scrolling if popup opens
-        document.body.style.overflow = "hidden";
 
         // if the popup is slidein/force-slidein, return
         if (element.classList.contains("slidein-popup")) {
             return;
         }
 
-        // check if popup should be centered based on height
-        checkInnerWrapperHeight(element);
+        // disable scrolling if popup opens
+        document.body.style.overflow = "hidden";
     }, popupTimeDelay * 1000); // conver delay from milliseconds to seconds
 }
 
-function closePopup(element) { // delay time = 0s by default
-        // Fade out the popup by removing 'gsCWf(display flex)' and 'opened' class
+function closePopup(element) {
+        // close popup by removing 'gsCWf(display flex)' and 'opened' class
         element.classList.remove("gsCWf");
         element.classList.remove("opened");
 
@@ -202,24 +210,6 @@ function closePopupManually() {
     // if exist, close it
     if (openedPopup) {
         closePopup(openedPopup);
-    }
-}
-
-function checkInnerWrapperHeight(element){
-    // get the popup's inner wrapper(GodhZ)
-    const innerWrapper = element.querySelector(".GodhZ");
-    // get the popup inner wrapper's height
-    const innerWrapperHeight = innerWrapper.offsetHeight;
-    console.log(innerWrapperHeight, window.innerHeight)
-
-    // if inner wrapper's height is less than 100vh, add class to center it
-    if (window.innerHeight > innerWrapperHeight) {
-        innerWrapper.classList.add("centered");
-    } else {
-        // else remove the class if exist
-        if (innerWrapper.classList.contains("centered")) {
-            innerWrapper.classList.remove("centered");
-        }
     }
 }
 
