@@ -675,6 +675,12 @@ input:not([type="radio"]):not([type="checkbox"]):not([type="file"]):not(
         pointer-events: none;
         background-color: transparent;
         z-index: 1002;
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+
+    .DuKSh::-webkit-scrollbar {
+        display: none;
     }
 
     /* show popups */
@@ -724,7 +730,7 @@ input:not([type="radio"]):not([type="checkbox"]):not([type="file"]):not(
     .DuKSh.gsCWf.animate-bounce-in .GodhZ{
         animation: none;
         -webkit-animation: none;
-}
+    }
 
     /* popup container */
     .ExGby,
