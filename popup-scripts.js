@@ -209,7 +209,12 @@ function closePopup(element) {
         // enable scrolling if popup closed
         document.body.style.overflow = "auto";
 
-        // if popup has bounce in animation, reset it
+        // if popup has fade-in, remove transition while closing
+        if(element.classList.contains('animate-fade-in')){
+            element.classList.remove('animate-fade-in')
+        }
+
+        // if popup has bounce in animation, reset it (re-show animation while re-opening)
         if(element.classList.contains('animate-bounce-in')){
             element.classList.remove('animate-bounce-in');
         }

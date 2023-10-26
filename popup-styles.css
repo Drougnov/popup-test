@@ -27,8 +27,9 @@
     overflow: auto;
 }
 
+/* hide popup (if animation added) */
 .DuKSh.animate-fade-in,
-.DuKSh.animate-slide-up,
+.DuKSh.animate-slide-down,
 .DuKSh.animate-bounce-in{
     display: block;
     opacity: 0;
@@ -41,8 +42,9 @@
     -o-transition: all .3s linear;
 }
 
+/* show popup (if animation added) */
 .DuKSh.gsCWf.animate-fade-in,
-.DuKSh.gsCWf.animate-slide-up,
+.DuKSh.gsCWf.animate-slide-down,
 .DuKSh.gsCWf.animate-bounce-in{
     opacity: 1;
     visibility: visible;
@@ -59,12 +61,13 @@
     pointer-events: none;
 }
 
-.DuKSh.animate-slide-up .GodhZ {
-    transform: translate(-50%, 100%);
-    -webkit-transform: translate(-50%, 100%);
-    -moz-transform: translate(-50%, 100%);
-    -ms-transform: translate(-50%, 100%);
-    -o-transform: translate(-50%, 100%);
+/* hide inner wrapper by moving it to top of the page */
+.DuKSh.animate-slide-down .GodhZ {
+    transform: translate(-50%, -100%);
+    -webkit-transform: translate(-50%, -100%);
+    -moz-transform: translate(-50%, -100%);
+    -ms-transform: translate(-50%, -100%);
+    -o-transform: translate(-50%, -100%);
     transition: 0.3s all cubic-bezier(0.645, 0.045, 0.355, 1);
     -webkit-transition: 0.3s all cubic-bezier(0.645, 0.045, 0.355, 1);
     -moz-transition: 0.3s all cubic-bezier(0.645, 0.045, 0.355, 1);
@@ -72,7 +75,8 @@
     -o-transition: 0.3s all cubic-bezier(0.645, 0.045, 0.355, 1);
 }
 
-.DuKSh.gsCWf.animate-slide-up .GodhZ {
+/* show inner wrapper by sliding it down */
+.DuKSh.gsCWf.animate-slide-down .GodhZ {
     transform: translate(-50%, 0);
     -webkit-transform: translate(-50%, 0);
     -moz-transform: translate(-50%, 0);
@@ -80,19 +84,10 @@
     -o-transform: translate(-50%, 0);
 }
 
-.DuKSh.animate-bounce-in .GodhZ{
-    transform: translate(-50%, 0) scale(0.7);
-    -webkit-transform: translate(-50%, 0) scale(0.7);
-    -moz-transform: translate(-50%, 0) scale(0.7);
-    -ms-transform: translate(-50%, 0) scale(0.7);
-    -o-transform: translate(-50%, 0) scale(0.7);
-    animation: bounce-in 1s ease-in-out;
-    -webkit-animation: bounce-in 1s ease-in-out;
-}
-
+/* show bounce effect while opening */
 .DuKSh.gsCWf.animate-bounce-in .GodhZ{
-    animation: bounce-in 1s ease-in-out;
-    -webkit-animation: bounce-in 1s ease-in-out;
+    animation: bounce-in .5s ease-in-out;
+    -webkit-animation: bounce-in .5s ease-in-out;
     animation-fill-mode: both;
 }
 
@@ -104,20 +99,6 @@
         -ms-transform: translate(-50%, 0) scale(0.7);
         -o-transform: translate(-50%, 0) scale(0.7);
     }
-    30% {
-        transform: translate(-50%, 0) scale(1);
-        -webkit-transform: translate(-50%, 0) scale(1);
-        -moz-transform: translate(-50%, 0) scale(1);
-        -ms-transform: translate(-50%, 0) scale(1);
-        -o-transform: translate(-50%, 0) scale(1);
-}
-    60% {
-        transform: translate(-50%, 0) scale(0.9);
-        -webkit-transform: translate(-50%, 0) scale(0.9);
-        -moz-transform: translate(-50%, 0) scale(0.9);
-        -ms-transform: translate(-50%, 0) scale(0.9);
-        -o-transform: translate(-50%, 0) scale(0.9);
-}
     100%{
         transform: translate(-50%, 0) scale(1);
         -webkit-transform: translate(-50%, 0) scale(1);
@@ -706,7 +687,8 @@ input:not([type="radio"]):not([type="checkbox"]):not([type="file"]):not(
 
     /* popup inner wrapper */
     .DuKSh .GodhZ,
-    .DuKSh.animate-bounce-in .GodhZ {
+    .DuKSh.animate-bounce-in .GodhZ,
+    .DuKSh.animate-slide-down .GodhZ {
         height: calc(100vh - 60px);
         top: 0;
         left: 50%;
@@ -729,7 +711,8 @@ input:not([type="radio"]):not([type="checkbox"]):not([type="file"]):not(
         -o-transition: 0.3s all cubic-bezier(0.645, 0.045, 0.355, 1);
     }
 
-    .DuKSh.gsCWf .GodhZ {
+    .DuKSh.gsCWf .GodhZ,
+    .DuKSh.gsCWf.animate-slide-down .GodhZ {
         transform: translate(-50%, 0);
         -webkit-transform: translate(-50%, 0);
         -moz-transform: translate(-50%, 0);
