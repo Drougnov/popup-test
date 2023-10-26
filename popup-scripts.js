@@ -112,8 +112,11 @@ function initiate_popup(args) {
         window.addEventListener('scroll', checkScrollPosition);
     }
 
-    // open the popup
-    openPopup(targetElement, popupTimeDelay);
+    
+    if(!popupScrollTrigger){
+        // open the popup
+        openPopup(targetElement, popupTimeDelay);
+    }
 
     // Create and dispatch a custom event when the popup opens
     var popupOpenedEvent = new CustomEvent("popupOpened", {
