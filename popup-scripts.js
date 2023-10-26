@@ -60,7 +60,7 @@ function initiate_popup(args) {
                 }
             });
 
-            // on click of exit direct to google
+            // on click of exit direct to blank page
             exitButton.addEventListener("click", () => {
                 window.location.href = "about:blank";
             });
@@ -77,6 +77,7 @@ function initiate_popup(args) {
 
     // ----------------==========================handle animation==========================----------------
 
+    // if animation type is provided
     if(popupAnimationType){
         // Add the value as a class
         targetElement.classList.add(popupAnimationType);

@@ -309,17 +309,42 @@
                         <td>Optional</td>
                     </tr>
                     <tr>
-                        <td>'popup_top_space'</td>
-                        <td>Pixels from top in mobile devices (Value should be in number)</td>
+                        <td>'popup_time_delay'</td>
+                        <td>Delay time to open the popup (Value should be in number)</td>
                         <td>Any</td>
-                        <td>60px</td>
+                        <td>0</td>
                         <td>Optional</td>
                     </tr>
                     <tr>
-                        <td>'popup_time_delay'</td>
-                        <td>Delay time to open or close the popup (Value should be in number)</td>
+                        <td>'popup_scroll_trigger'</td>
+                        <td>Opens popup on scrolling down the page</td>
+                        <td>
+                            <ul>
+                                <li>true</li>
+                                <li>false</li>
+                            </ul>
+                        </td>
+                        <td>false</td>
+                        <td>Optional</td>
+                    </tr>
+                    <tr>
+                        <td>'popup_top_space'</td>
+                        <td>Pixels or percentage from top to trigger popup. Value should be a string and the unit should be '%' or 'px'. Ex: '100px', '10%'</td>
                         <td>Any</td>
-                        <td>0</td>
+                        <td>'500px'</td>
+                        <td>Yes (if popup scroll trigger is true)</td>
+                    </tr>
+                    <tr>
+                        <td>'popup_animation_type'</td>
+                        <td>Adds popup opening animation type.</td>
+                        <td>
+                            <ul>
+                                <li>'animate-fade-in'</li>
+                                <li>'animate-slide-down'</li>
+                                <li>'animate-bounce-in'</li>
+                            </ul>
+                        </td>
+                        <td>false</td>
                         <td>Optional</td>
                     </tr>
                 </table>
@@ -3613,11 +3638,13 @@
 
             <article class="cookie-popup-container">
                 <p>Here is a live preview of cookie popup:</p>
-                <button
-                    onclick="initiate_popup({'target': '#cookie-popup', 'overlay_color': 'rgba(0,0,0,0.65)'});"
-                >
-                    Show/Hide Cookie Popup
-                </button>
+                <button class="cookie-popup-btn" onclick="initiate_popup({'target': '#cookie-popup',
+                'overlay_color': 'rgba(0,0,0,0.65)',
+                'popup_type': 'cookie-popup',
+                'cookie_name': 'ageConfirmed',
+                'cookie_expiration': 'Fri, 31 Dec 9999 23:59:59 GMT',
+                'prevent_close': true});">Show/Hide
+            Cookie Popup</button>
                 <!-- outer wrapper -->
                 <div
                     class="DuKSh EJVsl OtrSK cNGwx cookie-popup"
