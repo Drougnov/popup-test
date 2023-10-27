@@ -61,6 +61,15 @@
     pointer-events: none;
 }
 
+.GodhZ.centered{
+    top: 50%;
+    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+}
+
 /* hide inner wrapper by moving it to top of the page */
 .DuKSh.animate-slide-down .GodhZ {
     transform: translate(-50%, -100%);

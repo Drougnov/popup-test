@@ -200,6 +200,8 @@ function openPopup(element, popupTimeDelay = 0) { // delay time = 0s by default
         element.classList.add("gsCWf");
         element.classList.add("opened");
 
+        checkInnerWrapperHeight(element);
+
         // disable scrolling if popup opens
         document.body.style.overflow = "hidden";
     }, popupTimeDelay * 1000); // convert delay from seconds to milliseconds
@@ -241,6 +243,24 @@ function closePopupManually() {
     }
 }
 
+function checkInnerWrapperHeight(element){
+    // get the popup's inner wrapper(GodhZ)
+    const innerWrapper = element.querySelector(".GodhZ");
+    // get the popup inner wrapper's height
+    const innerWrapperHeight = innerWrapper.offsetHeight;
+    console.log(innerWrapperHeight, window.innerHeight)
+
+    // if inner wrapper's height is less than 100vh, add class to center it
+    if (window.innerHeight > innerWrapperHeight) {
+        innerWrapper.classList.add("centered");
+    } else {
+        // else remove the class if exist
+        if (innerWrapper.classList.contains("centered")) {
+            innerWrapper.classList.remove("centered");
+        }
+    }
+}
+
 // -------------------------------------------------------handle single menu dropdown-----------------------------------------------------------
 
 function singleMenu() {
@@ -250,43 +270,28 @@ function singleMenu() {
     // Create a map to associate target elements with menu elements based on data attributes
     const targetMenuMap = new Map();
 
-    // Populate the map based on data attributes
-    targetElements.forEach((targetElement) => {
-        // Get the data-target attribute value from the target element
-        const targetDataTarget = targetElement.getAttribute("data-target");
-
-        // Find the associated menu element using the data-menu attribute
-        const associatedMenu = document.querySelector(
-            `[data-menu="${targetDataTarget}"]`
-        );
-
-        // If an associated menu element is found, add it to the map
-        if (associatedMenu) {
-            targetMenuMap.set(targetElement, associatedMenu);
-        }
-    });
-
     // Iterate through target elements and handle click events
     targetElements.forEach((targetElement) => {
-        const associatedMenu = targetMenuMap.get(targetElement);
-        if (!associatedMenu) return;
+        // Get the associated menu element using the data-menu attribute
+        const associatedMenu = document.querySelector(`[data-menu="${targetElement.getAttribute("data-target")}"]`);
 
-        let show = false;
+        if (associatedMenu) {
+            targetMenuMap.set(targetElement, associatedMenu);
+            targetElement.show = false; // Initialize the 'show' property for each target
+            targetElement.addEventListener("click", (event) => {
+                event.stopPropagation(); // Prevent this click event from propagating to the document click handler
+                targetElement.show = !targetElement.show;
 
-        // Toggle the visibility of the associated menu when the target element is clicked
-        targetElement.addEventListener("click", (event) => {
-            event.stopPropagation(); // Prevent this click event from propagating to the document click handler
-            show = !show;
-
-            // Show or hide the associated menu based on the 'show' flag
-            if (show) {
-                associatedMenu.style.display = "block";
-                targetElement.classList.add("active");
-            } else {
-                associatedMenu.style.display = "none";
-                targetElement.classList.remove("active");
-            }
-        });
+                // Toggle the visibility of the associated menu based on the 'show' property
+                if (targetElement.show) {
+                    associatedMenu.style.display = "block";
+                    targetElement.classList.add("active");
+                } else {
+                    associatedMenu.style.display = "none";
+                    targetElement.classList.remove("active");
+                }
+            });
+        }
     });
 
     document.addEventListener("click", (event) => {
@@ -300,7 +305,7 @@ function singleMenu() {
                 targetElement.classList.remove("active");
 
                 // Reset the 'show' state to false
-                show = false;
+                targetElement.show = false;
             }
         });
     });
