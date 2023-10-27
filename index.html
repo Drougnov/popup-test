@@ -10,6 +10,7 @@
         <title>Popup Test</title>
 
         <script src="https://fs.codelinden.com/wp-content/plugins/fansocial/assets/js/popup-scripts.js?ver=1.0"></script>
+        <!-- <link rel="stylesheet" href="https://fs.codelinden.com/wp-content/plugins/fansocial/assets/css/popup-styles.css?ver=1.0"> -->
         <link rel="stylesheet" href="https://fs.codelinden.com/wp-content/plugins/fansocial/assets/css/popup-styles.css?ver=1.0">
 
         <link
@@ -345,6 +346,15 @@
                         <td>false</td>
                         <td>Optional</td>
                     </tr>
+                    <tr>
+                        <td>"popup_position"</td>
+                        <td>Updates the popup position and height. If 'centered' selected, popup will be positioned 'center center' and will have limited height. Else it will be aligned from top and scrollable from outside.</td>
+                        <td>
+                            'centered'
+                        </td>
+                        <td>false (scrollable)</td>
+                        <td>Required for positioning</td>
+                    </tr>
                 </table>
 
                 <div class="arguments-description">
@@ -356,7 +366,7 @@
             <article id="form-popup-container" class="form-popup-container">
                 <p>Here is a live preview of form popup:</p>
                 <button
-                    onclick="initiate_popup({'target': '#form-popup', 'overlay_color': 'rgba(0,0,0,0.65)'});"
+                    onclick="initiate_popup({'target': '#form-popup', 'overlay_color': 'rgba(0,0,0,0.65)', 'popup_position': 'centered'});"
                 >
                     Show/Hide Form Popup
                 </button>
@@ -575,7 +585,7 @@
             <article id="alert-popup-container" class="alert-popup-container">
                 <p>Here is a live preview of alert popup:</p>
                 <button
-                    onclick="initiate_popup({'target': '#alert-popup', 'overlay_color': 'rgba(0,0,0,0.65)'});"
+                    onclick="initiate_popup({'target': '#alert-popup', 'overlay_color': 'rgba(0,0,0,0.65)', 'popup_position': 'centered'});"
                 >
                     Show/Hide Alert Popup
                 </button>

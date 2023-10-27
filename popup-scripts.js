@@ -12,6 +12,7 @@ function initiate_popup(args) {
     popupTimeDelay = args.popup_time_delay || 0; // fallback value = "0s"
     const popupScrollTrigger = args.popup_scroll_trigger || false;
     const popupAnimationType = args.popup_animation_type || false;
+    const popupPosition = args.popup_position || false; //scrollable as default
 
     // If target is not provided, return
     if (!target) {
@@ -73,6 +74,14 @@ function initiate_popup(args) {
     if (args.prevent_close === true) {
         // Add a class to prevent closing the popup
         targetElement.classList.add("prevent-close");
+    }
+
+    // ----------------==========================handle popup position==========================----------------
+
+    // if position value is provided
+    if(popupPosition){
+        // Add the value as a class
+        targetElement.classList.add(popupPosition);
     }
 
     // ----------------==========================handle animation==========================----------------
@@ -200,8 +209,6 @@ function openPopup(element, popupTimeDelay = 0) { // delay time = 0s by default
         element.classList.add("gsCWf");
         element.classList.add("opened");
 
-        checkInnerWrapperHeight(element);
-
         // disable scrolling if popup opens
         document.body.style.overflow = "hidden";
     }, popupTimeDelay * 1000); // convert delay from seconds to milliseconds
@@ -240,24 +247,6 @@ function closePopupManually() {
     // if exist, close it
     if (openedPopup) {
         closePopup(openedPopup);
-    }
-}
-
-function checkInnerWrapperHeight(element){
-    // get the popup's inner wrapper(GodhZ)
-    const innerWrapper = element.querySelector(".GodhZ");
-    // get the popup inner wrapper's height
-    const innerWrapperHeight = innerWrapper.offsetHeight;
-    console.log(innerWrapperHeight, window.innerHeight)
-
-    // if inner wrapper's height is less than 100vh, add class to center it
-    if (window.innerHeight > innerWrapperHeight) {
-        innerWrapper.classList.add("centered");
-    } else {
-        // else remove the class if exist
-        if (innerWrapper.classList.contains("centered")) {
-            innerWrapper.classList.remove("centered");
-        }
     }
 }
 
