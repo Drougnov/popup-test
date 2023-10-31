@@ -8,10 +8,7 @@
             rel="stylesheet"
             href="https://fs.codelinden.com/wp-content/themes/hello-child/style.css"
         />
-        <link
-            rel="stylesheet"
-            href="https://fs.codelinden.com/wp-content/plugins/fansocial/assets/css/popup-styles.css"
-        />
+        <link rel="stylesheet" href="popup-styles.css" />
     </head>
     <body>
         <article id="alert-popup-container" class="alert-popup-container">
@@ -60,12 +57,8 @@
 
                         <!-- contents -->
                         <div class="TImJU">
-                            <p style="margin-bottom: 0">
-                                If child popup's content is inside the parent
-                                popup's content
-                            </p>
                             <button
-                                onclick="initiate_popup({'target': '#alert-popup1', 'overlay_color': 'rgba(0,0,0,0.65)', 'popup_position': 'centered'});"
+                                onclick="initiate_popup({'target': '#alert-popup1', 'overlay_color': 'rgba(0,0,0,0.65)', 'popup_position': 'centered', 'popup_over_popup': true});"
                             >
                                 Open popup
                             </button>
@@ -128,75 +121,12 @@
                                 </div>
                             </div>
                             <br />
-
-                            <p>
-                                If child popup's content is outside the parent
-                                popup's content
-                            </p>
-                            <button
-                                onclick="initiate_popup({'target': '#alert-popup2', 'overlay_color': 'rgba(0,0,0,0.65)', 'popup_position': 'centered'});"
-                            >
-                                Open popup
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="DuKSh EJVsl OtrSK cNGwx" id="alert-popup2">
-                <!-- inner wrapper -->
-                <div class="GodhZ gsCWf EJVsl OtrSK CzomY">
-                    <!-- container -->
-                    <div class="ExGby HruDj">
-                        <!-- header -->
-                        <div class="tSrNa gsCWf EJVsl zsSLy">
-                            <h1 class="USKIn">Alert!</h1>
-
-                            <!-- header right section -->
-                            <div class="wcrwV gsCWf EJVsl">
-                                <!-- close button -->
-                                <div
-                                    class="AYaOY TNIio UYvZu gsCWf EJVsl OtrSK DeYlt"
-                                >
-                                    <svg
-                                        width="24"
-                                        height="24"
-                                        viewBox="0 0 24 24"
-                                        fill="none"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                    >
-                                        <g>
-                                            <path
-                                                d="M16 16L12 12M12 12L8 8M12 12L16 8M12 12L8 16"
-                                                stroke="#000000"
-                                                stroke-width="2"
-                                                stroke-linecap="round"
-                                                stroke-linejoin="round"
-                                            ></path>
-                                        </g>
-                                    </svg>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- contents -->
-                        <div class="TImJU">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing
-                            elit. Ab aliquam beatae blanditiis culpa, debitis
-                            deserunt harum incidunt nemo quae quaerat quasi
-                            quibusdam quidem, reiciendis, sapiente tempore velit
-                            voluptatum. Ipsa, repellat!
-                            <br />
-                            <br />
-
-                            <!-- close button -->
-                            <button class="AYaOY">OK</button>
                         </div>
                     </div>
                 </div>
             </div>
         </article>
-        <script src="https://fs.codelinden.com/wp-content/plugins/fansocial/assets/js/popup-scripts.js?ver=1.0"></script>
+        <script src="popup-scripts.js"></script>
         <script src="main.js"></script>
     </body>
 </html>

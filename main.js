@@ -32,7 +32,6 @@ document.addEventListener("popupOpened", function (e) {
         }
 
         const popup = document.querySelector(`${e.detail.target}`);
-        console.log(popup);
         const popupElementsContainer = popup.querySelector(".ExGby");
         setTimeout(() => {
             const popupElementsContainerHeight =

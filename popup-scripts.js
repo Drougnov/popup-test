@@ -13,6 +13,7 @@ function initiate_popup(args) {
     const popupScrollTrigger = args.popup_scroll_trigger || false;
     const popupAnimationType = args.popup_animation_type || false;
     const popupPosition = args.popup_position || false; //scrollable as default
+    const popupOverPopup = args.popup_over_popup || false;
 
     // If target is not provided, return
     if (!target) {
@@ -79,7 +80,7 @@ function initiate_popup(args) {
     // ----------------==========================handle popup position==========================----------------
 
     // if position value is provided
-    if(popupPosition){
+    if (popupPosition) {
         // Add the value as a class
         targetElement.classList.add(popupPosition);
     }
@@ -87,22 +88,30 @@ function initiate_popup(args) {
     // ----------------==========================handle animation==========================----------------
 
     // if animation type is provided
-    if(popupAnimationType){
+    if (popupAnimationType) {
         // Add the value as a class
         targetElement.classList.add(popupAnimationType);
+    }
+
+    // ----------------==========================handle popup over popup==========================----------------
+
+    // if popupOverPopup is true
+    if (popupOverPopup) {
+        // Add the value as a class
+        targetElement.classList.add("popup-over-popup");
     }
 
     // ----------------==========================handle trigger on scroll==========================----------------
 
     // Parse and convert the popupSpaceFromTop value based on its unit (px or %)
     function parseScrollPosition(value, bodyHeight) {
-        if (typeof value === 'string' && value.endsWith('%')) {
+        if (typeof value === "string" && value.endsWith("%")) {
             // if has %
             // convert string to number
             const percentage = parseFloat(value);
             // convert percentage to pixels
             return (percentage / 100) * bodyHeight;
-        } else if (typeof value === 'string' && value.endsWith('px')) {
+        } else if (typeof value === "string" && value.endsWith("px")) {
             // if has px
             // convert string to number
             return parseFloat(value);
@@ -113,34 +122,41 @@ function initiate_popup(args) {
     }
 
     // Get the body height
-    const bodyHeight = document.body.clientHeight || document.documentElement.clientHeight || window.innerHeight;
+    const bodyHeight =
+        document.body.clientHeight ||
+        document.documentElement.clientHeight ||
+        window.innerHeight;
 
     // Parse and convert the argument value if provided else set it to 0
-    const popupSpaceFromTop = 'popup_top_space' in args ? parseScrollPosition(args.popup_top_space, bodyHeight) : 0;
+    const popupSpaceFromTop =
+        "popup_top_space" in args
+            ? parseScrollPosition(args.popup_top_space, bodyHeight)
+            : 0;
 
     // if popup trigger on scroll down is true
-    if(popupScrollTrigger === true){
+    if (popupScrollTrigger === true) {
         // Function to check the scroll position and open the popup
         function checkScrollPosition() {
-            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-            console.log(scrollTop)
-            
+            const scrollTop =
+                window.pageYOffset || document.documentElement.scrollTop;
+            console.log(scrollTop);
+
             if (!popupShown && scrollTop >= popupSpaceFromTop) {
                 // Set a flag to prevent the popup from opening multiple times
                 popupShown = true;
-                console.log('scroll popup opened')
+                console.log("scroll popup opened");
 
                 // Call the openPopup function with your targetElement and delay
                 openPopup(targetElement, popupTimeDelay);
             }
         }
-        window.addEventListener('scroll', checkScrollPosition);
+        window.addEventListener("scroll", checkScrollPosition);
     }
 
     // ----------------==========================handle popup open==========================----------------
 
     // if trigger on scroll is set to false
-    if(!popupScrollTrigger){
+    if (!popupScrollTrigger) {
         // open the popup
         openPopup(targetElement, popupTimeDelay);
     }
@@ -166,14 +182,13 @@ function initiate_popup(args) {
         isDragging = false;
     });
 
-
     // Close the popup when clicking on the overlay
     targetElement.addEventListener("click", function (e) {
         // prevent popup from closing if has the class 'prevent-close'
         if (targetElement.classList.contains("prevent-close")) {
             return;
         }
-        
+
         // if the user is currently not dragging
         if (!isDragging) {
             if (
@@ -183,7 +198,10 @@ function initiate_popup(args) {
                 // Check if the clicked element has the class "DuKSh" or "AYaOY"
                 closePopup(targetElement);
                 targetElement.classList.remove("opened");
-            } else if (e.target.closest(".DuKSh") || e.target.closest(".AYaOY")) {
+            } else if (
+                e.target.closest(".DuKSh") ||
+                e.target.closest(".AYaOY")
+            ) {
                 // Check if a parent of the clicked element has the class "DuKSh" or "AYaOY"
                 e.stopPropagation(); // Prevent the click event from propagating to the parent div
             }
@@ -203,11 +221,29 @@ function initiate_popup(args) {
     });
 }
 
-function openPopup(element, popupTimeDelay = 0) { // delay time = 0s by default
+function openPopup(element, popupTimeDelay = 0) {
+    // delay time = 0s by default
     setTimeout(() => {
         // Open the popup by adding 'gsCWf(display flex)' and 'opened' class
         element.classList.add("gsCWf");
         element.classList.add("opened");
+
+        // if the current popup is on another popup
+        if (element.classList.contains("popup-over-popup")) {
+            // show the current popup
+            element.style.visibility = "visible";
+            // get the parent popup of the current popup
+            const parentPopup = element.parentElement.closest(".DuKSh");
+            // add class to the parent popup
+            parentPopup.classList.add("has-child-popup");
+            // remove transition from parent popup
+            parentPopup.style.transition = "unset";
+        }
+
+        // if the popup is slidein/force-slidein, return
+        if (element.classList.contains("slidein-popup")) {
+            return;
+        }
 
         // disable scrolling if popup opens
         document.body.style.overflow = "hidden";
@@ -215,28 +251,46 @@ function openPopup(element, popupTimeDelay = 0) { // delay time = 0s by default
 }
 
 function closePopup(element) {
-        // close popup by removing 'gsCWf(display flex)' and 'opened' class
-        element.classList.remove("gsCWf");
-        element.classList.remove("opened");
+    // close popup by removing 'gsCWf(display flex)' and 'opened' class
+    element.classList.remove("gsCWf");
+    element.classList.remove("opened");
 
-        // Create and dispatch a custom event when the popup closes
-        var popupClosedEvent = new CustomEvent("popupClosed", {
-            detail: { target: element.id },
-        });
-        document.dispatchEvent(popupClosedEvent);
+    // Create and dispatch a custom event when the popup closes
+    var popupClosedEvent = new CustomEvent("popupClosed", {
+        detail: { target: element.id },
+    });
+    document.dispatchEvent(popupClosedEvent);
 
-        // enable scrolling if popup closed
-        document.body.style.overflow = "auto";
+    // if popup has fade-in, remove transition while closing
+    if (element.classList.contains("animate-fade-in")) {
+        element.classList.remove("animate-fade-in");
+    }
 
-        // if popup has fade-in, remove transition while closing
-        if(element.classList.contains('animate-fade-in')){
-            element.classList.remove('animate-fade-in')
-        }
+    // if popup has bounce in animation, reset it (re-show animation while re-opening)
+    if (element.classList.contains("animate-bounce-in")) {
+        element.classList.remove("animate-bounce-in");
+    }
 
-        // if popup has bounce in animation, reset it (re-show animation while re-opening)
-        if(element.classList.contains('animate-bounce-in')){
-            element.classList.remove('animate-bounce-in');
-        }
+    // if the popup is slidein/force-slidein, return
+    if (element.classList.contains("slidein-popup")) {
+        return;
+    }
+
+    // enable scrolling if popup closed
+    document.body.style.overflow = "auto";
+
+    // if the current popup is on another popup
+    if (element.classList.contains("popup-over-popup")) {
+        // get the parent popup of the current popup
+        const parentPopup = element.parentElement.closest(".DuKSh");
+        // remove class from the parent popup
+        parentPopup.classList.remove("has-child-popup");
+        // re-add transition after a delay (delay required to hide background transition)
+        setTimeout(() => {
+            // add transition to parent popup
+            parentPopup.style.transition = "all 0.3s linear";
+        }, 300);
+    }
 }
 
 // close popups manually when 'prevent_close' argument value is true
@@ -253,16 +307,14 @@ function closePopupManually() {
 // -------------------------------------------------------handle single menu dropdown-----------------------------------------------------------
 
 function singleMenu() {
-    const body = document.body;
-
     // Check if the dropdown overlay already exists
-    let dropdownOverlay = document.querySelector('.dropdown-menu-overlay');
+    let dropdownOverlay = document.querySelector(".dropdown-menu-overlay");
 
     // If the overlay doesn't exist, create it
     if (!dropdownOverlay) {
-        dropdownOverlay = document.createElement('div');
-        dropdownOverlay.classList.add('dropdown-menu-overlay');
-        body.appendChild(dropdownOverlay);
+        dropdownOverlay = document.createElement("div");
+        dropdownOverlay.classList.add("dropdown-menu-overlay");
+        document.body.appendChild(dropdownOverlay);
     }
 
     // Find all elements with the class 'target-id-button'
@@ -274,7 +326,9 @@ function singleMenu() {
     // Iterate through target elements and handle click events
     targetElements.forEach((targetElement) => {
         // Get the associated menu element using the data-menu attribute
-        const associatedMenu = document.querySelector(`[data-menu="${targetElement.getAttribute("data-target")}"]`);
+        const associatedMenu = document.querySelector(
+            `[data-menu="${targetElement.getAttribute("data-target")}"]`
+        );
 
         if (associatedMenu) {
             targetMenuMap.set(targetElement, associatedMenu);
@@ -297,15 +351,15 @@ function singleMenu() {
         }
     });
 
-    function closeAllDropdowns(){
+    function closeAllDropdowns() {
         // loop through all the dropdowns
         targetMenuMap.forEach((menu, targetElement) => {
-                // Hide the dropdown menu and overlay
-                menu.style.display = "none";
-                targetElement.classList.remove("active");
-                targetElement.show = false;
-                dropdownOverlay.style.display = "none";
-            });
+            // Hide the dropdown menu and overlay
+            menu.style.display = "none";
+            targetElement.classList.remove("active");
+            targetElement.show = false;
+            dropdownOverlay.style.display = "none";
+        });
     }
 
     // on click of overlay
@@ -314,17 +368,17 @@ function singleMenu() {
     });
 
     // close dropdown on closing of any popup
-    const popups = document.querySelectorAll('.DuKSh');
+    const popups = document.querySelectorAll(".DuKSh");
     // loop through all the popups
-    popups.forEach(popup => {
+    popups.forEach((popup) => {
         // on click of popup
-        popup.addEventListener('click', ()=>{
+        popup.addEventListener("click", () => {
             // if the popup is already opened
-            if(popup.classList.contains('opened')){
+            if (popup.classList.contains("opened")) {
                 closeAllDropdowns();
             }
-        })
-    })
+        });
+    });
 
     // Check the position of containers to determine if menus should be aligned to the right
     const dropdownContainers = document.querySelectorAll(".target-id");

@@ -30,25 +30,30 @@
 /* hide popup (if animation added) */
 .DuKSh.animate-fade-in,
 .DuKSh.animate-slide-down,
-.DuKSh.animate-bounce-in{
+.DuKSh.animate-bounce-in {
     display: block;
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
-    transition: all .3s linear;
-    -webkit-transition: all .3s linear;
-    -moz-transition: all .3s linear;
-    -ms-transition: all .3s linear;
-    -o-transition: all .3s linear;
+    transition: all 0.3s linear;
+    -webkit-transition: all 0.3s linear;
+    -moz-transition: all 0.3s linear;
+    -ms-transition: all 0.3s linear;
+    -o-transition: all 0.3s linear;
 }
 
 /* show popup (if animation added) */
 .DuKSh.gsCWf.animate-fade-in,
 .DuKSh.gsCWf.animate-slide-down,
-.DuKSh.gsCWf.animate-bounce-in{
+.DuKSh.gsCWf.animate-bounce-in {
     opacity: 1;
     visibility: visible;
     pointer-events: initial;
+}
+
+.DuKSh.has-child-popup {
+    background-color: transparent;
+    visibility: hidden;
 }
 
 /* inner wrapper */
@@ -66,7 +71,7 @@
 }
 
 /* if positioned centered */
-.DuKSh.centered .GodhZ{
+.DuKSh.centered .GodhZ {
     top: 50%;
     transform: translate(-50%, -50%);
     -webkit-transform: translate(-50%, -50%);
@@ -98,7 +103,7 @@
     -o-transform: translate(-50%, 0);
 }
 
-.DuKSh.gsCWf.animate-slide-down.centered .GodhZ{
+.DuKSh.gsCWf.animate-slide-down.centered .GodhZ {
     transform: translate(-50%, -50%);
     -webkit-transform: translate(-50%, -50%);
     -moz-transform: translate(-50%, -50%);
@@ -107,15 +112,15 @@
 }
 
 /* show bounce effect while opening */
-.DuKSh.gsCWf.animate-bounce-in .GodhZ{
-    animation: bounce-in .5s ease-in-out;
-    -webkit-animation: bounce-in .5s ease-in-out;
+.DuKSh.gsCWf.animate-bounce-in .GodhZ {
+    animation: bounce-in 0.5s ease-in-out;
+    -webkit-animation: bounce-in 0.5s ease-in-out;
     animation-fill-mode: both;
 }
 
-.DuKSh.gsCWf.animate-bounce-in.centered .GodhZ{
-    animation: bounce-in-center .5s ease-in-out;
-    -webkit-animation: bounce-in-center .5s ease-in-out;
+.DuKSh.gsCWf.animate-bounce-in.centered .GodhZ {
+    animation: bounce-in-center 0.5s ease-in-out;
+    -webkit-animation: bounce-in-center 0.5s ease-in-out;
     animation-fill-mode: both;
 }
 
@@ -127,7 +132,7 @@
         -ms-transform: translate(-50%, 0) scale(0.7);
         -o-transform: translate(-50%, 0) scale(0.7);
     }
-    100%{
+    100% {
         transform: translate(-50%, 0) scale(1);
         -webkit-transform: translate(-50%, 0) scale(1);
         -moz-transform: translate(-50%, 0) scale(1);
@@ -143,14 +148,27 @@
         -moz-transform: translate(-50%, -50%) scale(0.7);
         -ms-transform: translate(-50%, -50%) scale(0.7);
         -o-transform: translate(-50%, -50%) scale(0.7);
-}
-    100%{
+    }
+    100% {
         transform: translate(-50%, -50%) scale(1);
         -webkit-transform: translate(-50%, -50%) scale(1);
         -moz-transform: translate(-50%, -50%) scale(1);
         -ms-transform: translate(-50%, -50%) scale(1);
         -o-transform: translate(-50%, -50%) scale(1);
+    }
 }
+
+.DuKSh.has-child-popup .GodhZ {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transform: unset;
+    -webkit-transform: unset;
+    -moz-transform: unset;
+    -ms-transform: unset;
+    -o-transform: unset;
 }
 
 /* container */
@@ -167,7 +185,7 @@
 }
 
 /* if positioned centered limit height */
-.DuKSh.centered .ExGby{
+.DuKSh.centered .ExGby {
     max-height: calc(100vh - 100px);
 }
 
@@ -712,8 +730,6 @@ input:not([type="radio"]):not([type="checkbox"]):not([type="file"]):not(
 @media only screen and (max-width: 700px) {
     /* ------------------------------------------------ all popups ------------------------------------------------ */
 
-    
-
     /* hide popups */
     .DuKSh,
     .DuKSh.animate-fade-in {
@@ -780,13 +796,13 @@ input:not([type="radio"]):not([type="checkbox"]):not([type="file"]):not(
 
     .DuKSh.animate-bounce-in .GodhZ,
     .DuKSh.gsCWf.animate-bounce-in .GodhZ,
-    .DuKSh.gsCWf.animate-bounce-in.centered .GodhZ{
+    .DuKSh.gsCWf.animate-bounce-in.centered .GodhZ {
         animation: none;
         -webkit-animation: none;
     }
 
     /* start from top even if centered */
-    .DuKSh.centered .GodhZ{
+    .DuKSh.centered .GodhZ {
         top: 0;
     }
 
@@ -806,7 +822,7 @@ input:not([type="radio"]):not([type="checkbox"]):not([type="file"]):not(
         box-shadow: 0 -3px 3px 0 rgba(0, 0, 0, 0.1);
     }
 
-    .DuKSh.centered .ExGby{
+    .DuKSh.centered .ExGby {
         max-height: unset;
     }
 
@@ -866,7 +882,9 @@ input:not([type="radio"]):not([type="checkbox"]):not([type="file"]):not(
     /* slidein body */
     .slidein-popup .TImJU {
         flex: unset;
-        height: calc(100vh - 76.8px - 60px); /*minus header height and space from top*/
+        height: calc(
+            100vh - 76.8px - 60px
+        ); /*minus header height and space from top*/
     }
 
     /* ------------------------------------------ force slidein popup ------------------------------------------ */
@@ -937,7 +955,7 @@ input:not([type="radio"]):not([type="checkbox"]):not([type="file"]):not(
     }
 
     /* product page popup */
-    .product-popup .GodhZ .ExGby{
+    .product-popup .GodhZ .ExGby {
         max-height: unset;
     }
 }
@@ -992,7 +1010,7 @@ input:not([type="radio"]):not([type="checkbox"]):not([type="file"]):not(
 }
 
 /* dropdown-overlay */
-.dropdown-menu-overlay{
+.dropdown-menu-overlay {
     position: fixed;
     top: 0;
     right: 0;
