@@ -991,6 +991,17 @@ input:not([type="radio"]):not([type="checkbox"]):not([type="file"]):not(
     right: var(--target-half-width);
 }
 
+/* dropdown-overlay */
+.dropdown-menu-overlay{
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 9990;
+    display: none;
+}
+
 /* dropdown menu list items */
 .menu-item {
     display: flex;

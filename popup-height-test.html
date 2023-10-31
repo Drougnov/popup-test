@@ -1,8 +1,9 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
         <meta charset="UTF-8" />
-        <title>SimpleScrollbar</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
         <link
             rel="stylesheet"
             href="https://fs.codelinden.com/wp-content/themes/hello-child/style.css"
@@ -13,76 +14,35 @@
         />
         <link
             rel="stylesheet"
-            href="https://buzinas.github.io/simple-scrollbar/simple-scrollbar.css"
+            href="https://cdn.jsdelivr.net/npm/simple-scrollbar@latest/simple-scrollbar.css"
         />
         <script src="https://buzinas.github.io/simple-scrollbar/simple-scrollbar.min.js"></script>
-        <script src="main.js"></script>
         <style>
-            .ss-scroll:empty {
-                display: block !important;
+            .exceeded .ExGby::-webkit-scrollbar {
+                width: 20px;
             }
 
-            .ExGby::-webkit-scrollbar {
+            .exceeded .ExGby::-webkit-scrollbar-track {
+                background-color: transparent;
+            }
+
+            .exceeded .ExGby::-webkit-scrollbar-thumb {
+                background-color: #d6dee1;
+                border-radius: 20px;
+                border: 6px solid transparent;
+                background-clip: content-box;
+            }
+
+            .exceeded .ExGby::-webkit-scrollbar-thumb:hover {
+                background-color: #a8bbbf;
+            }
+
+            .exceeded .ExGby::-webkit-scrollbar {
                 display: initial;
             }
         </style>
     </head>
     <body>
-        <div
-            style="height: 300px; width: 200px; display: inline-block"
-            ss-container
-        >
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
-                in reprehenderit in voluptate velit esse cillum dolore eu fugiat
-                nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-                sunt in culpa qui officia deserunt mollit anim id est laborum.
-            </p>
-        </div>
-        <section
-            style="height: 300px; width: 500px; display: inline-block"
-            ss-container
-        >
-            <p>
-                Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-                accusantium doloremque laudantium, totam rem aperiam, eaque ipsa
-                quae ab illo inventore veritatis et quasi architecto beatae
-                vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia
-                voluptas sit aspernatur aut odit aut fugit, sed quia
-                consequuntur magni dolores eos qui ratione voluptatem sequi
-                nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor
-                sit amet, consectetur, adipisci velit, sed quia non numquam eius
-                modi tempora incidunt ut labore et dolore magnam aliquam quaerat
-                voluptatem. Ut enim ad minima veniam, quis nostrum
-                exercitationem ullam corporis suscipit laboriosam, nisi ut
-                aliquid ex ea commodi consequatur? Quis autem vel eum iure
-                reprehenderit qui in ea voluptate velit esse quam nihil
-                molestiae consequatur, vel illum qui dolorem eum fugiat quo
-                voluptas nulla pariatur?
-            </p>
-            <p>
-                But I must explain to you how all this mistaken idea of
-                denouncing pleasure and praising pain was born and I will give
-                you a complete account of the system, and expound the actual
-                teachings of the great explorer of the truth, the master-builder
-                of human happiness. No one rejects, dislikes, or avoids pleasure
-                itself, because it is pleasure, but because those who do not
-                know how to pursue pleasure rationally encounter consequences
-                that are extremely painful. Nor again is there anyone who loves
-                or pursues or desires to obtain pain of itself, because it is
-                pain, but because occasionally circumstances occur in which toil
-                and pain can procure him some great pleasure. To take a trivial
-                example, which of us ever undertakes laborious physical
-                exercise, except to obtain some advantage from it? But who has
-                any right to find fault with a man who chooses to enjoy a
-                pleasure that has no annoying consequences, or one who avoids a
-                pain that produces no resultant pleasure?
-            </p>
-        </section>
-
         <article id="form-popup-container" class="form-popup-container">
             <p>Here is a live preview of form popup:</p>
             <button
@@ -95,13 +55,62 @@
                 <!-- inner wrapper -->
                 <div class="GodhZ gsCWf EJVsl OtrSK CzomY">
                     <!-- container -->
-                    <div class="ExGby HruDj" ss-container>
+                    <div class="ExGby HruDj">
                         <!-- header -->
                         <div class="tSrNa gsCWf EJVsl zsSLy">
                             <h1 class="USKIn">Popup Settings</h1>
 
                             <!-- header right section -->
                             <div class="wcrwV gsCWf EJVsl">
+                                <!-- dropdown -->
+                                <div class="BgbBR HruDj">
+                                    <!-- dropdown toggle button -->
+                                    <div
+                                        class="RTcUA TNIio UYvZu gsCWf EJVsl OtrSK DeYlt"
+                                    >
+                                        <svg
+                                            width="24"
+                                            height="24"
+                                            viewBox="0 0 24 24"
+                                            fill="none"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                        >
+                                            <path
+                                                d="M19 13C19.5523 13 20 12.5523 20 12C20 11.4477 19.5523 11 19 11C18.4477 11 18 11.4477 18 12C18 12.5523 18.4477 13 19 13Z"
+                                                stroke="#000000"
+                                                stroke-width="2"
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                            ></path>
+                                            <path
+                                                d="M12 13C12.5523 13 13 12.5523 13 12C13 11.4477 12.5523 11 12 11C11.4477 11 11 11.4477 11 12C11 12.5523 11.4477 13 12 13Z"
+                                                stroke="#000000"
+                                                stroke-width="2"
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                            ></path>
+                                            <path
+                                                d="M5 13C5.55228 13 6 12.5523 6 12C6 11.4477 5.55228 11 5 11C4.44772 11 4 11.4477 4 12C4 12.5523 4.44772 13 5 13Z"
+                                                stroke="#000000"
+                                                stroke-width="2"
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                            ></path>
+                                        </svg>
+                                    </div>
+                                    <!-- dropdown contents -->
+                                    <div class="JVeuW CzomY">
+                                        <div class="YLtig DeYlt">
+                                            Deleted Tasks
+                                        </div>
+                                        <div class="YLtig DeYlt">
+                                            Archived Tasks
+                                        </div>
+                                        <div class="YLtig DeYlt">
+                                            Duplicate Tasks
+                                        </div>
+                                    </div>
+                                </div>
                                 <!-- close button -->
                                 <div
                                     class="AYaOY TNIio UYvZu gsCWf EJVsl OtrSK DeYlt"
@@ -128,7 +137,7 @@
                         </div>
 
                         <!-- contents -->
-                        <div class="TImJU">
+                        <div class="TImJU" ss-container>
                             <form action="">
                                 Lorem ipsum dolor sit amet, consectetur
                                 adipisicing elit. Amet atque corporis dolorem
@@ -243,6 +252,68 @@
                 </div>
             </div>
         </article>
+        <article id="alert-popup-container" class="alert-popup-container">
+            <p>Here is a live preview of alert popup:</p>
+            <button
+                onclick="initiate_popup({'target': '#alert-popup1', 'overlay_color': 'rgba(0,0,0,0.65)', 'popup_position': 'centered'});"
+            >
+                Show/Hide Alert Popup
+            </button>
+            <!-- outer wrapper -->
+            <div class="DuKSh EJVsl OtrSK cNGwx" id="alert-popup1">
+                <!-- inner wrapper -->
+                <div class="GodhZ gsCWf EJVsl OtrSK CzomY">
+                    <!-- container -->
+                    <div class="ExGby HruDj">
+                        <!-- header -->
+                        <div class="tSrNa gsCWf EJVsl zsSLy">
+                            <h1 class="USKIn">Alert!</h1>
+
+                            <!-- header right section -->
+                            <div class="wcrwV gsCWf EJVsl">
+                                <!-- close button -->
+                                <div
+                                    class="AYaOY TNIio UYvZu gsCWf EJVsl OtrSK DeYlt"
+                                >
+                                    <svg
+                                        width="24"
+                                        height="24"
+                                        viewBox="0 0 24 24"
+                                        fill="none"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                    >
+                                        <g>
+                                            <path
+                                                d="M16 16L12 12M12 12L8 8M12 12L16 8M12 12L8 16"
+                                                stroke="#000000"
+                                                stroke-width="2"
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                            ></path>
+                                        </g>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- contents -->
+                        <div class="TImJU">
+                            Lorem ipsum dolor sit amet, consectetur adipisicing
+                            elit. Ab aliquam beatae blanditiis culpa, debitis
+                            deserunt harum incidunt nemo quae quaerat quasi
+                            quibusdam quidem, reiciendis, sapiente tempore velit
+                            voluptatum. Ipsa, repellat!
+                            <br />
+                            <br />
+
+                            <!-- close button -->
+                            <button class="AYaOY">OK</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </article>
         <script src="https://fs.codelinden.com/wp-content/plugins/fansocial/assets/js/popup-scripts.js?ver=1.0"></script>
+        <script src="main.js"></script>
     </body>
 </html>

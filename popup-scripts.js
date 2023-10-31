@@ -253,6 +253,18 @@ function closePopupManually() {
 // -------------------------------------------------------handle single menu dropdown-----------------------------------------------------------
 
 function singleMenu() {
+    const body = document.body;
+
+    // Check if the dropdown overlay already exists
+    let dropdownOverlay = document.querySelector('.dropdown-menu-overlay');
+
+    // If the overlay doesn't exist, create it
+    if (!dropdownOverlay) {
+        dropdownOverlay = document.createElement('div');
+        dropdownOverlay.classList.add('dropdown-menu-overlay');
+        body.appendChild(dropdownOverlay);
+    }
+
     // Find all elements with the class 'target-id-button'
     const targetElements = document.querySelectorAll(".target-id-button");
 
@@ -271,33 +283,48 @@ function singleMenu() {
                 event.stopPropagation(); // Prevent this click event from propagating to the document click handler
                 targetElement.show = !targetElement.show;
 
-                // Toggle the visibility of the associated menu based on the 'show' property
+                // Toggle the visibility of the associated menu and overlay based on the 'show' property
                 if (targetElement.show) {
                     associatedMenu.style.display = "block";
                     targetElement.classList.add("active");
+                    dropdownOverlay.style.display = "block";
                 } else {
                     associatedMenu.style.display = "none";
                     targetElement.classList.remove("active");
+                    dropdownOverlay.style.display = "none";
                 }
             });
         }
     });
 
-    document.addEventListener("click", (event) => {
+    function closeAllDropdowns(){
+        // loop through all the dropdowns
         targetMenuMap.forEach((menu, targetElement) => {
-            if (
-                !targetElement.contains(event.target) &&
-                !menu.contains(event.target)
-            ) {
-                // Hide the menu and remove the 'active' class
+                // Hide the dropdown menu and overlay
                 menu.style.display = "none";
                 targetElement.classList.remove("active");
-
-                // Reset the 'show' state to false
                 targetElement.show = false;
-            }
-        });
+                dropdownOverlay.style.display = "none";
+            });
+    }
+
+    // on click of overlay
+    dropdownOverlay.addEventListener("click", (event) => {
+        closeAllDropdowns();
     });
+
+    // close dropdown on closing of any popup
+    const popups = document.querySelectorAll('.DuKSh');
+    // loop through all the popups
+    popups.forEach(popup => {
+        // on click of popup
+        popup.addEventListener('click', ()=>{
+            // if the popup is already opened
+            if(popup.classList.contains('opened')){
+                closeAllDropdowns();
+            }
+        })
+    })
 
     // Check the position of containers to determine if menus should be aligned to the right
     const dropdownContainers = document.querySelectorAll(".target-id");
