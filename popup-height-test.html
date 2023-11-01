@@ -12,11 +12,6 @@
             rel="stylesheet"
             href="https://fs.codelinden.com/wp-content/plugins/fansocial/assets/css/popup-styles.css"
         />
-        <link
-            rel="stylesheet"
-            href="https://cdn.jsdelivr.net/npm/simple-scrollbar@latest/simple-scrollbar.css"
-        />
-        <script src="https://buzinas.github.io/simple-scrollbar/simple-scrollbar.min.js"></script>
         <style>
             .exceeded .ExGby::-webkit-scrollbar {
                 width: 20px;
@@ -138,80 +133,398 @@
 
                         <!-- contents -->
                         <div class="TImJU" ss-container>
-                            <form action="">
-                                Lorem ipsum dolor sit amet, consectetur
-                                adipisicing elit. Amet atque corporis dolorem
-                                exercitationem id laborum nemo nesciunt nobis
-                                odio, rem rerum sequi sint ullam! Adipisci aut
-                                cumque deserunt doloremque doloribus earum ex
-                                expedita harum inventore molestias nostrum omnis
-                                porro, quae tempora voluptatum. Ab alias at
-                                beatae iusto. Ab ad architecto dolore earum eius
-                                excepturi, inventore molestias nobis quasi
-                                repudiandae! Atque consectetur delectus ea eius
-                                explicabo ipsa laboriosam nihil totam voluptate.
-                                A accusamus aliquid amet animi assumenda at aut
-                                beatae delectus, deleniti dicta dignissimos
-                                dolorem dolores doloribus eius enim facilis fuga
-                                hic impedit itaque laborum molestias mollitia
-                                necessitatibus nemo nisi non nulla officia
-                                pariatur porro possimus quam quia quisquam, quod
-                                sequi sunt tempora vel vero! Aliquid, doloribus
-                                enim ipsa maiores quis sed soluta! Ad amet
-                                beatae molestiae quasi recusandae. Adipisci
-                                alias, animi at commodi consectetur corporis
-                                culpa cumque delectus deleniti distinctio dolor
-                                ducimus enim ex fugit iste laboriosam minima
-                                modi mollitia nam neque odio omnis pariatur
-                                perspiciatis porro quasi quo ratione
-                                reprehenderit sequi sit tempore ut vel vitae
-                                voluptatibus. Ab ad adipisci aperiam architecto
-                                aspernatur assumenda aut, consectetur
-                                consequatur consequuntur cum delectus distinctio
-                                doloremque doloribus ducimus eaque earum est
-                                exercitationem facilis fugit illum impedit in
-                                modi mollitia nam numquam officiis perferendis
-                                quam quas qui quia quo quod rem repudiandae sit
-                                temporibus unde voluptatum. Accusantium
-                                aspernatur culpa deserunt expedita quia quis
-                                quisquam saepe ut velit vitae! Commodi delectus
-                                doloribus illum iure optio pariatur praesentium
-                                voluptatibus! Accusamus alias aliquid asperiores
-                                aspernatur, commodi cumque delectus deleniti,
-                                distinctio dolore ea earum eos et eum eveniet
-                                exercitationem fugiat ipsa iure labore libero
-                                magni maxime minima molestiae necessitatibus
-                                odit officia placeat provident, quae quibusdam
-                                rem repellat sit sunt vitae voluptatem. A amet
-                                asperiores beatae delectus distinctio doloremque
-                                error est id ipsum iste itaque laboriosam nobis,
-                                non obcaecati odit officiis praesentium quaerat
-                                quos sit totam. A aliquid at beatae earum
-                                exercitationem expedita laboriosam minus
-                                molestias placeat porro qui quod similique sint,
-                                soluta voluptatem. Aperiam eveniet optio
-                                voluptatum. Blanditiis consequatur consequuntur
-                                corporis, deleniti eligendi iste iusto labore
-                                molestias repellat temporibus vel voluptas,
-                                voluptatem? Aliquam architecto asperiores
-                                assumenda debitis, eum hic impedit laborum
-                                magnam magni necessitatibus officiis omnis
-                                perferendis placeat quam qui quos sed sint ullam
-                                vel voluptates! Autem cum excepturi hic
-                                laudantium libero necessitatibus praesentium
-                                quia quo repellendus, sint. Consequatur cumque
-                                distinctio dolores doloribus, facere hic ipsam
-                                iusto magni quae, repellat repudiandae
-                                temporibus ut. Accusamus consequatur dolorum
-                                esse eveniet in laudantium natus necessitatibus
-                                nisi quidem repellendus reprehenderit voluptas,
-                                voluptates.
-                                <br />
-                                <br />
-
-                                <!-- on submit show loader -->
-                                <button type="submit">Save</button>
+                            <form
+                                method="post"
+                                action=""
+                                id="my_contact_form"
+                                autocomplete="on"
+                            >
+                                <input
+                                    type="hidden"
+                                    id="my_contact_form_nonce"
+                                    name="my_contact_form_nonce"
+                                    value="a79e74871f"
+                                />
+                                <input
+                                    type="hidden"
+                                    name="_wp_http_referer"
+                                    value="/master-plugin-development/?example"
+                                />
+                                <div class="form-field">
+                                    <input
+                                        type="hidden"
+                                        name="form_my_contact_form"
+                                        value="1"
+                                    />
+                                    <label for="full_name">Full Name</label>
+                                    <input
+                                        type="text"
+                                        name="full_name"
+                                        id="full_name"
+                                        required=""
+                                        placeholder="Enter your full name"
+                                        value="DONE"
+                                    />
+                                    <div
+                                        data-lastpass-icon-root="true"
+                                        style="
+                                            position: relative !important;
+                                            height: 0px !important;
+                                            width: 0px !important;
+                                            float: left !important;
+                                        "
+                                    ></div>
+                                </div>
+                                <div class="form-field">
+                                    <input
+                                        type="hidden"
+                                        name="form_my_contact_form"
+                                        value="1"
+                                    />
+                                    <label for="email_address"
+                                        >Email Address</label
+                                    >
+                                    <input
+                                        type="email"
+                                        name="email_address"
+                                        id="email_address"
+                                        required=""
+                                        placeholder="Enter your email address"
+                                        value=""
+                                        autocomplete="email"
+                                    />
+                                </div>
+                                <div class="form-field">
+                                    <input
+                                        type="hidden"
+                                        name="form_my_contact_form"
+                                        value="1"
+                                    />
+                                    <label for="phone_number"
+                                        >Phone Number</label
+                                    >
+                                    <input
+                                        type="tel"
+                                        name="phone_number"
+                                        id="phone_number"
+                                        required=""
+                                        placeholder="Enter your phone number"
+                                        value=""
+                                        autocomplete="phone"
+                                    />
+                                </div>
+                                <div class="form-field" id="app">
+                                    <input
+                                        type="hidden"
+                                        name="form_my_contact_form"
+                                        value="1"
+                                    />
+                                    <label for="favorite_color"
+                                        >Favorite Color</label
+                                    >
+                                    <input
+                                        type="color"
+                                        name="favorite_color"
+                                        id="favorite_color"
+                                        required=""
+                                        value=""
+                                    />
+                                </div>
+                                <div class="form-field" id="app">
+                                    <input
+                                        type="hidden"
+                                        name="form_my_contact_form"
+                                        value="1"
+                                    />
+                                    <label for="favorite_color"
+                                        >Select Date</label
+                                    >
+                                    <input
+                                        type="text"
+                                        class="duDatepicker-input"
+                                    />
+                                </div>
+                                <div class="form-field">
+                                    <input
+                                        type="hidden"
+                                        name="form_my_contact_form"
+                                        value="1"
+                                    />
+                                    <label for="product_quantity"
+                                        >Product Quantity</label
+                                    >
+                                    <input
+                                        type="number"
+                                        name="product_quantity"
+                                        id="product_quantity"
+                                        required=""
+                                        placeholder="Enter the quantity of the product"
+                                        min="0"
+                                        max="10"
+                                        value=""
+                                    />
+                                </div>
+                                <div class="form-field">
+                                    <input
+                                        type="hidden"
+                                        name="form_my_contact_form"
+                                        value="1"
+                                    />
+                                    <label for="website_url">Website URL</label>
+                                    <input
+                                        type="url"
+                                        name="website_url"
+                                        id="website_url"
+                                        required=""
+                                        placeholder="Enter the URL of your website"
+                                        value=""
+                                    />
+                                </div>
+                                <div class="form-field">
+                                    <input
+                                        type="hidden"
+                                        name="form_my_contact_form"
+                                        value="1"
+                                    />
+                                    <label for="message">Message</label>
+                                    <textarea
+                                        name="message"
+                                        id="message"
+                                        aria-label="Message"
+                                        aria-describedby="message-description"
+                                    >
+                            Hello world</textarea
+                                    >
+                                </div>
+                                <div class="emoji-container">
+                                    <svg
+                                        class="HNdzs DeYlt select-emoji"
+                                        id="emoji-button"
+                                        width="24px"
+                                        height="24px"
+                                        viewBox="0 0 24 24"
+                                        fill="none"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                    >
+                                        <g
+                                            id="SVGRepo_bgCarrier"
+                                            stroke-width="0"
+                                        ></g>
+                                        <g
+                                            id="SVGRepo_tracerCarrier"
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                        ></g>
+                                        <g id="SVGRepo_iconCarrier">
+                                            <path
+                                                d="M16 14.5005C15.0878 15.7146 13.6356 16.5 12 16.5C10.3642 16.5 8.91221 15.7143 8 14.5M15 9V10M9 9V10M12 21C16.9706 21 21 16.9706 21 12C21 7.02944 16.9706 3 12 3C7.02944 3 3 7.02944 3 12C3 16.9706 7.02944 21 12 21Z"
+                                                stroke="#6c757d"
+                                                stroke-width="2"
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                            ></path>
+                                        </g>
+                                    </svg>
+                                    <textarea
+                                        class="emoji-input"
+                                        name="emoji"
+                                        id="emoji"
+                                        aria-label="emoji"
+                                    >
+                            Enter emoji here!</textarea
+                                    >
+                                </div>
+                                <div class="form-field full-width">
+                                    <input
+                                        type="hidden"
+                                        name="form_my_contact_form"
+                                        value="1"
+                                    />
+                                    <label for="product_type"
+                                        >Product Type</label
+                                    >
+                                    <select
+                                        name="product_type"
+                                        id="product_type"
+                                        required=""
+                                    >
+                                        <option value="book">Book</option>
+                                        <option value="movie">Movie</option>
+                                        <option value="music">Music</option>
+                                        <option value="" disabled="">
+                                            Select a product type
+                                        </option>
+                                    </select>
+                                </div>
+                                <div class="form-field video-upload">
+                                    <input
+                                        type="hidden"
+                                        name="form_my_contact_form"
+                                        value="1"
+                                    />
+                                    <label for="form_abc[video]"
+                                        >Upload a video</label
+                                    >
+                                    <input
+                                        type="file"
+                                        name="form_abc[video][]"
+                                        id="form_abc[video]"
+                                        required=""
+                                        accept="video/*"
+                                    />
+                                </div>
+                                <div class="form-field">
+                                    <input
+                                        type="hidden"
+                                        name="form_my_contact_form"
+                                        value="1"
+                                    />
+                                    <fieldset class="flex-container">
+                                        <label>
+                                            <input
+                                                type="checkbox"
+                                                name="product_categories[]"
+                                                value="fiction"
+                                            />Fiction
+                                        </label>
+                                        <label>
+                                            <input
+                                                type="checkbox"
+                                                name="product_categories[]"
+                                                value="nonfiction"
+                                            />Non-Fiction
+                                        </label>
+                                        <label>
+                                            <input
+                                                type="checkbox"
+                                                name="product_categories[]"
+                                                value="romance"
+                                            />Romance
+                                        </label>
+                                        <label>
+                                            <input
+                                                type="checkbox"
+                                                name="product_categories[]"
+                                                value="horror"
+                                            />Horror
+                                        </label>
+                                        <label>
+                                            <input
+                                                type="checkbox"
+                                                name="product_categories[]"
+                                                required=""
+                                                value="comedy"
+                                            />Comedy
+                                        </label>
+                                    </fieldset>
+                                </div>
+                                <div class="form-field">
+                                    <input
+                                        type="hidden"
+                                        name="form_my_contact_form"
+                                        value="1"
+                                    />
+                                    <fieldset class="flex-container">
+                                        <label>
+                                            <input
+                                                type="radio"
+                                                name="preferred_color"
+                                                required=""
+                                                value="red"
+                                            />Red
+                                        </label>
+                                        <label>
+                                            <input
+                                                type="radio"
+                                                name="preferred_color"
+                                                required=""
+                                                value="green"
+                                            />Green
+                                        </label>
+                                        <label>
+                                            <input
+                                                type="radio"
+                                                name="preferred_color"
+                                                required=""
+                                                value="blue"
+                                                checked=""
+                                            />Blue
+                                        </label>
+                                    </fieldset>
+                                </div>
+                                <div class="form-field">
+                                    <input
+                                        type="hidden"
+                                        name="form_my_contact_form"
+                                        value="1"
+                                    />
+                                    <label for="profile_picture"
+                                        >Profile Picture</label
+                                    >
+                                    <input
+                                        type="file"
+                                        name="profile_picture[]"
+                                        id="profile_picture"
+                                        required=""
+                                        accept="image/*"
+                                    />
+                                </div>
+                                <div class="form-field">
+                                    <input
+                                        type="hidden"
+                                        name="form_my_contact_form"
+                                        value="1"
+                                    />
+                                    <label for="supporting_documents"
+                                        >Supporting Documents</label
+                                    >
+                                    <input
+                                        type="file"
+                                        name="supporting_documents[]"
+                                        id="supporting_documents"
+                                        required=""
+                                        accept="application/pdf"
+                                    />
+                                </div>
+                                <div class="form-field">
+                                    <input
+                                        type="hidden"
+                                        name="form_my_contact_form"
+                                        value="1"
+                                    />
+                                    <input
+                                        type="hidden"
+                                        name="user_id"
+                                        id="user_id"
+                                        value="12345"
+                                    />
+                                </div>
+                                <button type="submit">Submit</button>
                             </form>
+
+                            <!-- table -->
+                            <table>
+                                <tr>
+                                    <th>Column 1</th>
+                                    <th>Column 2</th>
+                                    <th>Column 3</th>
+                                </tr>
+                                <tr>
+                                    <td>Row 1, Cell 1</td>
+                                    <td>Row 1, Cell 2</td>
+                                    <td>Row 1, Cell 3</td>
+                                </tr>
+                                <tr>
+                                    <td>Row 2, Cell 1</td>
+                                    <td>Row 2, Cell 2</td>
+                                    <td>Row 2, Cell 3</td>
+                                </tr>
+                                <tr>
+                                    <td>Row 3, Cell 1</td>
+                                    <td>Row 3, Cell 2</td>
+                                    <td>Row 3, Cell 3</td>
+                                </tr>
+                            </table>
                         </div>
 
                         <!-- loader -->
