@@ -282,6 +282,8 @@ function closePopup(element) {
 
     // if the current popup is on another popup
     if (element.classList.contains("popup-over-popup")) {
+        // hide the current popup
+        element.style.visibility = "hidden";
         // get the parent popup of the current popup
         const parentPopup = element.parentElement.closest(".DuKSh");
         // remove class from the parent popup

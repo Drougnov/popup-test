@@ -9,9 +9,12 @@
         <meta http-equiv="X-UA-Compatible" content="ie=edge" />
         <title>Popup Test</title>
 
-        <script src="https://fs.codelinden.com/wp-content/plugins/fansocial/assets/js/popup-scripts.js?ver=1.0"></script>
+        <script src="popup-scripts.js"></script>
         <!-- <link rel="stylesheet" href="https://fs.codelinden.com/wp-content/plugins/fansocial/assets/css/popup-styles.css?ver=1.0"> -->
-        <link rel="stylesheet" href="https://fs.codelinden.com/wp-content/plugins/fansocial/assets/css/popup-styles.css?ver=1.0">
+        <link
+            rel="stylesheet"
+            href="https://fs.codelinden.com/wp-content/plugins/fansocial/assets/css/popup-styles.css?ver=1.0"
+        />
 
         <link
             rel="stylesheet"
@@ -153,11 +156,11 @@
                 margin-top: 20px;
             }
 
-            .arguments-table{
+            .arguments-table {
                 margin-top: var(--article-gap);
             }
 
-            .arguments-table h1{
+            .arguments-table h1 {
                 margin-bottom: 40px;
             }
 
@@ -166,28 +169,30 @@
                 border-collapse: collapse;
                 margin-bottom: 40px;
             }
-            
-            .arguments-table th, .arguments-table td {
+
+            .arguments-table th,
+            .arguments-table td {
                 border: 1px solid black;
                 padding: 8px;
                 text-align: left;
             }
 
-            .arguments-table th{
+            .arguments-table th {
                 text-align: center;
                 font-weight: 600;
                 background: #f2f2f2;
             }
 
-            .arguments-table ul{
+            .arguments-table ul {
                 list-style-type: none;
             }
-            .arguments-table li{
+            .arguments-table li {
                 padding: 0.5rem 0;
             }
 
-            @media (max-width: 1100px){
-                .arguments-table th, .arguments-table td{
+            @media (max-width: 1100px) {
+                .arguments-table th,
+                .arguments-table td {
                     word-break: break-all;
                 }
             }
@@ -253,7 +258,6 @@
                         <th>Required</th>
                     </tr>
                     <tr>
-                        
                         <td>"target"</td>
                         <td>The ID of the popup.</td>
                         <td>Any</td>
@@ -283,14 +287,21 @@
                     </tr>
                     <tr>
                         <td>"cookie_name"</td>
-                        <td>The name of the cookie used in cookie popups. Only applicable when `popup_type` is 'cookie-popup'.</td>
+                        <td>
+                            The name of the cookie used in cookie popups. Only
+                            applicable when `popup_type` is 'cookie-popup'.
+                        </td>
                         <td>Any</td>
                         <td>"example_cookie"</td>
                         <td>Yes (For cookie)</td>
                     </tr>
                     <tr>
                         <td>"cookie_expiration"</td>
-                        <td>The expiration duration for the cookie used in cookie popups. Only applicable when `popup_type` is 'cookie-popup'.</td>
+                        <td>
+                            The expiration duration for the cookie used in
+                            cookie popups. Only applicable when `popup_type` is
+                            'cookie-popup'.
+                        </td>
                         <td>Any</td>
                         <td>"Fri, 31 Dec 9999 23:59:59 GMT"</td>
                         <td>Yes (For cookie)</td>
@@ -309,7 +320,10 @@
                     </tr>
                     <tr>
                         <td>"popup_time_delay"</td>
-                        <td>Delay time to open the popup (Value should be in number)</td>
+                        <td>
+                            Delay time to open the popup (Value should be in
+                            number)
+                        </td>
                         <td>Any</td>
                         <td>0</td>
                         <td>Optional</td>
@@ -328,7 +342,11 @@
                     </tr>
                     <tr>
                         <td>"popup_top_space"</td>
-                        <td>Pixels or percentage from top to trigger popup. Value should be a string and the unit should be '%' or 'px'. Ex: '100px', '10%'</td>
+                        <td>
+                            Pixels or percentage from top to trigger popup.
+                            Value should be a string and the unit should be '%'
+                            or 'px'. Ex: '100px', '10%'
+                        </td>
                         <td>Any</td>
                         <td>"500px"</td>
                         <td>Yes (if popup scroll trigger is true)</td>
@@ -348,18 +366,37 @@
                     </tr>
                     <tr>
                         <td>"popup_position"</td>
-                        <td>Updates the popup position and height. If 'centered' selected, popup will be positioned 'center center' and will have limited height. Else it will be aligned from top and scrollable from outside.</td>
                         <td>
-                            'centered'
+                            Updates the popup position and height. If 'centered'
+                            selected, popup will be positioned 'center center'
+                            and will have limited height. Else it will be
+                            aligned from top and scrollable from outside.
                         </td>
+                        <td>'centered'</td>
                         <td>false (scrollable)</td>
                         <td>Required for positioning</td>
+                    </tr>
+                    <tr>
+                        <td>"popup_over_popup"</td>
+                        <td>
+                            Updatess styles for the popups that is placed over
+                            another popup
+                        </td>
+                        <td>true</td>
+                        <td>false</td>
+                        <td>Required (if popup is placed on another popup)</td>
                     </tr>
                 </table>
 
                 <div class="arguments-description">
-                    <p><b>Custom values:</b> If not 'Any', only specified values can be added as custom values.</p>
-                    <p><b>Default values:</b> These values will be added if no custom values are added.</p>
+                    <p>
+                        <b>Custom values:</b> If not 'Any', only specified
+                        values can be added as custom values.
+                    </p>
+                    <p>
+                        <b>Default values:</b> These values will be added if no
+                        custom values are added.
+                    </p>
                 </div>
             </section>
 
@@ -3317,7 +3354,10 @@
                 </div>
             </article>
 
-            <article id="slidein-popup-container" class="slidein-popup-container">
+            <article
+                id="slidein-popup-container"
+                class="slidein-popup-container"
+            >
                 <p>Here is a live preview of slidein popup:</p>
                 <button
                     onclick="initiate_popup({'target': '#slidein-popup', 'overlay_color': 'rgba(0,0,0,0.65)'});"
@@ -3432,7 +3472,10 @@
                 </div>
             </article>
 
-            <article id="force-slidein-popup-container" class="force-slidein-popup-container">
+            <article
+                id="force-slidein-popup-container"
+                class="force-slidein-popup-container"
+            >
                 <p>Here is a live preview of force slidein popup:</p>
                 <button
                     onclick="initiate_popup({'target': '#force-slidein-popup', 'overlay_color': 'rgba(0,0,0,0.65)'});"
@@ -3547,7 +3590,10 @@
                 </div>
             </article>
 
-            <article id="prevent-popup-close-container" class="prevent-popup-close-container">
+            <article
+                id="prevent-popup-close-container"
+                class="prevent-popup-close-container"
+            >
                 <p>Here is a live preview of prevent close popup:</p>
                 <button
                     onclick="initiate_popup({'target': '#prevent-close-popup', 'overlay_color': 'rgba(0,0,0,0.65)'});"
@@ -3590,7 +3636,10 @@
                 </div>
             </article>
 
-            <article id="narrow-mobile-popup-container" class="narrow-mobile-popup-container">
+            <article
+                id="narrow-mobile-popup-container"
+                class="narrow-mobile-popup-container"
+            >
                 <p>Here is a live preview of narrow mobile popup:</p>
                 <button
                     onclick="initiate_popup({'target': '#narrow-mobile-popup', 'overlay_color': 'rgba(0,0,0,0.65)'});"
@@ -3646,13 +3695,17 @@
 
             <article id="cookie-popup-container" class="cookie-popup-container">
                 <p>Here is a live preview of cookie popup:</p>
-                <button class="cookie-popup-btn" onclick="initiate_popup({'target': '#cookie-popup',
+                <button
+                    class="cookie-popup-btn"
+                    onclick="initiate_popup({'target': '#cookie-popup',
                 'overlay_color': 'rgba(0,0,0,0.65)',
                 'popup_type': 'cookie-popup',
                 'cookie_name': 'ageConfirmed',
                 'cookie_expiration': 'Fri, 31 Dec 9999 23:59:59 GMT',
-                'prevent_close': true});">Show/Hide
-            Cookie Popup</button>
+                'prevent_close': true});"
+                >
+                    Show/Hide Cookie Popup
+                </button>
                 <!-- outer wrapper -->
                 <div
                     class="DuKSh EJVsl OtrSK cNGwx cookie-popup"
