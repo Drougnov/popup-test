@@ -196,6 +196,7 @@ function initiate_popup(args) {
                 e.target.classList.contains("AYaOY")
             ) {
                 // Check if the clicked element has the class "DuKSh" or "AYaOY"
+                e.stopPropagation();
                 closePopup(targetElement);
                 targetElement.classList.remove("opened");
             } else if (
