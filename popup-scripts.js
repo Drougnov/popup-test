@@ -237,8 +237,6 @@ function openPopup(element, popupTimeDelay = 0) {
             const parentPopup = element.parentElement.closest(".DuKSh");
             // add class to the parent popup
             parentPopup.classList.add("has-child-popup");
-            // remove transition from parent popup
-            parentPopup.style.transition = "unset";
         }
 
         // if the popup is slidein/force-slidein, return
@@ -288,11 +286,6 @@ function closePopup(element) {
         const parentPopup = element.parentElement.closest(".DuKSh");
         // remove class from the parent popup
         parentPopup.classList.remove("has-child-popup");
-        // re-add transition after a delay (delay required to hide background transition)
-        setTimeout(() => {
-            // add transition to parent popup
-            parentPopup.style.transition = "all 0.3s linear";
-        }, 300);
     }
 }
 

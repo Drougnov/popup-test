@@ -21,11 +21,23 @@ document.addEventListener("popupOpened", function (e) {
         // Set a new setTimeout function
         timeoutId = setTimeout(() => {
             // get container's visible height
-            const popupElementsContainerHeight =
+            let popupElementsContainerHeight =
                 popupElementsContainer.offsetHeight;
 
             // get container's actual (scrollable) height
-            const popupElementsHeight = popupElementsContainer.scrollHeight;
+            let popupElementsHeight = popupElementsContainer.scrollHeight;
+
+            // if simplebar is initialized
+            if (
+                popupElementsContainer.classList.contains(
+                    "simplebar-scrollable-y"
+                )
+            ) {
+                const simpleBarContent =
+                    popupElementsContainer.querySelector(".simplebar-content");
+                // set the 'simplebar-content' div's height as scrollable height
+                popupElementsHeight = simpleBarContent.offsetHeight;
+            }
 
             console.log(popupElementsContainerHeight, popupElementsHeight);
 
