@@ -18,11 +18,6 @@
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.65);
-    transition: all 0.3s linear;
-    -webkit-transition: all 0.3s linear;
-    -moz-transition: all 0.3s linear;
-    -ms-transition: all 0.3s linear;
-    -o-transition: all 0.3s linear;
     z-index: 9999;
     overflow: auto;
 }
@@ -733,7 +728,8 @@ input:not([type="radio"]):not([type="checkbox"]):not([type="file"]):not(
     /* hide popups */
     .DuKSh,
     .DuKSh.animate-fade-in {
-        display: block !important; /* prevent display none to show transition */
+        display: block !important;
+        /*preventdisplaynonetoshowtransition*/
         bottom: 0;
         right: 0;
         opacity: 0;
@@ -743,6 +739,11 @@ input:not([type="radio"]):not([type="checkbox"]):not([type="file"]):not(
         z-index: 1002;
         -ms-overflow-style: none;
         scrollbar-width: none;
+        transition: 0.3s transform linear;
+        -webkit-transition: 0.3s transform linear;
+        -moz-transition: 0.3s transform linear;
+        -ms-transition: 0.3s transform linear;
+        -o-transition: 0.3s transform linear;
     }
 
     .DuKSh::-webkit-scrollbar {
