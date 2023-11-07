@@ -33,11 +33,20 @@ document.addEventListener("popupOpened", function (e) {
             if (popupElementsHeight > popupElementsContainerHeight) {
                 // if yes, add the class
                 popup.classList.add("exceeded");
+                // Initialize SimpleBar on the container
+                new SimpleBar(popupElementsContainer);
             } else {
                 // check if the class already exist
                 if (popup.classList.contains("exceeded")) {
                     // if yes, remove the class
                     popup.classList.remove("exceeded");
+                    // Destroy SimpleBar instance if the content is no longer exceeded
+                    const simpleBarInstance = SimpleBar.instances.get(
+                        popupElementsContainer
+                    );
+                    if (simpleBarInstance) {
+                        simpleBarInstance.unMount();
+                    }
                 }
             }
         }, 100);
