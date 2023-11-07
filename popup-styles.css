@@ -186,8 +186,7 @@
 
 /* if positioned centered limit height */
 .DuKSh.centered .ExGby {
-    max-height: 200px;
-    height: 80vw;
+    max-height: 500px;
 }
 
 .ExGby::-webkit-scrollbar {
