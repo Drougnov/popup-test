@@ -33,8 +33,14 @@
                 background-color: #a8bbbf;
             }
 
-            .exceeded .ExGby::-webkit-scrollbar {
+            .exceeded .ExGby:hover::-webkit-scrollbar {
                 display: initial;
+            }
+
+            @media only screen and (max-width: 700px) {
+                .exceeded .ExGby::-webkit-scrollbar {
+                    display: initial;
+                }
             }
         </style>
     </head>
