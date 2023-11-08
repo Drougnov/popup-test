@@ -359,6 +359,7 @@ if (typeof scriptHasRun === "undefined") {
                     addAssetToDOM(
                         "https://cdn.jsdelivr.net/npm/simplebar@latest/dist/simplebar.css",
                         function () {
+                            // Log a message when the stylesheet has been loaded
                             console.log("Style sheet loaded successfully!");
                         },
                         "absolute",
