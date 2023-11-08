@@ -310,7 +310,7 @@ if (typeof scriptHasRun === "undefined") {
         }
     }
 
-    // store the timeout ID as variable
+    // store the timeout ID as a variable
     let timeoutId;
 
     // Add an event listener for the custom 'popupOpened' event
@@ -351,7 +351,7 @@ if (typeof scriptHasRun === "undefined") {
 
                 console.log(popupElementsContainerHeight, popupElementsHeight);
 
-                // Check if the content's actual height is greater than container's visible height
+                // Check if the content's actual height is greater than the container's visible height
                 if (popupElementsHeight > popupElementsContainerHeight) {
                     // if yes, add the class
                     popup.classList.add("exceeded");
@@ -360,13 +360,12 @@ if (typeof scriptHasRun === "undefined") {
                         "https://cdn.jsdelivr.net/npm/simplebar@latest/dist/simplebar.min.js",
                         function () {
                             // Initialize SimpleBar only after the script has fully loaded
+                            console.log("Script has been loaded and executed");
                             new SimpleBar(popupElementsContainer);
                         }
                     );
-
-                    new SimpleBar(popupElementsContainer);
                 } else {
-                    // check if the class already exist
+                    // check if the class already exists
                     if (popup.classList.contains("exceeded")) {
                         // if yes, remove the class
                         popup.classList.remove("exceeded");
