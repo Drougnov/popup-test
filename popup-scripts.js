@@ -355,8 +355,18 @@ if (typeof scriptHasRun === "undefined") {
                     // Add 'exceeded' class if content overflows
                     popup.classList.add("exceeded");
 
+                    // Add SimpleBar stylesheet to the dom
+                    addAssetToDOM(
+                        "https://cdn.jsdelivr.net/npm/simplebar@latest/dist/simplebar.css",
+                        function () {
+                            console.log("Style sheet loaded successfully!");
+                        },
+                        "absolute",
+                        "style"
+                    );
+
                     // Add SimpleBar script and initialize after it's loaded
-                    addScriptToDOM(
+                    addAssetToDOM(
                         "https://cdn.jsdelivr.net/npm/simplebar@latest/dist/simplebar.min.js",
                         function () {
                             // Log a message when the script has been loaded and executed
@@ -365,7 +375,9 @@ if (typeof scriptHasRun === "undefined") {
                             );
                             // Initialize SimpleBar after the script is fully loaded
                             new SimpleBar(popupElementsContainer);
-                        }
+                        },
+                        "absolute",
+                        "script"
                     );
                 } else {
                     // Check if the 'exceeded' class exists
