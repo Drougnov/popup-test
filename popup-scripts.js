@@ -310,32 +310,30 @@ if (typeof scriptHasRun === "undefined") {
         }
     }
 
-    // store the timeout ID as a variable
+    // Store the timeout ID for delay handling
     let timeoutId;
 
-    // Add an event listener for the custom 'popupOpened' event
+    // Listen for the 'popupOpened' event
     document.addEventListener("popupOpened", function (e) {
+        // Check if event detail and target exist
         if (e.detail && e.detail.target) {
-            console.log(e.detail.target);
-
             // Clear the previous timeout if it exists
             if (timeoutId) {
                 clearTimeout(timeoutId);
             }
 
-            const popup = document.querySelector(`${e.detail.target}`); // popup overlay (.DukSh)
-            const popupElementsContainer = popup.querySelector(".ExGby"); // popup container
+            // Get the popup overlay and container elements
+            const popup = document.querySelector(`${e.detail.target}`); // Select the popup overlay (.DukSh)
+            const popupElementsContainer = popup.querySelector(".ExGby"); // Select the popup container
 
-            // Set a new setTimeout function
+            // Set a new delay for certain actions
             timeoutId = setTimeout(() => {
-                // get container's visible height
+                // Obtain the visible and scrollable heights of the container
                 let popupElementsContainerHeight =
-                    popupElementsContainer.offsetHeight;
+                    popupElementsContainer.offsetHeight; // Get the visible height
+                let popupElementsHeight = popupElementsContainer.scrollHeight; // Get the scrollable height
 
-                // get container's actual (scrollable) height
-                let popupElementsHeight = popupElementsContainer.scrollHeight;
-
-                // if simplebar is initialized
+                // Check if SimpleBar scroll is initialized
                 if (
                     popupElementsContainer.classList.contains(
                         "simplebar-scrollable-y"
@@ -345,31 +343,37 @@ if (typeof scriptHasRun === "undefined") {
                         popupElementsContainer.querySelector(
                             ".simplebar-content"
                         );
-                    // set the 'simplebar-content' div's height as scrollable height
+                    // Adjust the scrollable height to the 'simplebar-content' div's height
                     popupElementsHeight = simpleBarContent.offsetHeight;
                 }
 
+                // Output the container's visible height and actual scrollable height
                 console.log(popupElementsContainerHeight, popupElementsHeight);
 
-                // Check if the content's actual height is greater than the container's visible height
+                // Determine if the actual height exceeds the visible height
                 if (popupElementsHeight > popupElementsContainerHeight) {
-                    // if yes, add the class
+                    // Add 'exceeded' class if content overflows
                     popup.classList.add("exceeded");
-                    // add simplebar script and initialize after it's loaded
+
+                    // Add SimpleBar script and initialize after it's loaded
                     addScriptToDOM(
                         "https://cdn.jsdelivr.net/npm/simplebar@latest/dist/simplebar.min.js",
                         function () {
-                            // Initialize SimpleBar only after the script has fully loaded
-                            console.log("Script has been loaded and executed");
+                            // Log a message when the script has been loaded and executed
+                            console.log(
+                                "SimpleBar script has been loaded and executed"
+                            );
+                            // Initialize SimpleBar after the script is fully loaded
                             new SimpleBar(popupElementsContainer);
                         }
                     );
                 } else {
-                    // check if the class already exists
+                    // Check if the 'exceeded' class exists
                     if (popup.classList.contains("exceeded")) {
-                        // if yes, remove the class
+                        // Remove the 'exceeded' class if content no longer exceeds the container
                         popup.classList.remove("exceeded");
-                        // Destroy SimpleBar instance if the content is no longer exceeded
+
+                        // Destroy SimpleBar instance if content is no longer exceeded
                         const simpleBarInstance = SimpleBar.instances.get(
                             popupElementsContainer
                         );
@@ -378,7 +382,7 @@ if (typeof scriptHasRun === "undefined") {
                         }
                     }
                 }
-            }, 100);
+            }, 100); // Set a delay of 100 milliseconds
         }
     });
 
