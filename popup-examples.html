@@ -7,13 +7,12 @@
             content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
         />
         <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-        <title>Popup Test</title>
+        <title>Popup Examples</title>
 
-        <script src="https://fs.codelinden.com/wp-content/plugins/fansocial/assets/js/popup-scripts.js?ver=1.0"></script>
-        <script src="https://fs.codelinden.com/wp-content/plugins/fansocial/assets/FINAL/js/main.js?ver=1.0"></script>
+        
         <link
             rel="stylesheet"
-            href="https://fs.codelinden.com/wp-content/plugins/fansocial/assets/css/popup-styles.css?ver=1.0"
+            href="popup-styles.css"
         />
 
         <link
@@ -35,22 +34,30 @@
             src="https://cdn.jsdelivr.net/gh/dmuy/duDatepicker@2.0.5/dist/duDatepicker.js"
         ></script>
 
-        <!-- simplebar style and script -->
-        <link
-            rel="stylesheet"
-            href="https://unpkg.com/simplebar@latest/dist/simplebar.css"
-        />
-        <script src="https://unpkg.com/simplebar@latest/dist/simplebar.min.js"></script>
-
         <!-- splide style and script -->
         <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
         <link
             rel="stylesheet"
             href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css"
         />
+
+        <!-- prism.js style and script -->
+        <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism.min.css"
+        />
+
+        <!-- toasts style and script -->
+        <link
+            rel="stylesheet"
+            type="text/css"
+            href="https://fs.codelinden.com/wp-content/plugins/fansocial/assets/css/toasts.css"
+        />
+        <script src="https://fs.codelinden.com/wp-content/plugins/fansocial/assets/js/toasts.js?ver=1.0"></script>
         <style>
             :root {
-                --article-gap: 50px;
+                --article-gap: 80px;
                 --text-gap: 8px;
             }
             .wrapper {
@@ -152,10 +159,6 @@
                 margin-bottom: 20px;
             }
 
-            button {
-                margin-top: 20px;
-            }
-
             .arguments-table {
                 margin-top: var(--article-gap);
             }
@@ -190,6 +193,23 @@
                 padding: 0.5rem 0;
             }
 
+            .toast-title {
+                text-align: center;
+            }
+
+            .toast-btns {
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+                margin-top: 20px;
+                margin-bottom: var(--article-gap);
+            }
+
+            /* for only this page */
+            .menu-id{
+                left: 0;
+            }
+
             @media (max-width: 1100px) {
                 .arguments-table th,
                 .arguments-table td {
@@ -216,6 +236,211 @@
                     </svg>
                 </div>
             </div>
+
+            <div class="toasts-container">
+                <!-- Toast original link: https://codeshack.io/elegant-toast-notifications-javascript/ -->
+                <h1 class="toast-title">Toasts</h1>
+                <div class="toast-btns">
+                    <div class="toast-btn-container">
+                        <button class="toast-btn" id="link1">
+                            Test success toast
+                        </button>
+                        <pre>
+                            <code>
+                                showToast(
+                                    "Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                                    Veritatis accusantium possimus, numquam soluta odit quos iste,
+                                    veniam quo cumque itaque vel! Autem soluta in sit voluptates ullam quos hic voluptatem!",
+                                    "success"
+                                );
+                            </code>
+                        </pre>
+                    </div>
+                    <div class="toast-btn-container">
+                        <button class="toast-btn" id="link2">
+                            Test verified Toast
+                        </button>
+                        <pre>
+                            <code>showToast("You clicked on Link 2", "verified", 2);</code>
+                        </pre>
+                    </div>
+                    <div class="toast-btn-container">
+                        <button class="toast-btn" id="link3">
+                            Test dark toast
+                        </button>
+                        <pre>
+                            <code>showToast("You clicked on Link 3", "dark", 12);</code>
+                        </pre>
+                    </div>
+                    <div class="toast-btn-container">
+                        <button class="toast-btn" id="link4">
+                            Test error toast
+                        </button>
+                        <pre>
+                            <code>showToast("You clicked on Link 4", "error");</code>
+                        </pre>
+                    </div>
+                    <div class="toast-btn-container">
+                        <button class="toast-btn" id="link5">
+                            Test empty toast
+                        </button>
+                        <pre>
+                            <code>showToast("You clicked on Link 5", "");</code>
+                        </pre>
+                    </div>
+                </div>
+            </div>
+            <script>
+                const toasts = new Toasts({
+                    timing: "ease",
+                    duration: ".5s",
+                    dimOld: false,
+                    position: "top-right",
+                });
+
+                // Function to create and show a toast
+                function showToast(content, style, closeTime = 6) {
+                    toasts.push({
+                        content: content,
+                        style: style,
+                        closeTime: closeTime,
+                    });
+                }
+
+                // Event listeners for each link
+                document
+                    .getElementById("link1")
+                    .addEventListener("click", function (event) {
+                        event.preventDefault();
+                        showToast(
+                            "Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis accusantium possimus, numquam soluta odit quos iste, veniam quo cumque itaque vel! Autem soluta in sit voluptates ullam quos hic voluptatem!",
+                            "success"
+                        );
+                    });
+
+                document
+                    .getElementById("link2")
+                    .addEventListener("click", function (event) {
+                        event.preventDefault();
+                        showToast("You clicked on Link 2", "verified", 2);
+                    });
+
+                document
+                    .getElementById("link3")
+                    .addEventListener("click", function (event) {
+                        event.preventDefault();
+                        showToast("You clicked on Link 3", "dark", 12);
+                    });
+
+                document
+                    .getElementById("link4")
+                    .addEventListener("click", function (event) {
+                        event.preventDefault();
+                        showToast("You clicked on Link 4", "error");
+                    });
+
+                document
+                    .getElementById("link5")
+                    .addEventListener("click", function (event) {
+                        event.preventDefault();
+                        showToast("You clicked on Link 5", "");
+                    });
+            </script>
+
+            <article class="dropdown-container">
+                <h2>Single Menu Dropdown</h2>
+                <div class="nav-dropdown target-id DeYlt" style="width: max-content;">
+                    <button class="target-id-button tRLtc" data-target="menu-1" style="margin-top: 20px; margin-left: 20px;">
+                        Test single menu dropdown
+                    </button>
+    
+                    <!-- single-menu dropdown container -->
+                    <div class="menu-id" data-menu="menu-1">
+                        <div class="form-field">
+                            <form method="post">
+                                <label for="user_language">Select your language</label>
+                                <select name="user_language" id="user_language" required="" aria-required="true" aria-label="language" aria-describedby="user_language-description" onchange="this.form.submit()">
+                                    <option value="en|en_US">English (English)</option>
+                                    <option value="zh|zh_CN">Chinese (Simplified) (中文)</option>
+                                    <option value="zh-TW|zh_TW">Chinese (Traditional) (中文繁體)</option>
+                                    <option value="ja|ja">Japanese (日本語)</option>
+                                    <option value="ko|ko_KR">Korean (한국어)</option>
+                                    <option value="af|af">Afrikaans (Afrikaans)</option>
+                                    <option value="sq|sq">Albanian (Shqip)</option>
+                                    <option value="am|am">Amharic (አማርኛ)</option>
+                                    <option value="ar|ar">Arabic (العربية)</option>
+                                    <option value="hy|hy">Armenian (Հայերեն)</option>
+                                    <option value="az|az">Azerbaijani (Azərbaycanca)</option>
+                                    <option value="bn|bn_BD">Bengali (বাংলা)</option>
+                                    <option value="bs|bs_BA">Bosnian (Bosanski)</option>
+                                    <option value="bg|bg_BG">Bulgarian (Български)</option>
+                                    <option value="ca|ca">Catalan (Català)</option>
+                                    <option value="hr|hr">Croatian (Hrvatski)</option>
+                                    <option value="cs|cs_CZ">Czech (Čeština)</option>
+                                    <option value="da|da_DK">Danish (Dansk)</option>
+                                    <option value="fa-AF|fa_AF">Dari (دری)</option>
+                                    <option value="nl|nl_NL">Dutch (Nederlands)</option>
+                                    <option value="et|et">Estonian (Eesti)</option>
+                                    <option value="fa|fa">Farsi (Persian) (فارسی)</option>
+                                    <option value="tl|tl">Filipino, Tagalog (Tagalog)</option>
+                                    <option value="fi|fi">Finnish (Suomi)</option>
+                                    <option value="fr|fr">French (Français)</option>
+                                    <option value="fr-CA|fr_CA">French (Canada) (Français canadien)</option>
+                                    <option value="ka|ka">Georgian (ქართული)</option>
+                                    <option value="de|de_DE">German (Deutsch)</option>
+                                    <option value="el|el">Greek (Ελληνικά)</option>
+                                    <option value="gu|gu_IN">Gujarati (ગુજરાતી)</option>
+                                    <option value="ht|ht">Haitian Creole (Kreyòl ayisyen)</option>
+                                    <option value="ha|ha">Hausa (هَوُسَ)</option>
+                                    <option value="he|he_IL">Hebrew (עִבְרִית)</option>
+                                    <option value="hi|hi_IN">Hindi (हिन्दी)</option>
+                                    <option value="hu|hu_HU">Hungarian (Magyar)</option>
+                                    <option value="is|is_IS">Icelandic (Íslenska)</option>
+                                    <option value="id|id_ID">Indonesian (Bahasa Indonesia)</option>
+                                    <option value="ga|ga">Irish (Gaeilge)</option>
+                                    <option value="it|it_IT">Italian (Italiano)</option>
+                                    <option value="kn|kn">Kannada (ಕನ್ನಡ)</option>
+                                    <option value="kk|kk">Kazakh (Қазақ)</option>
+                                    <option value="lv|lv">Latvian (Latviešu)</option>
+                                    <option value="lt|lt_LT">Lithuanian (Lietuvių)</option>
+                                    <option value="mk|mk_MK">Macedonian (Македонски)</option>
+                                    <option value="ms|ms_MY">Malay (Bahasa Melayu)</option>
+                                    <option value="ml|ml_IN">Malayalam (മലയാളം)</option>
+                                    <option value="mt|mt">Maltese (Malti)</option>
+                                    <option value="mr|mr">Marathi (मराठी)</option>
+                                    <option value="mn|mn">Mongolian (Монгол)</option>
+                                    <option value="no|nb_NO">Norwegian (Bokmål) (Norsk (bokmål))</option>
+                                    <option value="ps|ps">Pashto (پښتو)</option>
+                                    <option value="pl|pl_PL">Polish (Polski)</option>
+                                    <option value="pt|pt_BR">Portuguese (Brazil) (Português (Brasil))</option>
+                                    <option value="pt-PT|pt_PT">Portuguese (Portugal) (Português (Portugal))</option>
+                                    <option value="pa|pa_IN">Punjabi (ਪੰਜਾਬੀ)</option>
+                                    <option value="ro|ro_RO">Romanian (Română)</option>
+                                    <option value="ru|ru_RU">Russian (Русский)</option>
+                                    <option value="sr|sr_RS">Serbian (Српски)</option>
+                                    <option value="si|si_LK">Sinhala (සිංහල)</option>
+                                    <option value="sk|sk_SK">Slovak (Slovenčina)</option>
+                                    <option value="sl|sl_SI">Slovenian (Slovenščina)</option>
+                                    <option value="so|so_SO">Somali (Soomaali)</option>
+                                    <option value="es|es_ES">Spanish (Español)</option>
+                                    <option value="es-MX|es_MX">Spanish (Mexico) (Español (México))</option>
+                                    <option value="sw|sw">Swahili (Kiswahili)</option>
+                                    <option value="sv|sv_SE">Swedish (Svenska)</option>
+                                    <option value="ta|ta_IN">Tamil (தமிழ்)</option>
+                                    <option value="te|te">Telugu (తెలుగు)</option>
+                                    <option value="th|th">Thai (ไทย)</option>
+                                    <option value="tr|tr_TR">Turkish (Türkçe)</option>
+                                    <option value="uk|uk">Ukrainian (Українська)</option>
+                                    <option value="ur|ur">Urdu (اردو)</option>
+                                    <option value="uz|uz_UZ">Uzbek (O'zbek)</option>
+                                    <option value="vi|vi">Vietnamese (Tiếng Việt)</option>
+                                    <option value="cy|cy">Welsh (Cymraeg)</option>
+                                </select>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </article>
 
             <h1 class="popup-title">Popups</h1>
             <div class="popup-form-field form-field">
@@ -244,168 +469,37 @@
                         Narrow Mobile Popup
                     </option>
                     <option value="cookie-popup-container">Cookie Popup</option>
+                    <option value="time-delay-popup-container">
+                        Time Delay Popup
+                    </option>
+                    <option value="scroll-trigger-popup-container">
+                        Scroll Trigger Popup
+                    </option>
+                    <option value="centered-popup-container">
+                        Centered Popup
+                    </option>
+                    <option value="exceed-popup-container">Exceed popup</option>
+                    <option value="fade-in-popup-container">
+                        Fade In Popup
+                    </option>
+                    <option value="slide-in-up-popup-container">
+                        Slide-in/up Popup
+                    </option>
+                    <option value="bounce-popup-container">Bounce popup</option>
                 </select>
             </div>
 
-            <section id="arguments-table" class="arguments-table">
-                <h1>Popup Initialization Arguments</h1>
-                <table>
-                    <tr>
-                        <th>Argument</th>
-                        <th>Description</th>
-                        <th>Custom values</th>
-                        <th>Default Values</th>
-                        <th>Required</th>
-                    </tr>
-                    <tr>
-                        <td>"target"</td>
-                        <td>The ID of the popup.</td>
-                        <td>Any</td>
-                        <td>false</td>
-                        <td>Yes</td>
-                    </tr>
-                    <tr>
-                        <td>"overlay_color"</td>
-                        <td>The background color of the popup overlay.</td>
-                        <td>Any</td>
-                        <td>"rgba(0,0,0,0.65)"</td>
-                        <td>Optional</td>
-                    </tr>
-                    <tr>
-                        <td>"popup_type"</td>
-                        <td>Specifies the type or variation of the popup.</td>
-                        <td>
-                            <ul>
-                                <li>"slidein-popup"</li>
-                                <li>"force-slidein-popup"</li>
-                                <li>"narrow-mobile-popup"</li>
-                                <li>"cookie-popup"</li>
-                            </ul>
-                        </td>
-                        <td>"default"</td>
-                        <td>Optional</td>
-                    </tr>
-                    <tr>
-                        <td>"cookie_name"</td>
-                        <td>
-                            The name of the cookie used in cookie popups. Only
-                            applicable when `popup_type` is 'cookie-popup'.
-                        </td>
-                        <td>Any</td>
-                        <td>"example_cookie"</td>
-                        <td>Yes (For cookie)</td>
-                    </tr>
-                    <tr>
-                        <td>"cookie_expiration"</td>
-                        <td>
-                            The expiration duration for the cookie used in
-                            cookie popups. Only applicable when `popup_type` is
-                            'cookie-popup'.
-                        </td>
-                        <td>Any</td>
-                        <td>"Fri, 31 Dec 9999 23:59:59 GMT"</td>
-                        <td>Yes (For cookie)</td>
-                    </tr>
-                    <tr>
-                        <td>"prevent_close"</td>
-                        <td>Prevent popup from closing.</td>
-                        <td>
-                            <ul>
-                                <li>true</li>
-                                <li>false</li>
-                            </ul>
-                        </td>
-                        <td>false</td>
-                        <td>Optional</td>
-                    </tr>
-                    <tr>
-                        <td>"popup_time_delay"</td>
-                        <td>
-                            Delay time to open the popup (Value should be in
-                            number)
-                        </td>
-                        <td>Any</td>
-                        <td>0</td>
-                        <td>Optional</td>
-                    </tr>
-                    <tr>
-                        <td>"popup_scroll_trigger"</td>
-                        <td>Opens popup on scrolling down the page</td>
-                        <td>
-                            <ul>
-                                <li>true</li>
-                                <li>false</li>
-                            </ul>
-                        </td>
-                        <td>false</td>
-                        <td>Optional</td>
-                    </tr>
-                    <tr>
-                        <td>"popup_top_space"</td>
-                        <td>
-                            Pixels or percentage from top to trigger popup.
-                            Value should be a string and the unit should be '%'
-                            or 'px'. Ex: '100px', '10%'
-                        </td>
-                        <td>Any</td>
-                        <td>"500px"</td>
-                        <td>Yes (if popup scroll trigger is true)</td>
-                    </tr>
-                    <tr>
-                        <td>"popup_animation_type"</td>
-                        <td>Adds popup opening animation type.</td>
-                        <td>
-                            <ul>
-                                <li>"animate-fade-in"</li>
-                                <li>"animate-slide-down"</li>
-                                <li>"animate-bounce-in"</li>
-                            </ul>
-                        </td>
-                        <td>false</td>
-                        <td>Optional</td>
-                    </tr>
-                    <tr>
-                        <td>"popup_position"</td>
-                        <td>
-                            Updates the popup position and height. If 'centered'
-                            selected, popup will be positioned 'center center'
-                            and will have limited height. Else it will be
-                            aligned from top and scrollable from outside.
-                        </td>
-                        <td>'centered'</td>
-                        <td>false (scrollable)</td>
-                        <td>Required for positioning</td>
-                    </tr>
-                    <tr>
-                        <td>"popup_over_popup"</td>
-                        <td>
-                            Updatess styles for the popups that is placed over
-                            another popup
-                        </td>
-                        <td>true</td>
-                        <td>false</td>
-                        <td>Required (if popup is placed on another popup)</td>
-                    </tr>
-                </table>
-
-                <div class="arguments-description">
-                    <p>
-                        <b>Custom values:</b> If not 'Any', only specified
-                        values can be added as custom values.
-                    </p>
-                    <p>
-                        <b>Default values:</b> These values will be added if no
-                        custom values are added.
-                    </p>
-                </div>
-            </section>
-
-            <article id="form-popup-container" class="form-popup-container">
-                <p>Here is a live preview of form popup:</p>
+            <article class="form-popup-container">
+                <h2>Example popup for Form Popup</h2>
+                <pre>
+                    <code>
+                        initiate_popup({'target': '#form-popup', 'overlay_color':'rgba(0,0,0,0.65)', 'popup_type': 'form-popup', 'popup_max_height': '500px'});
+                    </code>
+                </pre>
                 <button
-                    onclick="initiate_popup({'target': '#form-popup', 'overlay_color': 'rgba(0,0,0,0.65)', 'popup_position': 'centered'});"
+                    onclick="initiate_popup({'target': '#form-popup', 'overlay_color': 'rgba(0,0,0,0.65)', 'popup_type': 'form-popup', 'popup_max_height': '500px'});"
                 >
-                    Show/Hide Form Popup
+                    Test Form Popup
                 </button>
                 <!-- outer wrapper -->
                 <div class="DuKSh EJVsl OtrSK cNGwx" id="form-popup">
@@ -619,12 +713,17 @@
                 </div>
             </article>
 
-            <article id="alert-popup-container" class="alert-popup-container">
-                <p>Here is a live preview of alert popup:</p>
+            <article class="alert-popup-container">
+                <h2>Example popup for Alert Popup</h2>
+                <pre>
+                    <code>
+                        initiate_popup({'target': '#alert-popup', 'overlay_color': 'rgba(0,0,0,0.65)', 'popup_type': 'alert-popup'});
+                    </code>
+                </pre>
                 <button
-                    onclick="initiate_popup({'target': '#alert-popup', 'overlay_color': 'rgba(0,0,0,0.65)', 'popup_position': 'centered'});"
+                    onclick="initiate_popup({'target': '#alert-popup', 'overlay_color': 'rgba(0,0,0,0.65)', 'popup_type': 'alert-popup'});"
                 >
-                    Show/Hide Alert Popup
+                    Test Alert Popup
                 </button>
                 <!-- outer wrapper -->
                 <div class="DuKSh EJVsl OtrSK cNGwx" id="alert-popup">
@@ -675,23 +774,28 @@
                                 <br />
 
                                 <!-- close button -->
-                                <button class="AYaOY">OK</button>
+                                <button>OK</button>
                             </div>
                         </div>
                     </div>
                 </div>
             </article>
 
-            <article id="scroll-popup-container" class="scroll-popup-container">
-                <p>Here is a live preview of scroll popup:</p>
+            <article class="scroll-popup-container">
+                <h2>Example popup for Scroll Popup</h2>
+                <pre>
+                    <code>
+                        initiate_popup({'target': '#scroll-popup', 'overlay_color': 'rgba(0,0,0,0.65)', 'popup_type': 'scroll-popup'});
+                    </code>
+                </pre>
                 <button
-                    onclick="initiate_popup({'target': '#scroll-popup', 'overlay_color': 'rgba(0,0,0,0.65)'});"
+                    onclick="initiate_popup({'target': '#scroll-popup', 'overlay_color': 'rgba(0,0,0,0.65)', 'popup_type': 'scroll-popup'});"
                 >
-                    Show/Hide Scroll Popup
+                    Test Scroll Popup
                 </button>
                 <!-- outer wrapper -->
                 <div
-                    class="DuKSh EJVsl OtrSK cNGwx scroll-popup"
+                    class="DuKSh EJVsl OtrSK cNGwx"
                     id="scroll-popup"
                 >
                     <!-- inner wrapper -->
@@ -732,8 +836,7 @@
                             <!-- contents -->
                             <div class="TImJU">
                                 <!-- form elements-container -->
-                                <!-- add the 'data-simplebar' attribute to initiate simplebar scroll library -->
-                                <div data-simplebar class="elements-container">
+                                <div class="elements-container">
                                     <form
                                         method="post"
                                         action=""
@@ -1139,19 +1242,24 @@
                                 </div>
 
                                 <!-- close button -->
-                                <button class="AYaOY">OK</button>
+                                <button>OK</button>
                             </div>
                         </div>
                     </div>
                 </div>
             </article>
 
-            <article id="plan-popup-container" class="plan-popup-container">
-                <p>Here is a live preview of plan popup:</p>
+            <article class="plan-popup-container">
+                <h2>Example popup for plan Popup</h2>
+                <pre>
+                    <code>
+                        initiate_popup({'target': '#plan-popup', 'overlay_color': 'rgba(0,0,0,0.65)'});initiateSplideElements()
+                    </code>
+                </pre>
                 <button
                     onclick="initiate_popup({'target': '#plan-popup', 'overlay_color': 'rgba(0,0,0,0.65)'});initiateSplideElements()"
                 >
-                    Show/Hide Plan Popup
+                    Test Plan Popup
                 </button>
                 <!-- outer wrapper -->
                 <div class="DuKSh EJVsl OtrSK cNGwx plan-popup" id="plan-popup">
@@ -3347,28 +3455,27 @@
                                 </div>
 
                                 <!-- close button -->
-                                <button class="AYaOY">OK</button>
+                                <button>OK</button>
                             </div>
                         </div>
                     </div>
                 </div>
             </article>
 
-            <article
-                id="slidein-popup-container"
-                class="slidein-popup-container"
-            >
-                <p>Here is a live preview of slidein popup:</p>
+            <article class="slidein-popup-container">
+                <h2>Example popup for slidein Popup</h2>
+                <pre>
+                    <code>
+                        initiate_popup({'target': '#slidein-popup', 'popup_type': 'slidein-popup'});
+                    </code>
+                </pre>
                 <button
-                    onclick="initiate_popup({'target': '#slidein-popup', 'overlay_color': 'rgba(0,0,0,0.65)'});"
+                    onclick="initiate_popup({'target': '#slidein-popup', 'popup_type': 'slidein-popup'});"
                 >
-                    Show/Hide Slidein Popup
+                    Test Slidein Popup
                 </button>
                 <!-- outer wrapper -->
-                <div
-                    class="DuKSh EJVsl OtrSK cNGwx slidein-popup"
-                    id="slidein-popup"
-                >
+                <div class="DuKSh EJVsl OtrSK cNGwx" id="slidein-popup">
                     <!-- inner wrapper -->
                     <div class="GodhZ gsCWf EJVsl CzomY">
                         <!-- container -->
@@ -3406,7 +3513,71 @@
 
                             <!-- contents -->
                             <div class="TImJU">
-                                <div class="main-section">
+                                <!-- form elements-container -->
+                                <div class="elements-container">
+                                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quod assumenda nulla quis fugit mollitia esse architecto, omnis in, minima nihil magnam sequi asperiores, possimus beatae voluptates? Iusto, distinctio placeat dolore iste, atque temporibus iure labore deleniti ad, corporis eveniet sunt magnam neque quod ab necessitatibus. Ipsam animi corporis vel ducimus expedita tempora nemo eius consectetur assumenda praesentium excepturi, vitae delectus, autem tenetur blanditiis asperiores veniam possimus magni suscipit, debitis laborum nulla quos id labore! Molestias culpa neque voluptate vero maxime rerum quibusdam dicta omnis. Quas, maiores iste! Rerum fuga vitae ex aut reiciendis magnam architecto. Error dolor alias atque. In suscipit laudantium expedita beatae dicta consequuntur laboriosam eius pariatur tenetur! Eos maxime labore laudantium provident unde est, vel minima quisquam tempore alias rerum aliquid numquam quos molestias nihil pariatur cupiditate accusamus! Dolores, nobis magnam. Dignissimos, quaerat, consequatur numquam recusandae tempore ad a quo ipsam totam, placeat sit voluptatem sint temporibus. Hic enim asperiores repellat iste temporibus rem. Ullam perferendis sequi ex porro, dolore optio fugiat deleniti saepe iure minima, adipisci quidem autem eum veniam enim, quas hic quam fuga veritatis mollitia totam eos cupiditate? Obcaecati, aliquam! Provident quod obcaecati libero ipsam, nesciunt dolores? Ea architecto doloribus aut omnis nihil laudantium illo impedit? Maxime ad quia impedit fugiat iusto magnam nobis, neque deleniti sint fuga quos quam, maiores veritatis culpa minima itaque dolore necessitatibus sed ex. Eum eos consectetur nostrum commodi et libero doloribus dignissimos nemo possimus, totam nulla molestias iusto id minima ab laboriosam quaerat modi natus quia facere aut alias quos nam perspiciatis? Atque, magnam dignissimos odio mollitia dolore laboriosam? Aperiam maiores labore consectetur recusandae, rem quod, alias nemo eligendi, nobis aspernatur totam. Optio quia repudiandae delectus ut suscipit laborum, laboriosam ipsam doloremque quod natus, doloribus, at sed commodi enim aperiam vero itaque vel voluptatem corrupti! Commodi, corrupti iusto!
+                                </div>
+
+                                <!-- close button -->
+                                <button>OK</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <article class="force-slidein-popup-container">
+                <h2>Example popup for Force-Slidein Popup</h2>
+                <pre>
+                    <code>
+                        initiate_popup({'target': '#force-slidein-popup', 'popup_type': 'force-slidein-popup'});
+                    </code>
+                </pre>
+                <button
+                    onclick="initiate_popup({'target': '#force-slidein-popup', 'popup_type': 'force-slidein-popup'});"
+                >
+                    Test Force Slidein Popup
+                </button>
+                <!-- outer wrapper -->
+                <div class="DuKSh EJVsl OtrSK cNGwx" id="force-slidein-popup">
+                    <!-- inner wrapper -->
+                    <div class="GodhZ gsCWf EJVsl CzomY">
+                        <!-- container -->
+                        <div class="ExGby HruDj">
+                            <!-- header -->
+                            <div class="tSrNa gsCWf EJVsl zsSLy">
+                                <h1 class="USKIn">Slide In!</h1>
+
+                                <!-- header right section -->
+                                <div class="wcrwV gsCWf EJVsl">
+                                    <!-- close button -->
+                                    <div
+                                        class="AYaOY TNIio UYvZu gsCWf EJVsl OtrSK DeYlt"
+                                    >
+                                        <svg
+                                            width="24"
+                                            height="24"
+                                            viewBox="0 0 24 24"
+                                            fill="none"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                        >
+                                            <g>
+                                                <path
+                                                    d="M16 16L12 12M12 12L8 8M12 12L16 8M12 12L8 16"
+                                                    stroke="#000000"
+                                                    stroke-width="2"
+                                                    stroke-linecap="round"
+                                                    stroke-linejoin="round"
+                                                ></path>
+                                            </g>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- contents -->
+                            <div class="TImJU">
+                                <div class="elements-container">
                                     Lorem ipsum dolor, sit amet consectetur
                                     adipisicing elit. Quod assumenda nulla quis
                                     fugit mollitia esse architecto, omnis in,
@@ -3464,147 +3635,27 @@
                                     corrupti iusto!
                                 </div>
 
-                                <!-- close button -->
-                                <button class="AYaOY">OK</button>
+                                <button class="ok_btn">OK</button>
                             </div>
                         </div>
                     </div>
                 </div>
             </article>
 
-            <article
-                id="force-slidein-popup-container"
-                class="force-slidein-popup-container"
-            >
-                <p>Here is a live preview of force slidein popup:</p>
+            <article class="prevent-popup-close-container">
+                <h2>Example popup for Prevent Close Popup</h2>
+                <pre>
+                    <code>
+                        initiate_popup({'target': '#prevent-close-popup', 'prevent_close': true});
+                    </code>
+                </pre>
                 <button
-                    onclick="initiate_popup({'target': '#force-slidein-popup', 'overlay_color': 'rgba(0,0,0,0.65)'});"
+                    onclick="initiate_popup({'target': '#prevent-close-popup', 'prevent_close': true});"
                 >
-                    Show/Hide Force Slidein Popup
+                    Test Prevent Close Popup
                 </button>
                 <!-- outer wrapper -->
-                <div
-                    class="DuKSh EJVsl OtrSK cNGwx force-slide-in slidein-popup"
-                    id="force-slidein-popup"
-                >
-                    <!-- inner wrapper -->
-                    <div class="GodhZ gsCWf EJVsl CzomY">
-                        <!-- container -->
-                        <div class="ExGby HruDj">
-                            <!-- header -->
-                            <div class="tSrNa gsCWf EJVsl zsSLy">
-                                <h1 class="USKIn">Slide In!</h1>
-
-                                <!-- header right section -->
-                                <div class="wcrwV gsCWf EJVsl">
-                                    <!-- close button -->
-                                    <div
-                                        class="AYaOY TNIio UYvZu gsCWf EJVsl OtrSK DeYlt"
-                                    >
-                                        <svg
-                                            width="24"
-                                            height="24"
-                                            viewBox="0 0 24 24"
-                                            fill="none"
-                                            xmlns="http://www.w3.org/2000/svg"
-                                        >
-                                            <g>
-                                                <path
-                                                    d="M16 16L12 12M12 12L8 8M12 12L16 8M12 12L8 16"
-                                                    stroke="#000000"
-                                                    stroke-width="2"
-                                                    stroke-linecap="round"
-                                                    stroke-linejoin="round"
-                                                ></path>
-                                            </g>
-                                        </svg>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- contents -->
-                            <div class="TImJU">
-                                <div class="main-section">
-                                    Lorem ipsum dolor, sit amet consectetur
-                                    adipisicing elit. Quod assumenda nulla quis
-                                    fugit mollitia esse architecto, omnis in,
-                                    minima nihil magnam sequi asperiores,
-                                    possimus beatae voluptates? Iusto,
-                                    distinctio placeat dolore iste, atque
-                                    temporibus iure labore deleniti ad, corporis
-                                    eveniet sunt magnam neque quod ab
-                                    necessitatibus. Ipsam animi corporis vel
-                                    ducimus expedita tempora nemo eius
-                                    consectetur assumenda praesentium excepturi,
-                                    vitae delectus, autem tenetur blanditiis
-                                    asperiores veniam possimus magni suscipit,
-                                    debitis laborum nulla quos id labore!
-                                    Molestias culpa neque voluptate vero maxime
-                                    rerum quibusdam dicta omnis. Quas, maiores
-                                    iste! Rerum fuga vitae ex aut reiciendis
-                                    magnam architecto. Error dolor alias atque.
-                                    In suscipit laudantium expedita beatae dicta
-                                    consequuntur laboriosam eius pariatur
-                                    tenetur! Eos maxime labore laudantium
-                                    provident unde est, vel minima quisquam
-                                    tempore alias rerum aliquid numquam quos
-                                    molestias nihil pariatur cupiditate
-                                    accusamus! Dolores, nobis magnam.
-                                    Dignissimos, quaerat, consequatur numquam
-                                    recusandae tempore ad a quo ipsam totam,
-                                    placeat sit voluptatem sint temporibus. Hic
-                                    enim asperiores repellat iste temporibus
-                                    rem. Ullam perferendis sequi ex porro,
-                                    dolore optio fugiat deleniti saepe iure
-                                    minima, adipisci quidem autem eum veniam
-                                    enim, quas hic quam fuga veritatis mollitia
-                                    totam eos cupiditate? Obcaecati, aliquam!
-                                    Provident quod obcaecati libero ipsam,
-                                    nesciunt dolores? Ea architecto doloribus
-                                    aut omnis nihil laudantium illo impedit?
-                                    Maxime ad quia impedit fugiat iusto magnam
-                                    nobis, neque deleniti sint fuga quos quam,
-                                    maiores veritatis culpa minima itaque dolore
-                                    necessitatibus sed ex. Eum eos consectetur
-                                    nostrum commodi et libero doloribus
-                                    dignissimos nemo possimus, totam nulla
-                                    molestias iusto id minima ab laboriosam
-                                    quaerat modi natus quia facere aut alias
-                                    quos nam perspiciatis? Atque, magnam
-                                    dignissimos odio mollitia dolore laboriosam?
-                                    Aperiam maiores labore consectetur
-                                    recusandae, rem quod, alias nemo eligendi,
-                                    nobis aspernatur totam. Optio quia
-                                    repudiandae delectus ut suscipit laborum,
-                                    laboriosam ipsam doloremque quod natus,
-                                    doloribus, at sed commodi enim aperiam vero
-                                    itaque vel voluptatem corrupti! Commodi,
-                                    corrupti iusto!
-                                </div>
-
-                                <!-- close button -->
-                                <button class="AYaOY">OK</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </article>
-
-            <article
-                id="prevent-popup-close-container"
-                class="prevent-popup-close-container"
-            >
-                <p>Here is a live preview of prevent close popup:</p>
-                <button
-                    onclick="initiate_popup({'target': '#prevent-close-popup', 'overlay_color': 'rgba(0,0,0,0.65)'});"
-                >
-                    Show/Hide Prevent Close Popup
-                </button>
-                <!-- outer wrapper -->
-                <div
-                    class="DuKSh EJVsl OtrSK cNGwx prevent-close"
-                    id="prevent-close-popup"
-                >
+                <div class="DuKSh EJVsl OtrSK cNGwx" id="prevent-close-popup">
                     <!-- inner wrapper -->
                     <div class="GodhZ gsCWf EJVsl OtrSK CzomY">
                         <!-- container -->
@@ -3629,28 +3680,27 @@
                                 <br />
 
                                 <!-- close button -->
-                                <button class="AYaOY">OK</button>
+                                <button>OK</button>
                             </div>
                         </div>
                     </div>
                 </div>
             </article>
 
-            <article
-                id="narrow-mobile-popup-container"
-                class="narrow-mobile-popup-container"
-            >
-                <p>Here is a live preview of narrow mobile popup:</p>
+            <article class="narrow-mobile-popup-container">
+                <h2>Example popup for Narrow Mobile Popup</h2>
+                <pre>
+                    <code>
+                        initiate_popup({'target': '#narrow-mobile-popup', 'popup_type': 'narrow-mobile-popup'});
+                    </code>
+                </pre>
                 <button
-                    onclick="initiate_popup({'target': '#narrow-mobile-popup', 'overlay_color': 'rgba(0,0,0,0.65)'});"
+                    onclick="initiate_popup({'target': '#narrow-mobile-popup', 'popup_type': 'narrow-mobile-popup'});"
                 >
-                    Show/Hide Narrow Mobile Popup
+                    Test Narrow Mobile Popup
                 </button>
                 <!-- outer wrapper -->
-                <div
-                    class="DuKSh EJVsl OtrSK cNGwx narrow-mobile-popup"
-                    id="narrow-mobile-popup"
-                >
+                <div class="DuKSh EJVsl OtrSK cNGwx" id="narrow-mobile-popup">
                     <!-- inner wrapper -->
                     <div class="GodhZ gsCWf EJVsl OtrSK CzomY">
                         <!-- container -->
@@ -3693,24 +3743,22 @@
                 </div>
             </article>
 
-            <article id="cookie-popup-container" class="cookie-popup-container">
-                <p>Here is a live preview of cookie popup:</p>
+            <article class="cookie-popup-container">
+                <h2 id="cookie-popup-documentation">
+                    Example popup for cookie popup
+                </h2>
+                <pre>
+                    <code>
+                        initiate_popup({'target': '#cookie-popup', 'popup_type': 'cookie-popup', 'cookie_name': 'example_cookie', 'cookie_expiration': 'Fri, 31 Dec 9999 23:59:59 GMT', 'prevent_close': false});
+                    </code>
+                </pre>
                 <button
-                    class="cookie-popup-btn"
-                    onclick="initiate_popup({'target': '#cookie-popup',
-                'overlay_color': 'rgba(0,0,0,0.65)',
-                'popup_type': 'cookie-popup',
-                'cookie_name': 'ageConfirmed',
-                'cookie_expiration': 'Fri, 31 Dec 9999 23:59:59 GMT',
-                'prevent_close': true});"
+                    onclick="initiate_popup({'target': '#cookie-popup', 'popup_type': 'cookie-popup', 'cookie_name': 'example_cookie', 'cookie_expiration': 'Fri, 31 Dec 9999 23:59:59 GMT', 'prevent_close': false});"
                 >
                     Show/Hide Cookie Popup
                 </button>
                 <!-- outer wrapper -->
-                <div
-                    class="DuKSh EJVsl OtrSK cNGwx cookie-popup"
-                    id="cookie-popup"
-                >
+                <div class="DuKSh EJVsl OtrSK cNGwx" id="cookie-popup">
                     <!-- inner wrapper -->
                     <div class="GodhZ gsCWf EJVsl OtrSK CzomY">
                         <!-- container -->
@@ -3767,6 +3815,1208 @@
                     </div>
                 </div>
             </article>
+
+            <article class="time-delay-popup-container">
+                <h2>Example popup for timer Popup</h2>
+                <pre>
+                    <code>
+                        initiate_popup({'target': '#timer-popup','popup_time_delay': 2});
+                    </code>
+                </pre>
+                <button
+                    onclick="initiate_popup({'target': '#timer-popup','popup_time_delay': 2});"
+                >
+                    Test Timer Popup
+                </button>
+                <!-- outer wrapper -->
+                <div
+                    class="DuKSh EJVsl OtrSK cNGwx narrow-mobile-popup"
+                    id="timer-popup"
+                >
+                    <!-- inner wrapper -->
+                    <div class="GodhZ gsCWf EJVsl OtrSK CzomY">
+                        <!-- container -->
+                        <div class="ExGby HruDj">
+                            <!-- header -->
+                            <div class="tSrNa gsCWf zsSLy">
+                                <!-- header right section -->
+                                <div class="wcrwV gsCWf EJVsl">
+                                    <!-- close button -->
+                                    <div
+                                        class="AYaOY TNIio UYvZu gsCWf EJVsl OtrSK DeYlt"
+                                    >
+                                        <svg
+                                            width="24"
+                                            height="24"
+                                            viewBox="0 0 24 24"
+                                            fill="none"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                        >
+                                            <g>
+                                                <path
+                                                    d="M16 16L12 12M12 12L8 8M12 12L16 8M12 12L8 16"
+                                                    stroke="#000000"
+                                                    stroke-width="2"
+                                                    stroke-linecap="round"
+                                                    stroke-linejoin="round"
+                                                ></path>
+                                            </g>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- contents -->
+                            <div class="TImJU">
+                                <p>Hello World</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <article class="scroll-trigger-popup-container">
+                <h2>Example popup for scroll trigger popup</h2>
+                <pre>
+                    <code>
+                        initiate_popup({ 'target': '#scroll-trigger-popup', 'popup_scroll_trigger': true, 'popup_top_space': '500px'});
+                    </code>
+                </pre>
+
+                <div class="DuKSh EJVsl OtrSK cNGwx" id="scroll-trigger-popup">
+                    <!-- inner wrapper -->
+                    <div class="GodhZ gsCWf EJVsl OtrSK CzomY">
+                        <!-- container -->
+                        <div class="ExGby HruDj">
+                            <!-- header -->
+                            <div class="tSrNa gsCWf EJVsl zsSLy">
+                                <h1 class="USKIn">Popup Settings</h1>
+
+                                <!-- header right section -->
+                                <div class="wcrwV gsCWf EJVsl">
+                                    <!-- close button -->
+                                    <div
+                                        class="AYaOY TNIio UYvZu gsCWf EJVsl OtrSK DeYlt"
+                                    >
+                                        <svg
+                                            width="24"
+                                            height="24"
+                                            viewBox="0 0 24 24"
+                                            fill="none"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                        >
+                                            <g>
+                                                <path
+                                                    d="M16 16L12 12M12 12L8 8M12 12L16 8M12 12L8 16"
+                                                    stroke="#000000"
+                                                    stroke-width="2"
+                                                    stroke-linecap="round"
+                                                    stroke-linejoin="round"
+                                                ></path>
+                                            </g>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- contents -->
+                            <div class="TImJU">
+                                <form action="">
+                                    Lorem ipsum dolor sit amet, consectetur
+                                    adipisicing elit. Amet atque corporis
+                                    dolorem exercitationem id laborum nemo
+                                    nesciunt nobis odio, rem rerum sequi sint
+                                    ullam! Adipisci aut cumque deserunt
+                                    doloremque doloribus earum ex expedita harum
+                                    inventore molestias nostrum omnis porro,
+                                    quae tempora voluptatum. Ab alias at beatae
+                                    iusto. Ab ad architecto dolore earum eius
+                                    excepturi, inventore molestias nobis quasi
+                                    repudiandae! Atque consectetur delectus ea
+                                    eius explicabo ipsa laboriosam nihil totam
+                                    voluptate. A accusamus aliquid amet animi
+                                    assumenda at aut beatae delectus, deleniti
+                                    dicta dignissimos dolorem dolores doloribus
+                                    eius enim facilis fuga hic impedit itaque
+                                    laborum molestias mollitia necessitatibus
+                                    nemo nisi non nulla officia pariatur porro
+                                    possimus quam quia quisquam, quod sequi sunt
+                                    tempora vel vero! Aliquid, doloribus enim
+                                    ipsa maiores quis sed soluta! Ad amet beatae
+                                    molestiae quasi recusandae. Adipisci alias,
+                                    animi at commodi consectetur corporis culpa
+                                    cumque delectus deleniti distinctio dolor
+                                    ducimus enim ex fugit iste laboriosam minima
+                                    modi mollitia nam neque odio omnis pariatur
+                                    perspiciatis porro quasi quo ratione
+                                    reprehenderit sequi sit tempore ut vel vitae
+                                    voluptatibus. Ab ad adipisci aperiam
+                                    architecto aspernatur assumenda aut,
+                                    consectetur consequatur consequuntur cum
+                                    delectus distinctio doloremque doloribus
+                                    ducimus eaque earum est exercitationem
+                                    facilis fugit illum impedit in modi mollitia
+                                    nam numquam officiis perferendis quam quas
+                                    qui quia quo quod rem repudiandae sit
+                                    temporibus unde voluptatum. Accusantium
+                                    aspernatur culpa deserunt expedita quia quis
+                                    quisquam saepe ut velit vitae! Commodi
+                                    delectus doloribus illum iure optio pariatur
+                                    praesentium voluptatibus! Accusamus alias
+                                    aliquid asperiores aspernatur, commodi
+                                    cumque delectus deleniti, distinctio dolore
+                                    ea earum eos et eum eveniet exercitationem
+                                    fugiat ipsa iure labore libero magni maxime
+                                    minima molestiae necessitatibus odit officia
+                                    placeat provident, quae quibusdam rem
+                                    repellat sit sunt vitae voluptatem. A amet
+                                    asperiores beatae delectus distinctio
+                                    doloremque error est id ipsum iste itaque
+                                    laboriosam nobis, non obcaecati odit
+                                    officiis praesentium quaerat quos sit totam.
+                                    A aliquid at beatae earum exercitationem
+                                    expedita laboriosam minus molestias placeat
+                                    porro qui quod similique sint, soluta
+                                    voluptatem. Aperiam eveniet optio
+                                    voluptatum. Blanditiis consequatur
+                                    consequuntur corporis, deleniti eligendi
+                                    iste iusto labore molestias repellat
+                                    temporibus vel voluptas, voluptatem? Aliquam
+                                    architecto asperiores assumenda debitis, eum
+                                    hic impedit laborum magnam magni
+                                    necessitatibus officiis omnis perferendis
+                                    placeat quam qui quos sed sint ullam vel
+                                    voluptates! Autem cum excepturi hic
+                                    laudantium libero necessitatibus praesentium
+                                    quia quo repellendus, sint. Consequatur
+                                    cumque distinctio dolores doloribus, facere
+                                    hic ipsam iusto magni quae, repellat
+                                    repudiandae temporibus ut. Accusamus
+                                    consequatur dolorum esse eveniet in
+                                    laudantium natus necessitatibus nisi quidem
+                                    repellendus reprehenderit voluptas,
+                                    voluptates.
+                                    <br />
+                                    <br />
+
+                                    <!-- on submit show loader -->
+                                    <button type="submit">Save</button>
+                                </form>
+                            </div>
+
+                            <!-- loader -->
+                            <div class="iDzey CzomY EJVsl OtrSK">
+                                <svg
+                                    width="100"
+                                    height="100"
+                                    viewBox="0 0 38 38"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    stroke="#000000"
+                                >
+                                    <g fill="none" fill-rule="evenodd">
+                                        <g
+                                            transform="translate(1 1)"
+                                            stroke-width="2"
+                                        >
+                                            <circle
+                                                stroke-opacity=".5"
+                                                cx="18"
+                                                cy="18"
+                                                r="18"
+                                            ></circle>
+                                            <path
+                                                d="M36 18c0-9.94-8.06-18-18-18"
+                                            >
+                                                <animateTransform
+                                                    attributeName="transform"
+                                                    type="rotate"
+                                                    from="0 18 18"
+                                                    to="360 18 18"
+                                                    dur="1s"
+                                                    repeatCount="indefinite"
+                                                ></animateTransform>
+                                            </path>
+                                        </g>
+                                    </g>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <article class="centered-popup-container">
+                <h2>Example popup for centered Popup (with simplebar)</h2>
+                <pre>
+                    <code>
+                        onclick="initiate_popup({'target': '#centered-popup', 'popup_position': 'centered'});
+                    </code>
+                </pre>
+                <button
+                    onclick="initiate_popup({'target': '#centered-popup', 'popup_position': 'centered'});"
+                >
+                    Test Centered Popup
+                </button>
+                <div class="DuKSh EJVsl OtrSK cNGwx" id="centered-popup">
+                    <!-- inner wrapper -->
+                    <div class="GodhZ gsCWf EJVsl OtrSK CzomY">
+                        <!-- container -->
+                        <div class="ExGby HruDj">
+                            <!-- header -->
+                            <div class="tSrNa gsCWf EJVsl zsSLy">
+                                <h1 class="USKIn">Centered</h1>
+
+                                <!-- header right section -->
+                                <div class="wcrwV gsCWf EJVsl">
+                                    <!-- dropdown -->
+                                    <div class="BgbBR HruDj">
+                                        <!-- dropdown toggle button -->
+                                        <div
+                                            class="RTcUA TNIio UYvZu gsCWf EJVsl OtrSK DeYlt"
+                                        >
+                                            <svg
+                                                width="24"
+                                                height="24"
+                                                viewBox="0 0 24 24"
+                                                fill="none"
+                                                xmlns="http://www.w3.org/2000/svg"
+                                            >
+                                                <path
+                                                    d="M19 13C19.5523 13 20 12.5523 20 12C20 11.4477 19.5523 11 19 11C18.4477 11 18 11.4477 18 12C18 12.5523 18.4477 13 19 13Z"
+                                                    stroke="#000000"
+                                                    stroke-width="2"
+                                                    stroke-linecap="round"
+                                                    stroke-linejoin="round"
+                                                ></path>
+                                                <path
+                                                    d="M12 13C12.5523 13 13 12.5523 13 12C13 11.4477 12.5523 11 12 11C11.4477 11 11 11.4477 11 12C11 12.5523 11.4477 13 12 13Z"
+                                                    stroke="#000000"
+                                                    stroke-width="2"
+                                                    stroke-linecap="round"
+                                                    stroke-linejoin="round"
+                                                ></path>
+                                                <path
+                                                    d="M5 13C5.55228 13 6 12.5523 6 12C6 11.4477 5.55228 11 5 11C4.44772 11 4 11.4477 4 12C4 12.5523 4.44772 13 5 13Z"
+                                                    stroke="#000000"
+                                                    stroke-width="2"
+                                                    stroke-linecap="round"
+                                                    stroke-linejoin="round"
+                                                ></path>
+                                            </svg>
+                                        </div>
+                                        <!-- dropdown contents -->
+                                        <div class="JVeuW CzomY">
+                                            <div class="YLtig DeYlt">
+                                                Deleted Tasks
+                                            </div>
+                                            <div class="YLtig DeYlt">
+                                                Archived Tasks
+                                            </div>
+                                            <div class="YLtig DeYlt">
+                                                Duplicate Tasks
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- close button -->
+                                    <div
+                                        class="AYaOY TNIio UYvZu gsCWf EJVsl OtrSK DeYlt"
+                                    >
+                                        <svg
+                                            width="24"
+                                            height="24"
+                                            viewBox="0 0 24 24"
+                                            fill="none"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                        >
+                                            <g>
+                                                <path
+                                                    d="M16 16L12 12M12 12L8 8M12 12L16 8M12 12L8 16"
+                                                    stroke="#000000"
+                                                    stroke-width="2"
+                                                    stroke-linecap="round"
+                                                    stroke-linejoin="round"
+                                                ></path>
+                                            </g>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- contents -->
+                            <div class="TImJU">
+                                <form action="">
+                                    Lorem ipsum dolor sit amet, consectetur
+                                    adipisicing elit. Amet atque corporis
+                                    dolorem exercitationem id laborum nemo
+                                    nesciunt nobis odio, rem rerum sequi sint
+                                    ullam! Adipisci aut cumque deserunt
+                                    doloremque doloribus earum ex expedita harum
+                                    inventore molestias nostrum omnis porro,
+                                    quae tempora voluptatum. Ab alias at beatae
+                                    iusto. Ab ad architecto dolore earum eius
+                                    excepturi, inventore molestias nobis quasi
+                                    repudiandae! Atque consectetur delectus ea
+                                    eius explicabo ipsa laboriosam nihil totam
+                                    voluptate. A accusamus aliquid amet animi
+                                    assumenda at aut beatae delectus, deleniti
+                                    dicta dignissimos dolorem dolores doloribus
+                                    eius enim facilis fuga hic impedit itaque
+                                    laborum molestias mollitia necessitatibus
+                                    nemo nisi non nulla officia pariatur porro
+                                    possimus quam quia quisquam, quod sequi sunt
+                                    tempora vel vero! Aliquid, doloribus enim
+                                    ipsa maiores quis sed soluta! Ad amet beatae
+                                    molestiae quasi recusandae. Adipisci alias,
+                                    animi at commodi consectetur corporis culpa
+                                    cumque delectus deleniti distinctio dolor
+                                    ducimus enim ex fugit iste laboriosam minima
+                                    modi mollitia nam neque odio omnis pariatur
+                                    perspiciatis porro quasi quo ratione
+                                    reprehenderit sequi sit tempore ut vel vitae
+                                    voluptatibus. Ab ad adipisci aperiam
+                                    architecto aspernatur assumenda aut,
+                                    consectetur consequatur consequuntur cum
+                                    delectus distinctio doloremque doloribus
+                                    ducimus eaque earum est exercitationem
+                                    facilis fugit illum impedit in modi mollitia
+                                    nam numquam officiis perferendis quam quas
+                                    qui quia quo quod rem repudiandae sit
+                                    temporibus unde voluptatum. Accusantium
+                                    aspernatur culpa deserunt expedita quia quis
+                                    quisquam saepe ut velit vitae! Commodi
+                                    delectus doloribus illum iure optio pariatur
+                                    praesentium voluptatibus! Accusamus alias
+                                    aliquid asperiores aspernatur, commodi
+                                    cumque delectus deleniti, distinctio dolore
+                                    ea earum eos et eum eveniet exercitationem
+                                    fugiat ipsa iure labore libero magni maxime
+                                    minima molestiae necessitatibus odit officia
+                                    placeat provident, quae quibusdam rem
+                                    repellat sit sunt vitae voluptatem. A amet
+                                    asperiores beatae delectus distinctio
+                                    doloremque error est id ipsum iste itaque
+                                    laboriosam nobis, non obcaecati odit
+                                    officiis praesentium quaerat quos sit totam.
+                                    A aliquid at beatae earum exercitationem
+                                    expedita laboriosam minus molestias placeat
+                                    porro qui quod similique sint, soluta
+                                    voluptatem. Aperiam eveniet optio
+                                    voluptatum. Blanditiis consequatur
+                                    consequuntur corporis, deleniti eligendi
+                                    iste iusto labore molestias repellat
+                                    temporibus vel voluptas, voluptatem? Aliquam
+                                    architecto asperiores assumenda debitis, eum
+                                    hic impedit laborum magnam magni
+                                    necessitatibus officiis omnis perferendis
+                                    placeat quam qui quos sed sint ullam vel
+                                    voluptates! Autem cum excepturi hic
+                                    laudantium libero necessitatibus praesentium
+                                    quia quo repellendus, sint. Consequatur
+                                    cumque distinctio dolores doloribus, facere
+                                    hic ipsam iusto magni quae, repellat
+                                    repudiandae temporibus ut. Accusamus
+                                    consequatur dolorum esse eveniet in
+                                    laudantium natus necessitatibus nisi quidem
+                                    repellendus reprehenderit voluptas,
+                                    voluptates.
+                                    <br />
+                                    <br />
+
+                                    <!-- on submit show loader -->
+                                    <button type="submit">Save</button>
+                                </form>
+                            </div>
+
+                            <!-- loader -->
+                            <div class="iDzey CzomY EJVsl OtrSK">
+                                <svg
+                                    width="100"
+                                    height="100"
+                                    viewBox="0 0 38 38"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    stroke="#000000"
+                                >
+                                    <g fill="none" fill-rule="evenodd">
+                                        <g
+                                            transform="translate(1 1)"
+                                            stroke-width="2"
+                                        >
+                                            <circle
+                                                stroke-opacity=".5"
+                                                cx="18"
+                                                cy="18"
+                                                r="18"
+                                            ></circle>
+                                            <path
+                                                d="M36 18c0-9.94-8.06-18-18-18"
+                                            >
+                                                <animateTransform
+                                                    attributeName="transform"
+                                                    type="rotate"
+                                                    from="0 18 18"
+                                                    to="360 18 18"
+                                                    dur="1s"
+                                                    repeatCount="indefinite"
+                                                ></animateTransform>
+                                            </path>
+                                        </g>
+                                    </g>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <article class="exceed-popup-container">
+                <h2>Example popup for exceed Popup</h2>
+                <p>
+                    All the popups (that exceeds page height) are scrollable
+                    from outside by default
+                </p>
+                <pre>
+                    <code>
+                        initiate_popup({'target': '#form-popup', 'overlay_color':'rgba(0,0,0,0.65)'});
+                    </code>
+                </pre>
+                <button
+                    onclick="initiate_popup({'target': '#form-popup', 'overlay_color': 'rgba(0,0,0,0.65)'});"
+                >
+                    Test Exceed Popup
+                </button>
+            </article>
+
+            <article class="fade-in-popup-container">
+                <h2>Example popup for fade in popup</h2>
+                <pre>
+                    <code>
+                        initiate_popup({'target': '#fadein-popup','popup_animation_type': 'animate-fade-in', 'popup_position': 'centered'});
+                    </code>
+                </pre>
+                <button
+                    onclick="initiate_popup({'target': '#fadein-popup','popup_animation_type': 'animate-fade-in', 'popup_position': 'centered'});"
+                >
+                    Test Fade-in Popup
+                </button>
+                <div class="DuKSh EJVsl OtrSK cNGwx" id="fadein-popup">
+                    <!-- inner wrapper -->
+                    <div class="GodhZ gsCWf EJVsl OtrSK CzomY">
+                        <!-- container -->
+                        <div class="ExGby HruDj">
+                            <!-- header -->
+                            <div class="tSrNa gsCWf EJVsl zsSLy">
+                                <h1 class="USKIn">Popup Settings</h1>
+
+                                <!-- header right section -->
+                                <div class="wcrwV gsCWf EJVsl">
+                                    <!-- dropdown -->
+                                    <div class="BgbBR HruDj">
+                                        <!-- dropdown toggle button -->
+                                        <div
+                                            class="RTcUA TNIio UYvZu gsCWf EJVsl OtrSK DeYlt"
+                                        >
+                                            <svg
+                                                width="24"
+                                                height="24"
+                                                viewBox="0 0 24 24"
+                                                fill="none"
+                                                xmlns="http://www.w3.org/2000/svg"
+                                            >
+                                                <path
+                                                    d="M19 13C19.5523 13 20 12.5523 20 12C20 11.4477 19.5523 11 19 11C18.4477 11 18 11.4477 18 12C18 12.5523 18.4477 13 19 13Z"
+                                                    stroke="#000000"
+                                                    stroke-width="2"
+                                                    stroke-linecap="round"
+                                                    stroke-linejoin="round"
+                                                ></path>
+                                                <path
+                                                    d="M12 13C12.5523 13 13 12.5523 13 12C13 11.4477 12.5523 11 12 11C11.4477 11 11 11.4477 11 12C11 12.5523 11.4477 13 12 13Z"
+                                                    stroke="#000000"
+                                                    stroke-width="2"
+                                                    stroke-linecap="round"
+                                                    stroke-linejoin="round"
+                                                ></path>
+                                                <path
+                                                    d="M5 13C5.55228 13 6 12.5523 6 12C6 11.4477 5.55228 11 5 11C4.44772 11 4 11.4477 4 12C4 12.5523 4.44772 13 5 13Z"
+                                                    stroke="#000000"
+                                                    stroke-width="2"
+                                                    stroke-linecap="round"
+                                                    stroke-linejoin="round"
+                                                ></path>
+                                            </svg>
+                                        </div>
+                                        <!-- dropdown contents -->
+                                        <div class="JVeuW CzomY">
+                                            <div class="YLtig DeYlt">
+                                                Deleted Tasks
+                                            </div>
+                                            <div class="YLtig DeYlt">
+                                                Archived Tasks
+                                            </div>
+                                            <div class="YLtig DeYlt">
+                                                Duplicate Tasks
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- close button -->
+                                    <div
+                                        class="AYaOY TNIio UYvZu gsCWf EJVsl OtrSK DeYlt"
+                                    >
+                                        <svg
+                                            width="24"
+                                            height="24"
+                                            viewBox="0 0 24 24"
+                                            fill="none"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                        >
+                                            <g>
+                                                <path
+                                                    d="M16 16L12 12M12 12L8 8M12 12L16 8M12 12L8 16"
+                                                    stroke="#000000"
+                                                    stroke-width="2"
+                                                    stroke-linecap="round"
+                                                    stroke-linejoin="round"
+                                                ></path>
+                                            </g>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- contents -->
+                            <div class="TImJU">
+                                <form action="">
+                                    Lorem ipsum dolor sit amet, consectetur
+                                    adipisicing elit. Amet atque corporis
+                                    dolorem exercitationem id laborum nemo
+                                    nesciunt nobis odio, rem rerum sequi sint
+                                    ullam! Adipisci aut cumque deserunt
+                                    doloremque doloribus earum ex expedita harum
+                                    inventore molestias nostrum omnis porro,
+                                    quae tempora voluptatum. Ab alias at beatae
+                                    iusto. Ab ad architecto dolore earum eius
+                                    excepturi, inventore molestias nobis quasi
+                                    repudiandae! Atque consectetur delectus ea
+                                    eius explicabo ipsa laboriosam nihil totam
+                                    voluptate. A accusamus aliquid amet animi
+                                    assumenda at aut beatae delectus, deleniti
+                                    dicta dignissimos dolorem dolores doloribus
+                                    eius enim facilis fuga hic impedit itaque
+                                    laborum molestias mollitia necessitatibus
+                                    nemo nisi non nulla officia pariatur porro
+                                    possimus quam quia quisquam, quod sequi sunt
+                                    tempora vel vero! Aliquid, doloribus enim
+                                    ipsa maiores quis sed soluta! Ad amet beatae
+                                    molestiae quasi recusandae. Adipisci alias,
+                                    animi at commodi consectetur corporis culpa
+                                    cumque delectus deleniti distinctio dolor
+                                    ducimus enim ex fugit iste laboriosam minima
+                                    modi mollitia nam neque odio omnis pariatur
+                                    perspiciatis porro quasi quo ratione
+                                    reprehenderit sequi sit tempore ut vel vitae
+                                    voluptatibus. Ab ad adipisci aperiam
+                                    architecto aspernatur assumenda aut,
+                                    consectetur consequatur consequuntur cum
+                                    delectus distinctio doloremque doloribus
+                                    ducimus eaque earum est exercitationem
+                                    facilis fugit illum impedit in modi mollitia
+                                    nam numquam officiis perferendis quam quas
+                                    qui quia quo quod rem repudiandae sit
+                                    temporibus unde voluptatum. Accusantium
+                                    aspernatur culpa deserunt expedita quia quis
+                                    quisquam saepe ut velit vitae!
+                                    <br />
+                                    <br />
+
+                                    <!-- on submit show loader -->
+                                    <button type="submit">Save</button>
+                                </form>
+                            </div>
+
+                            <!-- loader -->
+                            <div class="iDzey CzomY EJVsl OtrSK">
+                                <svg
+                                    width="100"
+                                    height="100"
+                                    viewBox="0 0 38 38"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    stroke="#000000"
+                                >
+                                    <g fill="none" fill-rule="evenodd">
+                                        <g
+                                            transform="translate(1 1)"
+                                            stroke-width="2"
+                                        >
+                                            <circle
+                                                stroke-opacity=".5"
+                                                cx="18"
+                                                cy="18"
+                                                r="18"
+                                            ></circle>
+                                            <path
+                                                d="M36 18c0-9.94-8.06-18-18-18"
+                                            >
+                                                <animateTransform
+                                                    attributeName="transform"
+                                                    type="rotate"
+                                                    from="0 18 18"
+                                                    to="360 18 18"
+                                                    dur="1s"
+                                                    repeatCount="indefinite"
+                                                ></animateTransform>
+                                            </path>
+                                        </g>
+                                    </g>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <article class="slide-in-up-popup-container">
+                <h2>Example popup for slide-in/slide-up popup</h2>
+                <pre>
+                    <code>
+                        initiate_popup({'target': '#slide-in-up-popup','popup_animation_type': 'animate-slide-down', 'popup_position': 'centered'});
+                    </code>
+                </pre>
+                <button
+                    onclick="initiate_popup({'target': '#slide-in-up-popup','popup_animation_type': 'animate-slide-down', 'popup_position': 'centered'});"
+                >
+                    Test Slide-in/Slide-up Popup
+                </button>
+                <div class="DuKSh EJVsl OtrSK cNGwx" id="slide-in-up-popup">
+                    <!-- inner wrapper -->
+                    <div class="GodhZ gsCWf EJVsl OtrSK CzomY">
+                        <!-- container -->
+                        <div class="ExGby HruDj">
+                            <!-- header -->
+                            <div class="tSrNa gsCWf EJVsl zsSLy">
+                                <h1 class="USKIn">Popup Settings</h1>
+
+                                <!-- header right section -->
+                                <div class="wcrwV gsCWf EJVsl">
+                                    <!-- dropdown -->
+                                    <div class="BgbBR HruDj">
+                                        <!-- dropdown toggle button -->
+                                        <div
+                                            class="RTcUA TNIio UYvZu gsCWf EJVsl OtrSK DeYlt"
+                                        >
+                                            <svg
+                                                width="24"
+                                                height="24"
+                                                viewBox="0 0 24 24"
+                                                fill="none"
+                                                xmlns="http://www.w3.org/2000/svg"
+                                            >
+                                                <path
+                                                    d="M19 13C19.5523 13 20 12.5523 20 12C20 11.4477 19.5523 11 19 11C18.4477 11 18 11.4477 18 12C18 12.5523 18.4477 13 19 13Z"
+                                                    stroke="#000000"
+                                                    stroke-width="2"
+                                                    stroke-linecap="round"
+                                                    stroke-linejoin="round"
+                                                ></path>
+                                                <path
+                                                    d="M12 13C12.5523 13 13 12.5523 13 12C13 11.4477 12.5523 11 12 11C11.4477 11 11 11.4477 11 12C11 12.5523 11.4477 13 12 13Z"
+                                                    stroke="#000000"
+                                                    stroke-width="2"
+                                                    stroke-linecap="round"
+                                                    stroke-linejoin="round"
+                                                ></path>
+                                                <path
+                                                    d="M5 13C5.55228 13 6 12.5523 6 12C6 11.4477 5.55228 11 5 11C4.44772 11 4 11.4477 4 12C4 12.5523 4.44772 13 5 13Z"
+                                                    stroke="#000000"
+                                                    stroke-width="2"
+                                                    stroke-linecap="round"
+                                                    stroke-linejoin="round"
+                                                ></path>
+                                            </svg>
+                                        </div>
+                                        <!-- dropdown contents -->
+                                        <div class="JVeuW CzomY">
+                                            <div class="YLtig DeYlt">
+                                                Deleted Tasks
+                                            </div>
+                                            <div class="YLtig DeYlt">
+                                                Archived Tasks
+                                            </div>
+                                            <div class="YLtig DeYlt">
+                                                Duplicate Tasks
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- close button -->
+                                    <div
+                                        class="AYaOY TNIio UYvZu gsCWf EJVsl OtrSK DeYlt"
+                                    >
+                                        <svg
+                                            width="24"
+                                            height="24"
+                                            viewBox="0 0 24 24"
+                                            fill="none"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                        >
+                                            <g>
+                                                <path
+                                                    d="M16 16L12 12M12 12L8 8M12 12L16 8M12 12L8 16"
+                                                    stroke="#000000"
+                                                    stroke-width="2"
+                                                    stroke-linecap="round"
+                                                    stroke-linejoin="round"
+                                                ></path>
+                                            </g>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- contents -->
+                            <div class="TImJU">
+                                <form action="">
+                                    Lorem ipsum dolor sit amet, consectetur
+                                    adipisicing elit. Amet atque corporis
+                                    dolorem exercitationem id laborum nemo
+                                    nesciunt nobis odio, rem rerum sequi sint
+                                    ullam! Adipisci aut cumque deserunt
+                                    doloremque doloribus earum ex expedita harum
+                                    inventore molestias nostrum omnis porro,
+                                    quae tempora voluptatum. Ab alias at beatae
+                                    iusto. Ab ad architecto dolore earum eius
+                                    excepturi, inventore molestias nobis quasi
+                                    repudiandae! Atque consectetur delectus ea
+                                    eius explicabo ipsa laboriosam nihil totam
+                                    voluptate. A accusamus aliquid amet animi
+                                    assumenda at aut beatae delectus, deleniti
+                                    dicta dignissimos dolorem dolores doloribus
+                                    eius enim facilis fuga hic impedit itaque
+                                    laborum molestias mollitia necessitatibus
+                                    nemo nisi non nulla officia pariatur porro
+                                    possimus quam quia quisquam, quod sequi sunt
+                                    tempora vel vero! Aliquid, doloribus enim
+                                    ipsa maiores quis sed soluta! Ad amet beatae
+                                    molestiae quasi recusandae. Adipisci alias,
+                                    animi at commodi consectetur corporis culpa
+                                    cumque delectus deleniti distinctio dolor
+                                    ducimus enim ex fugit iste laboriosam minima
+                                    modi mollitia nam neque odio omnis pariatur
+                                    perspiciatis porro quasi quo ratione
+                                    reprehenderit sequi sit tempore ut vel vitae
+                                    voluptatibus. Ab ad adipisci aperiam
+                                    architecto aspernatur assumenda aut,
+                                    consectetur consequatur consequuntur cum
+                                    delectus distinctio doloremque doloribus
+                                    ducimus eaque earum est exercitationem
+                                    facilis fugit illum impedit in modi mollitia
+                                    nam numquam officiis perferendis quam quas
+                                    qui quia quo quod rem repudiandae sit
+                                    temporibus unde voluptatum. Accusantium
+                                    aspernatur culpa deserunt expedita quia quis
+                                    quisquam saepe ut velit vitae!
+                                    <br />
+                                    <br />
+
+                                    <!-- on submit show loader -->
+                                    <button type="submit">Save</button>
+                                </form>
+                            </div>
+
+                            <!-- loader -->
+                            <div class="iDzey CzomY EJVsl OtrSK">
+                                <svg
+                                    width="100"
+                                    height="100"
+                                    viewBox="0 0 38 38"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    stroke="#000000"
+                                >
+                                    <g fill="none" fill-rule="evenodd">
+                                        <g
+                                            transform="translate(1 1)"
+                                            stroke-width="2"
+                                        >
+                                            <circle
+                                                stroke-opacity=".5"
+                                                cx="18"
+                                                cy="18"
+                                                r="18"
+                                            ></circle>
+                                            <path
+                                                d="M36 18c0-9.94-8.06-18-18-18"
+                                            >
+                                                <animateTransform
+                                                    attributeName="transform"
+                                                    type="rotate"
+                                                    from="0 18 18"
+                                                    to="360 18 18"
+                                                    dur="1s"
+                                                    repeatCount="indefinite"
+                                                ></animateTransform>
+                                            </path>
+                                        </g>
+                                    </g>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <article class="bounce-popup-container">
+                <h2>Example popup for bounce popup</h2>
+                <pre>
+                    <code>
+                        initiate_popup({'target': '#bounce-popup','popup_animation_type': 'animate-bounce-in', 'popup_position': 'centered'});
+                    </code>
+                </pre>
+                <button
+                    onclick="initiate_popup({'target': '#bounce-popup','popup_animation_type': 'animate-bounce-in', 'popup_position': 'centered'});"
+                >
+                    Test Bounce Popup
+                </button>
+                <div class="DuKSh EJVsl OtrSK cNGwx" id="bounce-popup">
+                    <!-- inner wrapper -->
+                    <div class="GodhZ gsCWf EJVsl OtrSK CzomY">
+                        <!-- container -->
+                        <div class="ExGby HruDj">
+                            <!-- header -->
+                            <div class="tSrNa gsCWf EJVsl zsSLy">
+                                <h1 class="USKIn">Popup Settings</h1>
+
+                                <!-- header right section -->
+                                <div class="wcrwV gsCWf EJVsl">
+                                    <!-- dropdown -->
+                                    <div class="BgbBR HruDj">
+                                        <!-- dropdown toggle button -->
+                                        <div
+                                            class="RTcUA TNIio UYvZu gsCWf EJVsl OtrSK DeYlt"
+                                        >
+                                            <svg
+                                                width="24"
+                                                height="24"
+                                                viewBox="0 0 24 24"
+                                                fill="none"
+                                                xmlns="http://www.w3.org/2000/svg"
+                                            >
+                                                <path
+                                                    d="M19 13C19.5523 13 20 12.5523 20 12C20 11.4477 19.5523 11 19 11C18.4477 11 18 11.4477 18 12C18 12.5523 18.4477 13 19 13Z"
+                                                    stroke="#000000"
+                                                    stroke-width="2"
+                                                    stroke-linecap="round"
+                                                    stroke-linejoin="round"
+                                                ></path>
+                                                <path
+                                                    d="M12 13C12.5523 13 13 12.5523 13 12C13 11.4477 12.5523 11 12 11C11.4477 11 11 11.4477 11 12C11 12.5523 11.4477 13 12 13Z"
+                                                    stroke="#000000"
+                                                    stroke-width="2"
+                                                    stroke-linecap="round"
+                                                    stroke-linejoin="round"
+                                                ></path>
+                                                <path
+                                                    d="M5 13C5.55228 13 6 12.5523 6 12C6 11.4477 5.55228 11 5 11C4.44772 11 4 11.4477 4 12C4 12.5523 4.44772 13 5 13Z"
+                                                    stroke="#000000"
+                                                    stroke-width="2"
+                                                    stroke-linecap="round"
+                                                    stroke-linejoin="round"
+                                                ></path>
+                                            </svg>
+                                        </div>
+                                        <!-- dropdown contents -->
+                                        <div class="JVeuW CzomY">
+                                            <div class="YLtig DeYlt">
+                                                Deleted Tasks
+                                            </div>
+                                            <div class="YLtig DeYlt">
+                                                Archived Tasks
+                                            </div>
+                                            <div class="YLtig DeYlt">
+                                                Duplicate Tasks
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- close button -->
+                                    <div
+                                        class="AYaOY TNIio UYvZu gsCWf EJVsl OtrSK DeYlt"
+                                    >
+                                        <svg
+                                            width="24"
+                                            height="24"
+                                            viewBox="0 0 24 24"
+                                            fill="none"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                        >
+                                            <g>
+                                                <path
+                                                    d="M16 16L12 12M12 12L8 8M12 12L16 8M12 12L8 16"
+                                                    stroke="#000000"
+                                                    stroke-width="2"
+                                                    stroke-linecap="round"
+                                                    stroke-linejoin="round"
+                                                ></path>
+                                            </g>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- contents -->
+                            <div class="TImJU">
+                                <form action="">
+                                    Lorem ipsum dolor sit amet, consectetur
+                                    adipisicing elit. Amet atque corporis
+                                    dolorem exercitationem id laborum nemo
+                                    nesciunt nobis odio, rem rerum sequi sint
+                                    ullam! Adipisci aut cumque deserunt
+                                    doloremque doloribus earum ex expedita harum
+                                    inventore molestias nostrum omnis porro,
+                                    quae tempora voluptatum. Ab alias at beatae
+                                    iusto. Ab ad architecto dolore earum eius
+                                    excepturi, inventore molestias nobis quasi
+                                    repudiandae! Atque consectetur delectus ea
+                                    eius explicabo ipsa laboriosam nihil totam
+                                    voluptate. A accusamus aliquid amet animi
+                                    assumenda at aut beatae delectus, deleniti
+                                    dicta dignissimos dolorem dolores doloribus
+                                    eius enim facilis fuga hic impedit itaque
+                                    laborum molestias mollitia necessitatibus
+                                    nemo nisi non nulla officia pariatur porro
+                                    possimus quam quia quisquam, quod sequi sunt
+                                    tempora vel vero! Aliquid, doloribus enim
+                                    ipsa maiores quis sed soluta! Ad amet beatae
+                                    molestiae quasi recusandae. Adipisci alias,
+                                    animi at commodi consectetur corporis culpa
+                                    cumque delectus deleniti distinctio dolor
+                                    ducimus enim ex fugit iste laboriosam minima
+                                    modi mollitia nam neque odio omnis pariatur
+                                    perspiciatis porro quasi quo ratione
+                                    reprehenderit sequi sit tempore ut vel vitae
+                                    voluptatibus. Ab ad adipisci aperiam
+                                    architecto aspernatur assumenda aut,
+                                    consectetur consequatur consequuntur cum
+                                    delectus distinctio doloremque doloribus
+                                    ducimus eaque earum est exercitationem
+                                    facilis fugit illum impedit in modi mollitia
+                                    nam numquam officiis perferendis quam quas
+                                    qui quia quo quod rem repudiandae sit
+                                    temporibus unde voluptatum. Accusantium
+                                    aspernatur culpa deserunt expedita quia quis
+                                    quisquam saepe ut velit vitae!
+                                    <br />
+                                    <br />
+
+                                    <!-- on submit show loader -->
+                                    <button type="submit">Save</button>
+                                </form>
+                            </div>
+
+                            <!-- loader -->
+                            <div class="iDzey CzomY EJVsl OtrSK">
+                                <svg
+                                    width="100"
+                                    height="100"
+                                    viewBox="0 0 38 38"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    stroke="#000000"
+                                >
+                                    <g fill="none" fill-rule="evenodd">
+                                        <g
+                                            transform="translate(1 1)"
+                                            stroke-width="2"
+                                        >
+                                            <circle
+                                                stroke-opacity=".5"
+                                                cx="18"
+                                                cy="18"
+                                                r="18"
+                                            ></circle>
+                                            <path
+                                                d="M36 18c0-9.94-8.06-18-18-18"
+                                            >
+                                                <animateTransform
+                                                    attributeName="transform"
+                                                    type="rotate"
+                                                    from="0 18 18"
+                                                    to="360 18 18"
+                                                    dur="1s"
+                                                    repeatCount="indefinite"
+                                                ></animateTransform>
+                                            </path>
+                                        </g>
+                                    </g>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <section id="arguments-table" class="arguments-table">
+                <h1>Popup Initialization Arguments</h1>
+                <table>
+                    <tr>
+                        <th>Argument</th>
+                        <th>Description</th>
+                        <th>Custom values</th>
+                        <th>Default Values</th>
+                        <th>Required</th>
+                    </tr>
+                    <tr>
+                        <td>"target"</td>
+                        <td>The ID of the popup.</td>
+                        <td>Any</td>
+                        <td>false</td>
+                        <td>Yes</td>
+                    </tr>
+                    <tr>
+                        <td>"overlay_color"</td>
+                        <td>The background color of the popup overlay.</td>
+                        <td>Any</td>
+                        <td>"rgba(0,0,0,0.65)"</td>
+                        <td>Optional</td>
+                    </tr>
+                    <tr>
+                        <td>"popup_type"</td>
+                        <td>Specifies the type or variation of the popup.</td>
+                        <td>
+                            <ul>
+                                <li>"slidein-popup"</li>
+                                <li>"force-slidein-popup"</li>
+                                <li>"narrow-mobile-popup"</li>
+                                <li>"cookie-popup"</li>
+                            </ul>
+                        </td>
+                        <td>"default"</td>
+                        <td>Optional</td>
+                    </tr>
+                    <tr>
+                        <td>"cookie_name"</td>
+                        <td>
+                            The name of the cookie used in cookie popups. Only
+                            applicable when `popup_type` is 'cookie-popup'.
+                        </td>
+                        <td>Any</td>
+                        <td>"example_cookie"</td>
+                        <td>Yes (For cookie)</td>
+                    </tr>
+                    <tr>
+                        <td>"cookie_expiration"</td>
+                        <td>
+                            The expiration duration for the cookie used in
+                            cookie popups. Only applicable when `popup_type` is
+                            'cookie-popup'.
+                        </td>
+                        <td>Any</td>
+                        <td>"Fri, 31 Dec 9999 23:59:59 GMT"</td>
+                        <td>Yes (For cookie)</td>
+                    </tr>
+                    <tr>
+                        <td>"prevent_close"</td>
+                        <td>Prevent popup from closing.</td>
+                        <td>
+                            <ul>
+                                <li>true</li>
+                                <li>false</li>
+                            </ul>
+                        </td>
+                        <td>false</td>
+                        <td>Optional</td>
+                    </tr>
+                    <tr>
+                        <td>"popup_time_delay"</td>
+                        <td>
+                            Delay time to open the popup (Value should be in
+                            number)
+                        </td>
+                        <td>Any</td>
+                        <td>0</td>
+                        <td>Optional</td>
+                    </tr>
+                    <tr>
+                        <td>"popup_scroll_trigger"</td>
+                        <td>Opens popup on scrolling down the page</td>
+                        <td>
+                            <ul>
+                                <li>true</li>
+                                <li>false</li>
+                            </ul>
+                        </td>
+                        <td>false</td>
+                        <td>Optional</td>
+                    </tr>
+                    <tr>
+                        <td>"popup_top_space"</td>
+                        <td>
+                            Pixels or percentage from top to trigger popup.
+                            Value should be a string and the unit should be '%'
+                            or 'px'. Ex: '100px', '10%'
+                        </td>
+                        <td>Any</td>
+                        <td>"500px"</td>
+                        <td>Yes (if popup scroll trigger is true)</td>
+                    </tr>
+                    <tr>
+                        <td>"popup_animation_type"</td>
+                        <td>Adds popup opening animation type.</td>
+                        <td>
+                            <ul>
+                                <li>"animate-fade-in"</li>
+                                <li>"animate-slide-down"</li>
+                                <li>"animate-bounce-in"</li>
+                            </ul>
+                        </td>
+                        <td>false</td>
+                        <td>Optional</td>
+                    </tr>
+                    <tr>
+                        <td>"popup_position"</td>
+                        <td>
+                            Updates the popup position and height. If 'centered'
+                            selected, popup will be positioned 'center center'
+                            and will have limited height. Else it will be
+                            aligned from top and scrollable from outside.
+                        </td>
+                        <td>'centered'</td>
+                        <td>false (scrollable)</td>
+                        <td>Required for positioning</td>
+                    </tr>
+                    <tr>
+                        <td>"popup_max_height"</td>
+                        <td>
+                            The max-height of the popup container.
+                        </td>
+                        <td>
+                            <ul>
+                                <li>'400px'</li>
+                                <li>'30vh'</li>
+                                <li>'80%' etc.</li>
+                            </ul>
+                        </td>
+                        <td>'none'. <br><br> '500px' if 'popup_position' is 'centered'</td>
+                        <td>Optional</td>
+                    </tr>
+                    <tr>
+                        <td>"popup_over_popup"</td>
+                        <td>
+                            Updatess styles for the popups that is placed over
+                            another popup
+                        </td>
+                        <td>true</td>
+                        <td>false</td>
+                        <td>Required (if popup is placed on another popup)</td>
+                    </tr>
+                </table>
+
+                <div class="arguments-description">
+                    <p>
+                        <b>Custom values:</b> If not 'Any', only specified
+                        values can be added as custom values.
+                    </p>
+                    <p>
+                        <b>Default values:</b> These values will be added if no
+                        custom values are added.
+                    </p>
+                </div>
+            </section>
 
             <script>
                 //------------------handle go top button-----------------
@@ -3866,7 +5116,37 @@
                         },
                     }).mount();
                 }
+
+                // show scroll popup based on query parameter
+
+                // Function to get query parameters from the URL
+                function getQueryParam(name) {
+                    const urlSearchParams = new URLSearchParams(
+                        window.location.search
+                    );
+                    return urlSearchParams.get(name);
+                }
+
+                // Check if the query parameter 'show-popup-scroll' is set to true
+                const showPopupScroll =
+                    getQueryParam("show-popup-scroll") === "true";
+
+                // Function to initiate the popup on scroll
+                function initiatePopupOnScroll() {
+                    if (showPopupScroll) {
+                        initiate_popup({
+                            target: "#scroll-trigger-popup",
+                            popup_scroll_trigger: true,
+                            popup_top_space: "500px",
+                        });
+                    }
+                }
+
+                // Add scroll event listener
+                window.addEventListener("scroll", initiatePopupOnScroll);
             </script>
+            <script src="https://fs.codelinden.com/wp-content/plugins/fansocial/assets/FINAL/js/main.js?ver=1.0"></script>
+            <script src="popup-scripts.js"></script>
         </div>
     </body>
 </html>

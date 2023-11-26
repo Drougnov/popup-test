@@ -17,9 +17,14 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.65);
     z-index: 9999;
     overflow: auto;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.DuKSh::-webkit-scrollbar {
+    display: none;
 }
 
 /* hide popup (if animation added) */
@@ -35,6 +40,21 @@
     -moz-transition: all 0.3s linear;
     -ms-transition: all 0.3s linear;
     -o-transition: all 0.3s linear;
+}
+
+/* show transform transition but hide fade-in transition */
+.DuKSh.animate-slide-down,
+.DuKSh.animate-bounce-in {
+    transition: transform 0.3s linear, opacity 0.3s linear,
+        visibility 0.3s linear;
+    -webkit-transition: transform 0.3s linear, opacity 0.3s linear,
+        visibility 0.3s linear;
+    -moz-transition: transform 0.3s linear, opacity 0.3s linear,
+        visibility 0.3s linear;
+    -ms-transition: transform 0.3s linear, opacity 0.3s linear,
+        visibility 0.3s linear;
+    -o-transition: transform 0.3s linear, opacity 0.3s linear,
+        visibility 0.3s linear;
 }
 
 /* show popup (if animation added) */
@@ -179,9 +199,9 @@
     scrollbar-width: none;
 }
 
-/* if positioned centered limit height */
-.DuKSh.centered .ExGby {
-    max-height: 500px;
+/* change default simplebar scrollbar color */
+.exceeded .simplebar-scrollbar:before {
+    background: #a6a6a6;
 }
 
 .ExGby::-webkit-scrollbar {
@@ -290,11 +310,13 @@
 /* form's style */
 
 /* overwrite simplebar's style */
-.scroll-popup .simplebar-placeholder {
+.scroll-popup .simplebar-placeholder,
+.slidein-popup .simplebar-placeholder{
     display: flex;
 }
 
-.scroll-popup .simplebar-wrapper {
+.scroll-popup .simplebar-wrapper,
+.slidein-popup .simplebar-placeholder {
     height: 100%;
 }
 
@@ -377,9 +399,7 @@
 .plan-carousel-wrapper {
     width: 100%;
     display: flex;
-    justify-content: center;
     align-items: stretch;
-    gap: 1rem;
 }
 
 .plan {
@@ -582,36 +602,35 @@
     box-shadow: 3px 0 3px 0 rgba(0, 0, 0, 0.1);
 }
 
-.slidein-popup .tSrNa {
-    flex: 0 0 auto;
-}
-
 .slidein-popup .TNIio {
     margin-right: -12px;
 }
 
 .slidein-popup .TImJU {
-    flex: 1;
-    height: calc(100vh - 76.8px); /*minus header height*/
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-}
-
-.slidein-popup .main-section {
-    flex: 1;
-    overflow-y: auto;
     -ms-overflow-style: none;
     scrollbar-width: none;
 }
 
-.slidein-popup .main-section::-webkit-scrollbar {
+.slidein-popup .TImJU::-webkit-scrollbar {
     display: none;
 }
 
-.slidein-popup .TImJU .AYaOY {
-    flex: 0 0 auto;
-    margin-top: 1rem;
+.slidein-popup .elements-container {
+    width: calc(100% + 11px);
+    margin-right: -11px;
+    padding-right: 11px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.slidein-popup .elements-container::-webkit-scrollbar {
+    display: none;
+}
+
+.slidein-popup .TImJU .ok_btn {
+    width: max-content;
 }
 
 .slidein-popup .iDzey {
@@ -735,7 +754,6 @@ input:not([type="radio"]):not([type="checkbox"]):not([type="file"]):not(
         opacity: 0;
         visibility: hidden;
         pointer-events: none;
-        background-color: transparent;
         z-index: 1002;
         -ms-overflow-style: none;
         scrollbar-width: none;
@@ -744,6 +762,14 @@ input:not([type="radio"]):not([type="checkbox"]):not([type="file"]):not(
         -moz-transition: 0.3s transform linear;
         -ms-transition: 0.3s transform linear;
         -o-transition: 0.3s transform linear;
+    }
+
+    /* remove background color on responsive for this popup */
+    .DuKSh.animate-fade-in,
+    .DuKSh.animate-slide-down,
+    .DuKSh.animate-bounce-in,
+    .DuKSh.narrow-mobile-popup{
+        background-color: transparent !important;
     }
 
     .DuKSh::-webkit-scrollbar {
@@ -824,7 +850,7 @@ input:not([type="radio"]):not([type="checkbox"]):not([type="file"]):not(
     }
 
     .DuKSh.centered .ExGby {
-        max-height: unset;
+        max-height: none !important;
     }
 
     /* --------------------------------------------- slidein popup --------------------------------------------- */
@@ -952,7 +978,7 @@ input:not([type="radio"]):not([type="checkbox"]):not([type="file"]):not(
         -moz-border-radius: 17px;
         -ms-border-radius: 17px;
         -o-border-radius: 17px;
-        box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.1);
+        box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.15);
     }
 
     /* product page popup */
